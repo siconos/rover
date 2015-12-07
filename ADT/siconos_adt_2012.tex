@@ -1,0 +1,864 @@
+\RequirePackage{snapshot}
+\documentclass[11pt]{article}
+
+
+\usepackage{latexsym}
+\usepackage{amsmath,amssymb,amsfonts,mathrsfs}
+\usepackage[T1]{fontenc}
+%\usepackage{ucs}
+\usepackage{calligra}
+\usepackage{makeidx}
+\usepackage{graphicx}
+\usepackage{psfrag}
+\usepackage{multicol}
+%\usepackage{mypsboxit}
+\usepackage{accents}
+\usepackage[colorlinks,linkcolor=blue,citecolor=blue,pagebackref]{hyperref}
+%\usepackage{cbtheorem}
+\usepackage{stmaryrd}
+\usepackage{eurosym}
+\usepackage{xfrac}
+\usepackage[]{color}
+\usepackage{longtable}
+\usepackage{pdflscape}
+\usepackage[table]{xcolor}\usepackage{multirow} \usepackage{rotating}
+\usepackage{subfigure}
+
+%-----------------------------------------------------------------------
+% 1in = 2.54cm, 1pc = 0.421751cm, 1cm = 2.37106pc, 1pt = 0.0351459cm
+\textwidth=15.0cm
+\textheight=21.0cm      %19.8cm
+\oddsidemargin=0.80cm   %0.97cm
+\topmargin=0.0cm        %0.8cm
+
+\numberwithin{equation}{section}
+\numberwithin{figure}{section}
+%\renewcommand{\theequation}{\thesection.\arabic{equation}}
+%\renewcommand{\thetable}{\thesection.\arabic{table}}
+
+%-----------------------------------------------------------------------
+% The following macros determine the part of the text that will actually
+% be compiled. When the paper is completed, set all the macros to 0.
+
+\def\withtoc{0}
+   % "with table of contents (TOC)"
+   % 0: without TOC
+   % 1: with TOC
+
+%-----------------------------------------------------------------------
+
+\newcommand{\CAD}{c.-\`a-d.}
+\newcommand{\PEX}{p.\,ex.}
+\newcommand{\tocvspace}{-2.0ex}
+
+%-----------------------------------------------------------------------
+
+
+\newcommand{\tcb}{\textcolor{white}}
+\newcommand{\tcg}{\textcolor{OliveGreen}}
+\newcommand{\tcw}{\textcolor{white}}
+
+%-----------------------------------------------------------------------
+
+\begin{document}
+
+\thispagestyle{empty}
+\pagestyle{myheadings}
+\markboth{{\sc Siconos/Multibody}}{{\sc Siconos/Multibody}}
+
+%\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+%\setcounter{footnote}{1}
+%\renewcommand{\thefootnote}{\arabic{footnote}}
+%\setcounter{footnote}{0}
+
+\begin{center}
+{\LARGE\bf
+  {\sc Siconos/Multibody}. \\[3mm]
+Vers une extension pour la simulation des systèmes multi--corps pour la robotique et la commande.
+}\\[1ex]
+\Large\bf
+Campagne ADT 2012\\
+\end{center}
+\renewcommand{\thefootnote}{\arabic{footnote}}
+%\setcounter{footnote}{0}
+
+% Pour toute question, n'hésitez pas de contacter votre responsable SED
+% ou la D2T\footnote{
+% Il existe aussi une FAQ pour les questions les plus fréquentes sous la
+% rubrique ADT sur le site \href{http://devexp.inria.fr}{http://devexp.inria.fr}.
+% }. La
+% soumission se fait via le site de dép\^ot\,:
+% \href{http://review-adt2012.inrialpes.fr}{http://review-adt2012.inrialpes.fr}.
+% %
+% \\[1ex]
+% %
+% Attention\,: cette première page
+% constitue la fiche signalétique de l'ADT dont certaines informations
+% seront accessibles sur l'intranet et peuvent servir \`a la communication
+% nationale\,; le reste du document est uniquement destiné aux membres des
+% commissions de l'Inria chargés d'évaluer les demandes.
+% %
+
+%********************
+\addcontentsline{toc}{section}{Récapitulatif}
+\section*{Récapitulatif \hspace{30ex} \tcb{\small
+(1 page max en tout)
+}}
+%********************
+
+\begin{list}{{\small$\bullet$}}{\topsep=1.0ex\parsep=1.0ex\itemsep=0.0ex
+ \settowidth{\labelwidth}{{\small$\bullet$}}
+ \setlength{\labelsep}{0.5em}%
+ \setlength{\leftmargin}{\labelwidth}%
+ \addtolength{\leftmargin}{\labelsep}%
+%\addtolength{\leftmargin}{1em}%
+}
+\item
+{\bf Titre \& Acronyme\,:}
+{\sc Siconos/Multibody.} \\
+ Vers une extension pour la simulation des systèmes multi--corps pour la robotique et la commande.
+\item
+{\bf Porteur de l'ADT\,:} Vincent Acary
+\hspace{10ex}
+%
+{\bf Courriel\,:} vincent.acary@inria.fr
+
+{\bf CRI\,:} Grenoble -- Rhône--Alpes.
+\hspace{30ex}
+{\bf EPI\,:}
+
+
+\item
+{\bf Il s'agit d'une nouvelle ADT pour deux ans : } Oui
+
+
+\item
+{\bf Les partenaires internes (EPI/CRI) et externes (autres labos, industriels) de
+l'ADT\,:}
+\enlargethispage{1cm}
+\begin{itemize}
+\item EPI BIPOP. Responsable Bernard Brogliato. bernard.brogliato@inria.fr \\
+  Contact Vincent Acary. vincent.acary@inria.fr
+\item Collaborations extérieures: ANSYS, Schneider Electric, Trasys Space
+\end{itemize}
+
+\item
+%
+{\bf Budget\,:}
+
+\begin{center}
+\begin{tabular}{|l|r|r|r|r|}
+\cline{2-4}
+\multicolumn{1}{c|}{}
+& \multicolumn{1}{c|}{2012}
+& \multicolumn{1}{c|}{2013}
+& \multicolumn{1}{c|}{2014}
+\\\cline{5-5}
+\multicolumn{1}{c|}{}
+& \multicolumn{1}{c|}{(3 mois)}
+& \multicolumn{1}{c|}{(12 mois)}
+& \multicolumn{1}{c|}{(9 mois)}
+& \multicolumn{1}{c|}{Total}
+\\\hline
+Budget (en k\euro)
+& --
+& --
+& --
+& --
+\\\hline
+\end{tabular}
+\end{center}
+
+
+{\bf Total des ressources demandées pour l'ADT\,:}  0.8 ETP (ingénieur SED)
+2 ETP (Ingénieur Jeune Diplômé)
+
+{\bf Total des ressources demandées pour la 1ère année\,:} 0.4 ETP (ingénieur SED) 1 ETP (Ingénieur Jeune Diplômé)
+
+
+\item
+{\bf Résumé\,:}
+Cette demande d'ADT concerne la conception architecturale et le développement d'une bibliothèque de simulation des systèmes multi--corps rigides et flexibles. Partant d'un prototype déjà développé au cours de l'ANR Saladyn (Appel ANR COSINUS 2008), il s'agit de repenser l'architecture du prototype, d'en augmenter ses fonctionnalités et d'améliorer sa généricité et de répondre à trois principales applications : la simulation des disjoncteurs électriques en collaboration avec Schneider Electric, la simulation et la commande des rovers martiens et lunaires avec TRASYS SPACE ainsi que le développement de nouveaux algorithmes avec ANSYS.
+ En termes de fonctionnalités, on souhaite renforcer les liens entre les modèles mécaniques  de {\sc Siconos}  et les moteurs géométriques et de détection de collision. En termes d'architecture, on veillera à proposer une structure modulaire avec des API ouvertes pour pouvoir s'adapter à différents outils de visualisation, de CAO et de détection de collision.
+\end{list}
+
+%-----------------------------------------------------------------------
+
+\ifnum\withtoc=1
+\newpage
+\vspace{0ex}
+{\small
+\def\contentsname{}
+\setcounter{tocdepth}{2}
+\begin{quote}
+%\centerline{\bf Table des matières}
+\vspace{-10ex}
+\tableofcontents
+\end{quote}
+}
+\fi
+
+%-----------------------------------------------------------------------
+
+
+\newpage
+%********************
+\section{Introduction \hspace{10ex} \tcb{\small(10 lignes max en tout)} }
+%********************
+Cette demande d'ADT concerne la conception architecturale et le développement d'une bibliothèque de simulation des systèmes multi--corps rigides et flexibles. Partant d'un prototype déjà développé au cours de l'ANR Saladyn (Appel ANR COSINUS 2008), il s'agit de repenser l'architecture du prototype, d'en augmenter ses fonctionnalités et d'améliorer sa générosité et de répondre à trois principales applications : la simulation des disjoncteurs électriques en collaboration avec Schneider Electric, la simulation et la commande des rovers martiens et lunaires avec TRASYS SPACE ainsi que le développement de nouveaux algorithmes avec ANSYS.
+En termes de fonctionnalités, on souhaite renforcer les liens des modèles mécaniques lagrangiens et de Newton/Euler de {\sc Siconos} avec des descriptions textuelles de systèmes (XML/Python) de mécanismes et avec les moteurs géométriques et de détection de collision. En termes d'architecture, on veillera à proposer une structure modulaire avec des API ouvertes pour pouvoir s'adapter à différents outils de visualisation, de CAO et de détection de collision.
+
+\clearpage
+%********************
+\section{Contexte : état des lieux  \hspace{1ex}\tcb{\small(\sfrac{1}{2} page min, 2 pages max)}}
+%********************
+
+% \tcg{
+% Quel est l'état de l'existant (l'objet de l'ADT) et comment se situe-t-il par rapport à la
+% communauté et la concurrence.
+% %
+% \\[1ex]
+% %
+% Donner ici, quand c'est approprié, les éléments sur\,:
+% \begin{list}{{\small$\bullet$}}{\topsep=0.0ex\parsep=0.0ex\itemsep=0.0ex
+%  \settowidth{\labelwidth}{{\small$\bullet$}}
+%  \setlength{\labelsep}{0.5em}%
+%  \setlength{\leftmargin}{\labelwidth}%
+%  \addtolength{\leftmargin}{\labelsep}%
+%  \addtolength{\leftmargin}{1ex}%
+% }
+% \item
+% le contexte scientifique (\PEX\ originalité des approches scientifiques utilisées, trois
+% publications max de référence, positionnement scientifique face à la communauté
+% et aux éventuels concurrents)\,;
+% \item
+% le contexte technologique (\PEX\ logiciel(s) ou plateforme(s) existant(s) duquel
+% dérive ou se compose l'objet de l'ADT, les technologies qui sont utilisées
+% actuellement, originalité technique et positionnement face à la concurrence)\,;
+% \item
+% les utilisateurs et la diffusion actuelle de l'objet de l'ADT (\PEX\ licence, propriété du
+% code, sites associés wiki/web/blog).
+% \end{list}
+% %
+% }
+
+\subsection{Contexte scientifique}  
+Les systèmes dynamiques non réguliers qui préoccupent l'équipe-projet BIPOP de l'INRIA Rhône--Alpes, rassemblent l'ensemble des systèmes  qui, d'une part, comportent des discontinuités dans leur évolution en temps et qui, d'autre part utilisent des lois multivaluées non différentiables pour décrire leur comportement. Les systèmes mécaniques soumis à des contraintes unilatérales et des impacts sont un exemple caractéristique de systèmes dynamiques non réguliers pour lesquels le projet BIPOP possède déjà une grande expérience. Les circuits électroniques avec des composants idéaux ou linéaires par morceaux, une partie des systèmes hybrides sont eux aussi des systèmes dynamiques non réguliers pour lesquels le projet a entamé des travaux de recherche depuis plus de 5 ans. Les compétences du projet sont de deux ordres : l'une théorique en analyse mathématique et en contrôle de ces systèmes, l'autre concerne les aspects de la simulation numérique avec le développement de la plate-forme de calcul scientifique {\sc Siconos}.\footnote{Pour plus de détails, on pourra consulter les références  suivantes :
+
+[1] V. Acary \& B. Brogliato ``Numerical Methods for Nonsmooth Dynamical Systems: Applications in Mechanics and Electronics'' Lecture Notes in Applied and Computational Mechanics. Vol. 36, Springer Verlag. 540 p. 2008 [978-3-540-75391-9]
+
+[2] V. Acary, O. Bonnefon \& B. Brogliato ``Nonsmooth Modeling and Simulation for Switching Circuits Springer'', Lecture Notes in Electrical Engineering , Vol. 69, 2010}
+
+Pour ce qui intéresse cette ADT, les applications principales sont développées au travers des collaborations industrielles suivantes~:
+\begin{itemize}
+\item {\bf ANSYS} (Leader mondial en simulation mécanique). Thèse CIFRE (2012--2014) sur les méthodes numériques pour la simulation de systèmes mécaniques. ANSYS a entrepris depuis 5 ans le développement d'un simulateur de systèmes mécaniques rigides et a fait appel à nous pour développer les algorithmes de contact frottant et les méthodes de résolution en temps. Dans le cadre de cette thèse un nouveau prototype commun sera développé. Il s'agira a travers cette ADT d'implémenter les solutions optimales dans logiciel ``maison'' afin de pérenniser le savoir--faire Bipop sur ces sujets.
+\item {\bf Schneider Electric}. Thèse sur financement industriel (2012--2014) sur la simulation de disjoncteurs électriques (cf. Figure~\ref{fig:Siconos}). La poursuite des développements du prototype Saladyn permettra d'envisager un transfert vers un éditeur logiciel (projet GRAVIT envisagé)
+\item {\bf TRASYS/Space.} Intégration d'un simulateur de systèmes mécaniques pour les rovers lunaires et martiens ainsi que du bras robotique MSST  (cf. Figure~\ref{fig:Trasys}). Pour la validation des commandes des systèmes robotiques en mission spatiale, l'ESA (Agence Spatiale Européenne) est aujourd'hui à la recherche d'un moteur de simulation dynamique apte à s'intégrer dans un environnement informatique complexe comportant la visualisation, la gestion des commande et des tâches et la simulation ``système'' (mécanique, thermique, puissance, commande, environnement virtuel, ...). Une sortie de cette ADT permettrait une première évaluation des outils INRIA/Bipop et des principaux moteurs de détection de collision dans ce contexte.
+\end{itemize}
+
+
+
+\subsection{Contexte technologique}
+
+Dans le cadre du projet européen {\sc SICONOS} IST (2002-2006) coordonné par B. Brogliato, un des objectifs principaux a été la  conception et le développement d'une plate-forme de calcul scientifique pour les  systèmes dynamiques non réguliers (Work package 2, responsable. V. Acary). Les fonctionnalités de cette plate-forme sont la modélisation, l'analyse, la simulation et le contrôle des systèmes dynamiques non réguliers. Après ce projet européen, cet effort de développement a été poursuivi à travers des applications en électronique, mécanique et commande des systèmes. Les fonctionnalités supplémentaires ont été implémentées au cours du projet ANR VAL-AMS\footnote{Partenaires : VERIMAG LJK. Objectif. Vérification pour les circuits électriques commutés.}. La conception et le développement de la plate-forme se sont inscrits dans une démarche de  qualité logicielle  afin d'obtenir un logiciel distribuable et qui fédère des développements. Ce travail s'est basé sur les normes d'assurance qualité de l'agence spatiale européenne (ESA) et sur les recommandations de développement de l'INRIA. {\sc Siconos} est désormais l'outil de base dans deux projets ANR : Saladyn (Appel COSINUS 2009-2012) coordonné par
+  V. Acary \footnote{ Partenaires : LMGC (UMR CNRS/Université de Montpellier
+  II) LAMSID (UMR CNRS/EDF) et des partenaires industriels~: Schneider
+  Electric, EDF Objectif~: couplage des
+  codes {\sc Siconos}, LMGC90 et Code\_Aster (EDF) et intégration dans
+  Salome en vue d'une plate-forme intégrée de simulation des systèmes
+  mécaniques multi--corps et multi--contact}
+et  Chaslim (Appel
+  Blanc 20011-2014) coordonné par B. Brogliato\footnote{ Partenaires : EPI NON-A INRIA Lille, IRCyn Nantes.
+  Objectif : Vers une toolbox pour la commande à modes glissants. }
+
+
+\subsubsection{Architecture et fonctionnalités}
+La plate-forme est constituée d'un noyau de modélisation et de simulation. Les routines numériques ({\sc {\sc Siconos}/Numerics}) sont en Fortran 77 et en C pour des raisons de performance. Cette bibliothèque d'outils numériques est surmontée d'un module en C++ (environ 100 000 lignes) ({\sc Siconos/Kernel}) se chargeant de la modélisation et du pilotage les simulations. L'interface de commande ({\sc {\sc Siconos}/Front-end}) en mode expert est aujourd'hui en Python et pour les utilisateurs finaux, une toolbox Scilab a été initiée. Les extensions de fonctionnalités de la plate-forme sont en cours de réalisation sur les aspects ``commande'' des systèmes dynamiques non réguliers ({\sc {\sc Siconos}/Control}). 
+Sur la Figure \ref{fig:Siconos}, un organigramme montre comment la plate-forme Siconos est organisée. On peut utiliser directement la librairie grâce au Front-End ou alors utiliser un modeleur dédié à une application scientifique capable de générer un modèle d'équations pour Siconos via une interface.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.6\textwidth]{SiconosUniverse}
+  \caption{{\sc Siconos} Environment}
+  \label{fig:Siconos}
+\end{figure}
+
+ Si on se focalise sur la Mécanique, un prototype de bibliothèque de simulation de multi--corps a été développé au sein du projet Saladyn. Ce prototype utilise Siconos comme moteur de calcul, propose une librairie de modélisation des mécanismes multi--corps avec liaisons parfaites, jeux, contact, impact et frottement. Il est lié à la librairie professionnelle de CAO Opencascade. Sur la figure~\ref{fig:C60}, la modélisation et la simulation d'un disjoncteur C60 de Schneider Electric grâce au prototype sont  représentées. 
+
+Sur le figure~\ref{fig:Trasys}, des exemples d'applications de Trasys sont illustrées. La simulation et la modélisation du bras robotique sur la dernière image ont été faites avec Siconos et un rapport a été remis à l'ESA sur ce sujet.
+\begin{figure}
+  \subfigure[C60 Schneider Electric's Circuit Breaker.]{\includegraphics[width=0.25\textwidth,angle=-90,origin=c]{C60-frame.png}}
+  \subfigure[Modeling as a multibody system.]{\resizebox{0.450\textwidth}{!}{\input{multiBodyC60.pdf_t}}}
+  \subfigure[Multibody system in our prototype.]{\includegraphics[width=0.25\textwidth]{GlobalSystem.pdf}}
+  \subfigure[Contacts and joints with clearances.]{\scalebox{1.3}{\includegraphics[width=0.25\textwidth]{ResultCrochetBarre.jpg}}}
+  \subfigure[Reaction on the hook]{\scalebox{1.3}{\includegraphics[width=0.25\textwidth]{zoomOnCrochet.pdf}}}
+  \subfigure[Reaction on the handle]{\scalebox{1.3}{\includegraphics[width=0.25\textwidth]{zoomOnManette.pdf}}}
+        \caption{Modeling and simulation of a Circuit breaker}
+    \label{fig:C60}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.80\textwidth]{msstm.png}
+  \includegraphics[width=0.49\textwidth]{ccgjadca.png}
+  \includegraphics[width=0.49\textwidth]{rover.png}
+  \includegraphics[width=0.49\textwidth]{clip_image002.jpg}
+  
+  \caption{Exomars applications}
+  \label{fig:Trasys}
+\end{figure}
+
+\subsubsection{Positionnement par rapport à l'existant}
+
+La plate-forme {\sc Siconos} est née de la longue expérience  de la simulation des systèmes dynamiques non réguliers dans le domaine de la Mécanique. En particulier, le logiciel LMGC90, développé à Montpellier  est le fruit de 20 années de travail dans cette direction. Le principal inconvénient de ce logiciel est qu'il est fermé à d'autres applications des sciences de l'ingénierie et en particulier à son utilisation par des ingénieurs en modélisation qui souhaiteraient aborder d'autres domaines.
+ Un des objectifs de la plate-forme est d'ouvrir le champ d'application de ces méthodes. L'autre objectif est l'emploi de méthodes modernes de génie logiciel pour la conception, le développement et la maintenance de la plate-forme.
+
+Pour ce qui est de la simulation des systèmes multi--corps, il existe très peu de codes open-source hormis MbDyn \footnote{\url{http://www.aero.polimi.it/mbdyn/}} développé au Politecnico di Milano  mais qui ne gère pas le contact avec frottement. Pour ce qui est des codes commerciaux, il n'y a pas pour le moment de codes capables de simuler des systèmes avec du contact, du frottement de Coulomb pour des systèmes 3D. C'est ce qui fait l'intérêt de nos collaborateurs industriels.
+\clearpage
+%********************
+\section{Objectifs de l'ADT \hspace{10ex} \tcb{\small(10 lignes max en tout)}}
+%********************
+% \tcg{
+% Lister les 3-4 objectifs principaux à atteindre au terme de l'ADT.
+% %
+% \\[1ex]
+% %
+% NB\,: Les détails sont dans la section suivante !
+% %
+% }
+Voici les objectifs principaux de cette ADT :
+\begin{enumerate}
+\item Refonte de l'architecture et intégration du prototype développé dans le cadre de Saladyn au sein de l'environnement {\sc Siconos} pour créer {\sc Siconos/Multibody}. Assurer la cohérence et le respect de l'architecture entre les différents développements dans les projets associés: collaborations industrielles,  thèses et projets ANR. Pérenniser le savoir--faire au sein de Bipop à travers du code et de la documentation en vue de la collaboration avec ANSYS.
+\item Définition et développement des API génériques en lien avec les moteurs géométriques, de détection de collision et de visualisation. (Bullet, OpenCascade, Ogre, Asys, PhysX,\ldots). En particulier, le lien entre les différents formalismes mécaniques et leurs paramètrisations possibles (Lagrange, Newton/Euler, Calcul récursif, ) et les outils de détection de collision et moteurs géométriques sera réalisé.
+\item Validation sur des applications industrielles : Intégration dans un environnement professionnel de simulation, de visualisation et de contrôle des systèmes robotiques pour le spatial et simulation des disjoncteurs électriques.
+\end{enumerate}
+\clearpage
+%********************
+\section{Sortie : positionnement après l'ADT \hspace{1ex} \tcb{\small(1 page min, 3 pages max)}}
+%********************
+
+A la sortie de l'ADT, on souhaite disposer d'un outil de simulation des systèmes multi--corps bien documenté et suffisamment générique pour pouvoir s'appuyer sur plusieurs bibliothèques de détection de collision, de modeleurs géométriques et d'environnement intégré de modélisation, de visualisation et de commande.
+
+\subsection{Impact scientifique}   L'intérêt scientifique d'un tel outil--logiciel est la validation sur des applications industrielles des méthodes numériques et des lois de commandes développées dans Bipop\footnote{voir pour cela
+  \begin{enumerate}
+  \item Higher order event capturing time--stepping schemes for
+    nonsmooth multibody systems with unilateral constraints and
+    impacts.  Vincent Acary Applied Numerical Mathematics, Elsevier,
+    2011, To appear.
+  \item A formulation of the linear discrete Coulomb friction problem via convex optimization
+Vincent Acary; Florent Cadoux; Claude Lemarechal; Jérôme Malick
+ZAMM / Z angew Math Mech; Zeitschrift für Angewandte Mathematik und Mechanik, Wiley, 2011, 91 (2), pp. 155-175
+\item A Nonsmooth Newton Solver for Capturing Exact Coulomb Friction in Fiber Assemblies
+Florence Bertails-Descoubes; Florent Cadoux; Gilles Daviet; Vincent Acary
+ACM Transactions on Graphics, ACM, 2011
+  \item  Timestepping schemes for nonsmooth dynamics based on discontinuous Galerkin methods: definition and outlook
+Thorsten Schindler; Vincent Acary
+[Research Report], 2011. RR-7625
+  \end{enumerate}
+}. Cet outil nous permettra en effet d'avoir accès et de traiter des exemples qui ne sont pas simplement des exemples académiques simples (Chaînes cinématiques complexes, problèmes mal conditionnés, contraintes temps de calcul/temps réel/embarqué,\ldots  ). De plus, une confrontation avec les problèmes industriels a toujours intérêt en termes de retombées plus fondamentales. De plus sur les aspects ``commande'', il permettrait de tester des commandes par modes glissant sur des systèmes mécaniques avec contact (Collaboration en cours avec Yuri Orlov, CICESE, Mexique) \footnote{Chattering-free digital sliding-mode control with state observer and disturbance rejection
+Vincent Acary; Bernard Brogliato; Yuri Orlov
+IEEE Transactions on Automatic Control, IEEE, 2011, In Press}
+
+\subsection{Intérêt stratégique}
+Concernant notre collaboration avec ANSYS, l'existence d'un tel outil suffisamment évolué en termes d'API permet de garder le savoir--faire en interne et de faire progresser nos outils pour garder la longueur d'avance que nous avons avant la thèse CIFRE engagée avec eux. En termes de propriété intellectuelle le travail avec un éditeur logiciel est toujours compliqué. Avoir un développement indépendant, de qualité et proche en termes de fonctionnalités d'ANSYS est un argument intéressant.
+
+\subsection{Débouchés technologiques}
+
+La liste de débouchés technologiques et des verrous levés par un tel outil est longue. Citons dans ce qui suit ceux qui nous intéressent le plus. On rappelle que ces applications ne peuvent pas être aujourd'hui traitées sans un environnement logiciel robuste et efficace ayant un lien fort vers les bibliothèques de collision et de visualisation déjà existantes. 
+\subsubsection{Un moteur de simulation intégré pour des mécanismes 3D}
+  Comme on l'a rappelé dans le paragraphe précèdent, il n'y a pas aujourd'hui de logiciel libre ou privé capables de remplir ces fonctionnalités. Pourtant, la demande est très forte de par le nombre grandissant d'applications en sciences de l'ingénierie : Mécanismes (disjoncteurs, horlogerie, machines outils, MEMS/NEMS, ...), procédés industriels (fabrications de clips, tamis, vibreurs, trieurs), Robotique (robotique humano\"ide, spatiale, industrielle, machines agricoles, \ldots), transports (transmission et direction automobile, dynamique des bogies ferroviaires, trains d'atterrissage, ...) et énergie (éoliennes, turbines, vannes, \ldots  ). 
+
+Pour notre application principale dans ce domaine, la simulation des disjoncteurs électriques avec Schneider Electric, il s'agit a travers cette ADT de montrer que l'on peut répondre avec cet outil de simulation aux problèmes que les experts se posent dans leurs bureau d'études. Le prototype qui existe aujourd'hui a  déjà  été validé par la ``business Unit'',  ``Power'' de Schneider (Michel Abadie, Eybens). Il est aussi évalué par la direction de l'innovation (Emmanuel Frangin, Alice Boussagol, Grenoble) pour planifier la suite à donner à
+ ce projet (projet GRAVIT, soutien direct, lobbying auprès d'un éditeur (ANSYS, ProEngineer, ...)).
+
+\subsubsection{Un outil de simulation et de validation des lois de commandes pour les systèmes robotiques spatiaux}
+
+ L'aspect ``simulation de la commande'' pour ces systèmes non--réguliers serait aussi nouveau. Il n'existe pas de toolbox de simulation mécanique intégrant une partie commande. L'ESA a aujourd'hui besoin d'un tel outil et commence une phase de veille technologique sur ce sujet. On souhaite pouvoir se placer comme un acteur crédible d'un point de vue logiciel. 
+
+Dans le contexte de la préparation de futures missions de l'ESA pour l'exploration planétaire Européenne (Missions : ExoMars, Mars Sample Return, Moon exploration), Trasys développe un outil de spécification des opérations de systèmes robotiques associés. Ces systèmes sont les rovers d'exploration du terrain mais également les instruments pour prélever des échantillons où les bras manipulateurs pour manipuler les échantillons et les instruments. La spécification des missions nécessite un outil de modélisation 3D qui intègre des librairies de détection de contacts et s'interface avec des outils de modélisation et de résolution de modèles dynamiques de systèmes articulés avec des contacts. 
+
+
+
+
+
+\subsection{Public visé, diffusion, transfert, innovation}  A travers cette plate-forme, il s'agit avant tout de fédérer une communauté d'utilisateurs et de développeurs autour d'un outil de simulation de systèmes mécaniques non réguliers. Dans un second temps, il s'agit de fournir un support technique pérenne des ingénieurs experts et doctorants des projets ANR et industriels pour ce qui concerne le coeur de la plate-forme {\sc Siconos}.  Enfin, il s'agira de proposer un prototype pre--industriel pour envisager sereinement un transfert vers un éditeur logiciel (Projet GRAVIT, ...) Le logiciel {\sc Siconos} a fait l'objet de deux dépôts A.P.P. et est distribué sous licence GPL.  Les développements envisagés dans cet ADT seront aussi distribués en open source sous licence GPL. La possibilité d'un système de ``double--licensing'' n'est pas à exclure.
+
+\subsection{Mode de gestion après l'ADT}  Le logiciel résultant sera maintenu dans le giron de {\sc Siconos} (portage et validation sur Pipol chaque nuit, suivi de bugs et  distribution sur la forge). Il restera avant tout un prototype pré--industriel servant les collaborations et les développements de Bipop. Comme pour {\sc Siconos}., on tâchera d'animer une communauté open--source, de se rapprocher des outils open--sources (Sage, pythonOcc, PAL, bullet) pour élargir le spectre des utilisateurs. Une valorisation par l'INRIA n'est pas a exclure mais elle se fera sûrement avec une implantation nouvelle et complète du logiciel et un changement de licence.
+
+\clearpage
+
+%********************
+\section{Mise en \oe uvre prévisionnelle de l'ADT}
+%********************
+
+
+%====================
+\subsection{Identification des rôles et organisation}
+%====================
+
+{%
+%
+Définition  des différents rôles correspondant à des types de tâches identifiées:
+%
+\\[1ex]
+%
+\begin{list}{{\small$\bullet$}}{\topsep=0.0ex\parsep=0.0ex\itemsep=0.0ex
+ \settowidth{\labelwidth}{{\small$\bullet$}}
+ \setlength{\labelsep}{0.5em}%
+ \setlength{\leftmargin}{\labelwidth}%
+ \addtolength{\leftmargin}{\labelsep}%
+ \addtolength{\leftmargin}{1ex}%
+}
+\item
+Responsable de l'ADT\, et la valorisation: Vincent Acary
+\item
+Responsable(s) technique(s)\,: Maurice Br\'emond
+\item
+Conception et Développement\,: Ingénieur Jeune Diplômé
+\item
+Responsable des développements applications en lien SE : DO Hong ha (Ingenieur expert Saladyn)
+\item
+Responsable des développements applications en lien Trasys/Space : Roger Pissard
+\item
+Responsable des développements applications en lien ANSYS : Vincent Acary
+\end{list}
+%
+\vspace{1ex}
+%
+
+EPI BIPOP : 
+\begin{itemize}
+\item Vincent ACARY (CR1), travaille sur les méthodes numériques
+  pour la dynamique non régulière. Il est le principal maître
+  d'\oe{}uvre de la plate-forme {\sc Siconos} . Il sera le responsable de
+  l'ADT et veillera à la bonne coordination du projet.
+
+  \item Hong Ha Nguyen DO(IE) , ingénieur expert INRIA sur le projet Saladyn,
+  travaille sur l'interface entre {\sc Siconos} et le prototype de
+  simulation de systèmes multi corps.
+  
+  \item Mounia Haddouni, (These CIFRE), doctorante en collaboration avec ANSYS sur les méthodes numériques pour les mécanismes
+
+  \item Narendra Akhadkar (Thèse INRIA), doctorant financé sur contrat de recherche avec Schneider Electric sur la simulation des disjoncteurs électriques.
+\end{itemize}
+
+SED Rhône Alpes
+\begin{itemize}
+\item Ingénieur SED (IR) travaillera une partie de son temps sur les
+  objectifs de l'ADT et sera responsable technique de l'ADT
+\item Ingénieur Jeune Diplômé (IJD)
+\end{itemize}
+
+Étant donne la taille de cette ADT, il est difficile et s\^urement illusoire de mettre en place un plan d'assurance qualité complet comme cela a été fait pour {\sc Siconos}\footnote{\url{http://siconos.gforge.inria.fr/SiconosProjectOverview/qa-plan.html}} et {\sc Saladyn}. Le risque est que le rédacteur des rapports de validation soit aussi celui qui a défini le plan de validation, ce qui en termes de qualité est mauvais. Il sera privilégié un mode de gestion plus simple. Cependant, les mesures suivantes seront suivies :
+\begin{itemize}
+\item Le suivi du planning se fera par le responsable de l'ADT  au cours des réunions d'avancement qui seront bi--mensuelles.
+\item Les livrables seront semestriels et co\"incideront avec les jalons et la fin de séries de tâches.
+\item Les jalons, les tâches et les livrables portant sur la validation du logiciel sur des applications industrielles se feront conjointement avec nos collaborateurs industriels.
+\end{itemize}
+
+Le rôle de l'ingénieur SED est crucial dans la réussite de cette ADT. Il permet en effet de maintenir la cohérence  des nouveaux développements, de veiller a la mise en oeuvre des bonnes pratiques en termes de développement et de conseiller l'IJD sur les choix technologiques les plus adaptés.
+Dans le cas où la demande d'IJD serait refusée, le projet serait  réaménagé. Avec l'aide d'un IR (40\% ETP)  du SED, le travail pourrait être alors restreint à l'objectif 1 sans  les aspects pérennisation des travaux avec ANSYS et l'objectif 3 sans les applications Schneider Electric. On se focalisera sur les tâches 1.a, 1.b, 2.a, 3.d  et 6.b  et les développements resteront  plus confidentiels.
+
+Le principal risque n'est pas technique mais humain et concerne le recrutement d'un ingenieur qui doit être réalisé dans les temps et qui doit rester sur le temps de l'ADT.
+
+
+
+%====================
+\subsection{Planification prévisionnelle}
+%====================
+
+
+
+La démarche générale reposera sur les principes de méthodes agiles en privilégiant des itérations de conception \& développement relativement court, l'intégration des utilisateurs dans ces itérations et la légèreté des process. Coté programmation objet, on recommandera d'utiliser les patrons de conception.
+
+L'ensemble des tâches est décrit dans le tableau~\ref{Tab:task}. Leur dépendance mutuelle est spécif\'iee. Leur organisation dans leur temps est évidente à la lecture du tableau. Cet ensemble de tâches contribue aux objectifs de la fa\c{c}on suivante :
+\begin{itemize}
+\item {\bf Objectif 1}: Tâches 0.a, 0.b, 1.a, 1.b, 2.a, 3.d.
+\item {\bf Objectif 2}: Tâches 2.b, 2.c, 2.d, 3.a, 3.b, 3.c, 4.a, 4.b, 4.c, 5.b, 5.c.
+\item {\bf Objectif 3}: Tâches 6.a, 6.b,
+\end{itemize}
+Les tâches de coordination, d'animation et gestion du projet ne sont explicitées ici. Elles sont assurées par le responsable de l'ADT. 
+
+Les jalons suivants sont définis afin de faire le point général sur le projet et de n'engager la phase suivante que si tout va bien:
+\begin{itemize}
+\item {\bf Jalon 1 T0+6: Refonte du prototype Saladyn et Conception architecturale}
+  \begin{itemize}
+  \item Tâches accomplies : de 0.a à 1.d,
+  \item Commentaire :  On veillera à une bonne appropriation des outils et des méthodes.
+  \end{itemize}
+\item {\bf Jalon 2 T0+9: Conception architecturale}  
+    \begin{itemize}
+  \item Tâches accomplies : de 2.a à 2.d,
+  \item Commentaire :  On veillera  à la faisabilité des développements en regard des ressources limitées. Travail de conception  en étroite collaboration avec nos partenaires.
+  \end{itemize}
+\item {\bf Jalon 3 T0+12:  Développement et validation de la version 1.0} 
+  \begin{itemize}
+  \item Tâches accomplies : de 3.a à 4.d,
+  \item Commentaire :  Le développement devra se faire de manière conjointe autant que faire se peut.
+  \end{itemize}
+\item {\bf Jalon 5 T0+18: Développement de la version 2.0 et validation}
+  \begin{itemize}
+  \item Tâches accomplies : de 5.a à 5.d,
+  \item Commentaire : Le développement devra se faire de manière conjointe autant que faire se peut.
+  \end{itemize}
+\item {\bf Jalon 6 T0+24: Validations industrielles} 
+  \begin{itemize}
+  \item Tâches accomplies : de 6.a et 6.b,
+  \item Commentaire : Travail en étroite collaboration avec nos partenaires.
+  \end{itemize}
+\end{itemize}
+
+
+
+\subsubsection{Intervention des partenaires extérieurs.}
+
+{\bf Trasys} propose d'assurer une compatibilité de son outil 3D avec {\sc Siconos}. Ceci nécessite le développement d'une API générique qui permettrait de faire une abstraction du moteur dynamique tenant en compte finement des phénomènes de contact.
+Cette compatibilité permettrait de démontrer la capacité de {\sc Siconos} de traiter des exemples variés dans un nouveau domaine d'application. Il permettrait également de comparer ses performances avec d'autres moteurs.
+
+
+\noindent{\bf Schneider Electric} met à notre disposition des modèles géométriques et mécaniques de disjoncteurs et participera à la validation des outils à deux niveaux:
+\begin{itemize}
+\item Calcul scientifique :  une validation de la qualité numérique des résultats sera faite par des experts de la direction de l'innovation.
+\item Interface informatique : une validation de l'ergonomie de  l'outil sera faite par une ingénieur design de ``Power business'' et par le doctorant Schneider Electric.
+\end{itemize}
+
+
+
+\begin{landscape}
+  \begin{longtable}{|c||p{14cm}|p{2cm}|p{8mm}|c|}
+    \hline
+    Tâche & Description & Ressources (HM)  &   & \multirow{4}{10mm}{\begin{sideways}\parbox{20mm}{date  butoir\\(T0+) }\end{sideways} } \\
+    \#  & $\quad\quad$/ Objectifs &  & & \\
+    & &  &\multirow{4}{8mm}{\begin{sideways}\parbox{8mm}{$\quad\,\,$dépendance}\end{sideways} } &\\
+    & &  & &\\
+    \hline     
+    \multicolumn{5}{c}{} \\ \hline
+    \multicolumn{5}{|>{\columncolor{lightgray}}c|}{ Aspects scientifiques.} \\ \hline
+    0.a     & Apprentissage des méthodes et des outils & 1(IJD) & -- & 1\\ \hline 
+    0.b     & Formulation des modèles mécaniques en lien  avec leur géométrie en vues de la détection de collision et de leur visualisation & 1(IJD) 0.5(IR)  1(CR) 2(Doc) & -- & 3\\ \hline      \multicolumn{5}{c}{} \\ \hline
+    \multicolumn{5}{|>{\columncolor{lightgray}}c|}{Intégration du proto Saladyn dans {\sc Siconos/Multibody}} \\ \hline
+    1.a   & Intégration du prototype dans l'environnement {\sc Siconos}. Passage a Cmake, Ctest, Cpack et test sur Cdash. & 1(IJD) 1(IR) & 0 & 5 \\ \hline
+    1.b   & Portage Linux, MacOSX, Windows. & 1(IJD) & 1.a & 6\\ \hline      \multicolumn{5}{c}{} \\ \hline 
+    \multicolumn{5}{|>{\columncolor{lightgray}}c|}{Conception architecturale} \\ \hline
+    2.a   & Revue et nouvelle architecture interne :  Amélioration des structures objets,  restructuration des modules et des classes
+    & 1(IJD) 1(IR) 1(CR)   & 2.a &  9\\ \hline
+    2.b   & Définition des API entrée/sortie  pour le module des modèles mécaniques
+    & 1(IJD) 0.5(IR) 0.25(CR) & 2.a &9 \\ \hline  
+    2.c   & Définition des API entrée/sortie  pour le module de détection de collision. Analyse des bibliothèques existantes et abstraction d'une interface
+    & 1(IJD) 0.5(IR) 0.25(CR) & 2.a &9  \\ \hline  
+    2.d   & Définition des API entrée/sortie  pour le module de calcul géométrique.  Analyse des bibliothèques existantes et abstraction d'une interface
+    & 1(IJD) 0.5(IR) 0.25(CR)  & 2.a & 9 \\ \hline  \multicolumn{5}{c}{} \\ \multicolumn{5}{c}{} \\ \hline
+%
+%
+%
+%
+    \multicolumn{5}{|>{\columncolor{lightgray}}c|}{Développement de la version 1.0} \\ \hline 
+    3.a   & Développement de la version 1.0 des API entrée/sortie  pour le module des modèles mécaniques.
+    Analyse des bibliothèques existantes et abstraction d'une interface. Lien avec les bibliothèques et développement des composants internes.
+    & 1(IJD) & 2.b & 12  \\ \hline  
+    3.b   & Développement de la version 1.0 des API entrée/sortie  pour le module de détection de collision. 
+    & 1(IJD) & 2.c & 12  \\ \hline  
+    3.c   & Développement de la version 1.0 des API entrée/sortie  pour le module de calcul géométrique
+    & 1(IJD) & 2.d & 12  \\ \hline 
+    3.d   & Développement de la version 1.0 des liens entre les modèles mécaniques et les outils géométriques et de collision
+    &  1(IJD)  1(IR) & 2.b 2.c 2.d & 12 \\
+    \hline   
+%
+%
+%
+    \multicolumn{5}{|>{\columncolor{lightgray}}c|}{Validation de la version 1.0} \\ \hline 
+    4.a   & Validation de la version 1.0 des API entrée/sortie  pour le module des modèles mécaniques sur une unique librairie de modèles mécaniques : modèles généré par le générateur d'Humans
+    & 1(IJD) 0.5(IR) 0.25(CR) & 3.a & 15\\ \hline  
+    4.b   & Validation de la version 1.0 des API entrée/sortie  pour le module de détection de collision sur un unique moteur de collision : bullet
+    & 1(IJD) 0.5(IR) 0.25(CR) & 3.b & 15\\ \hline  
+    4.c   & Validation de la version 1.0 des API entrée/sortie  pour le module de calcul géométrique sur un unique moteur de calcul géométrique : OpenCascade
+    & 1(IJD) 0.5(IR) 0.25(CR) 1(IE)& 3.b & 15\\ \hline    \multicolumn{5}{c}{} \\  \hline   
+    \multicolumn{5}{|>{\columncolor{lightgray}}c|}{Version 2.0}\\ \hline
+    5.a   & Validation et modification éventuelle de l'API pour d'autres librairies de modèles mécaniques (Simpy, description textuelle XML, ...) 
+    & 1(IJD) 0.5(IR) 0.25(CR)& 4.a & 18 \\ \hline 
+    5.b & Validation et modification éventuelle de l'API pour d'autres librairies de détection de collision
+    & 1(IJD) 0.5(IR) 0.25(CR)& 4.b &  18  \\ \hline 
+    5.c & Validation et modification éventuelle de l'API pour d'autres librairies de calcul géométriques 
+    & 1(IJD) 0.5(IR) 0.25(CR) 1(IE) & 4.c  & 18 \\ \hline
+    \multicolumn{5}{|>{\columncolor{lightgray}}c|}{Liens avec les applications et validation industrielles} \\ \hline 
+    6.a & Validation et modification éventuelle pour les exemples industriels Schneider Electric 
+    & 2(IJD) 0.5(IR) 0.5(CR) 3(IE) 3(Doc)& 5.b 5.c & 24  \\ \hline 
+    6.b & Validation et modification éventuelle pour les exemples industriels TRASYS Space 
+    & 2(IJD) 0.5(IR) 0.5(CR) & 5.a 5.b 5.c & 24  \\ \hline \hline
+    \caption{Listes des tâches}\label{Tab:task}
+  \end{longtable}
+\end{landscape}
+
+
+
+
+%********************
+\section{Ressources \hspace{10ex} \tcb{\small(\sfrac{1}{2} page minimum, 1\sfrac{1}{2} page maximum)}}
+%********************
+
+
+%====================
+\subsection{Ressources humaines}
+%====================
+
+{%
+%
+Ressources humaines nécessaires à la réalisation de l'ADT :
+\begin{list}{{\small$\bullet$}}{\topsep=0.0ex\parsep=0.0ex\itemsep=0.0ex
+ \settowidth{\labelwidth}{{\small$\bullet$}}
+ \setlength{\labelsep}{0.5em}%
+ \setlength{\leftmargin}{\labelwidth}%
+ \addtolength{\leftmargin}{\labelsep}%
+ \addtolength{\leftmargin}{1ex}%
+}
+\item
+Ressources humaines mobilisées directement au sein de BIPOP :
+\begin{itemize}
+\item Vincent Acary (CR1) 20 \%
+\item Hong ha Do (IE) 20 \%
+\item Narendra Akhakar (Doc) 20\%
+\item Mounia Haddouni participation ponctuelle pour la validation des API 
+\end{itemize}
+\item
+Ressources humaines en CDD demandées dans le cadre de cet appel:
+\begin{itemize}
+\item Ingénieur jeune diplomé (100\%) : ingénieur diplômé en informatique/mathématiques appliquées avec des connaissances en modèles physiques et en mécanique.
+\end{itemize}
+\item
+Ressources humaines demandées en provenance des services de l'Inria :
+\begin{itemize}
+\item Ingénieur SED 40\% ETP
+\end{itemize}
+\end{list}
+\vspace{1ex}
+Les feuilles de route sont déductibles directement du tableau car il n'y a pas d'ambigu\"ité sur les intervenants.
+}
+
+%====================
+\subsection{Aspects budgétaires}
+%====================
+
+
+\begin{center}
+\begin{tabular}{|l|r|r|r|r|}
+\cline{2-5}
+\multicolumn{1}{c|}{\begin{tabular}{c}Ressources\\demandées\\(en k\euro)\end{tabular}}
+& \multicolumn{1}{c|}{\begin{tabular}{c}2012\\(3 mois)\\versement 1\\en sept.-oct.\end{tabular}}
+& \multicolumn{1}{c|}{\begin{tabular}{c}2013\\(12 mois)\\versement 2 et 3 en\\jan.-fév.\ et mai-juin\end{tabular}}
+& \multicolumn{1}{c|}{\begin{tabular}{c}2014\\(9 mois)\\versement 4\\en jan.-fév.\end{tabular}}
+& \multicolumn{1}{c|}{Total}
+\\\hline
+Missions & 0 & 0 & 0 & 0
+\\\hline
+Animation & 0 & 0 & 0 & 0
+\\\hline
+Matériel scientifique & 0 & 0 & 0 & 0
+\\\hline
+Prestations externes & 0 & 0 & 0 & 0
+\\\hline
+Autre (préciser) & 0 & 0 & 0 & 0
+\\\hline\hline
+TOTAL & 0 & 0 & 0 & 0
+\\\hline
+\end{tabular}
+\end{center}
+
+
+\begin{center}
+\begin{tabular}{|l|r|r|r|r|}
+\cline{2-5}
+\multicolumn{1}{c|}{\begin{tabular}{c}Ressources\\disponibles\\(en k\euro)\end{tabular}}
+& \multicolumn{1}{c|}{2012}
+& \multicolumn{1}{c|}{2013}
+& \multicolumn{1}{c|}{2014}
+& \multicolumn{1}{c|}{Total}
+\\\hline
+Missions & 0 & 0 & 0 & 0
+\\\hline
+Animation & 0 & 0 & 0 & 0
+\\\hline
+Matériel scientifique & 0 & 0 & 0 & 0
+\\\hline
+Stagiaires & 0 & 0 & 0 & 0
+\\\hline
+Prestations externes & 0 & 0 & 0 & 0
+\\\hline
+Autre (préciser) & 0 & 0 & 0 & 0
+\\\hline\hline
+TOTAL & 0 & 0 & 0 & 0
+\\\hline
+\end{tabular}
+\end{center}
+%
+
+%********************
+\section{Suivi et évaluation \hspace{1ex} \tcb{\small(\sfrac{1}{2} page minimum, 1 page maximum)}}
+%********************
+
+Voici les éléments de suivi prévus :
+\begin{itemize}
+\item Livrables et version logicielle :
+  \begin{enumerate}
+  \item {\bf Jalon 1} Documentation de description des formulations mécaniques et de leur liens avec la géométrie. Paquets binaires pour L'inox (debian, ubuntu,fedora), MacOsX 10.7 \& Windows 7.
+  \item {\bf Jalon 2} Documentation de conception architecturale et fichiers ``headers'' des API. 
+  \item {\bf Jalon 3} Version 1.0 et documentation doxygen
+  \item {\bf Jalon 4} Documentation de validation de la version 1.0 (rapports de tests et exécution des ``use cases'')
+  \item {\bf Jalon 5} Version 2.0 et documentation doxygen. Documentation de validation de la version 2.0 (rapports de tests et exécution des ``use cases'')
+  \item {\bf Jalon 6} Documentation de validation des applications industrielles et manuel utilisateur
+\end{enumerate}
+\item Comptes rendus de réunion de validation avec les partenaires industrielles
+  \begin{enumerate}
+  \item {\bf Jalon 2} Réunion de validation de l'architecture et des API avec Trasys Space et Schneider Electric
+  \item {\bf Jalon 4} Réunion de validation de la version 1.0 avec Trasys Space et Schneider Electric
+  \item {\bf Jalon 5} Réunion de validation de la version 2.0 avec Trasys Space et Schneider Electric
+  \item {\bf Jalon 6} Réunion de validation des applications industrielles avec Trasys Space et Schneider Electric
+  \end{enumerate}
+\end{itemize}
+
+
+
+
+%********************
+\section*{Annexe A\,: Description des partenaires}
+%********************
+
+Présentation de l'équipe-projet BIPOP
+
+La thématique de cette équipe-projet est centrée autour des systèmes dynamiques non réguliers et de leur modélisation, leur commande ainsi que leur simulation numérique. C'est une équipe qui implique donc des travaux relevant de la mécanique non-régulière, de l'automatique, de l'optimisation non différentiable et de l'analyse convexe (et/ou non régulière - "non- smooth" en anglais).
+
+{\bf Axes de recherche} Les applications principales se trouvent dans les systèmes mécaniques (systèmes multicorps avec contraintes unilatérales, frottement, lois de comportement interfaciales non régulières) et électriques (circuits avec diodes, transistors MOS). Certains problèmes abstraits (comme la commande optimale avec contraintes sur l'état, la commande prédictive généralisée) peuvent se mettre sous ce formalisme.
+Les domaines concernés sont, entre autres: automobile (commande, simulation), espace (commande, simulation), systèmes électromécaniques (modélisation, simulation), robotique (commande de robots marcheurs, jongleurs, sauteurs, coureurs, manipulation non-préhensile).
+Les problèmes ouverts sont encore très nombreux dans ce domaine, aussi bien au niveau théorique (théorie des systèmes - commandabilité, observabilité, stabilisation, analyse mathématique - existence, unicité, dépendance continue, modélisation - problèmes de chocs multiples, lois de contact non monotones), que des aspects numériques et logiciels.
+
+{\bf Responsable scientifique:} Bernard BROGLIATO, Bernard.Brogliato@inria.fr, +33 4 76 61 53 93
+
+
+%********************
+\section*{Annexe B\,: Description des logiciels}
+%********************
+{%
+
+{\bf {\sc Siconos}}
+%
+\\[0.5ex]
+%
+%
+\begin{list}{{\small$\bullet$}}{\topsep=0.0ex\parsep=0.0ex\itemsep=0.0ex
+ \settowidth{\labelwidth}{{\small$\bullet$}}
+ \setlength{\labelsep}{0.5em}%
+ \setlength{\leftmargin}{\labelwidth}%
+ \addtolength{\leftmargin}{\labelsep}%
+ \addtolength{\leftmargin}{1ex}%
+}
+\item
+Vincent Acary siconos-team@gforge.inria.fr http://siconos.gforge.inria.fr
+\item
+Domaine: 	Mathématiques appliquées, calcul et simulation
+Thème	Modélisation, optimisation et contrôle de systèmes dynamiques
+\item
+Dans le cadre du projet européen SICONOS IST (2002-2006) coordonné par B. Brogliato, un des objectifs principaux a été la  conception et le développement d'une plate-forme de calcul scientifique pour les  systèmes dynamiques non réguliers (Work package 2, responsable. V. Acary). Les fonctionnalités de cette plate-forme sont la modélisation, l'analyse, la simulation et le contrôle des systèmes dynamiques non réguliers. Après ce projet européen, cet effort de développement a été poursuivi à travers des applications en électronique, mécanique et commande des systèmes. Les fonctionnalités supplémentaires ont été implémentées au cours du projet ANR VAL-AMS\footnote{Partenaires : VERIMAG LJK. Objectif. Vérification pour les circuits électriques commutés.}. La conception et le développement de la plate-forme se sont inscrits dans une démarche de  qualité logicielle  afin d'obtenir un logiciel distribuable et qui fédère des développements. Ce travail s'est basé sur les normes d'assurance qualité de l'agence spatiale européenne (ESA) et sur les recommandations de développement de l'INRIA.
+\item
+ Le logiciel {\sc {Siconos}} a fait l'objet de deux dépôts A.P.P. et est distribué sous licence GPL.
+\item
+Environnement : ligne de commande et interpréteur Python, OS : Linux, MacOsX Requirements: cppunit, boost, Libxml2 LAPACK/BLAS, MUMPS, swig, python, numpy 
+\item
+Deux url principales :
+\begin{enumerate}
+\item \url{http://siconos.gforge.inria.fr/} documentation utilisateur.
+\item \url{http://siconos.gforge.inria.fr/SiconosProjectOverview}  documentation développeur et \url{https://gforge.inria.fr/docman/?group\_id=9}
+\end{enumerate}
+\end{list}
+%
+}
+
+
+{\bf {\sc Prototype Multibody Saladyn}}
+%
+\\[0.5ex]
+%
+0%
+\begin{list}{{\small$\bullet$}}{\topsep=0.0ex\parsep=0.0ex\itemsep=0.0ex
+ \settowidth{\labelwidth}{{\small$\bullet$}}
+ \setlength{\labelsep}{0.5em}%
+ \setlength{\leftmargin}{\labelwidth}%
+ \addtolength{\leftmargin}{\labelsep}%
+ \addtolength{\leftmargin}{1ex}%
+}
+\item
+Vincent Acary vincent.acary@inria.fr http://saladyn.gforge.inria.fr
+\item
+Domaine: 	Mathématiques appliquées, calcul et simulation
+Thème	Modélisation, optimisation et contrôle de systèmes dynamiques
+\item
+Prototype écrit dans le cadre du projet Saladyn par Olivier Bonnefon (Ingénieur expert INRIA sur projet Saladyn) \& Vincent Acary 
+\item
+pas de dépôt pour l'instant, pas de distribution pas de licence.
+\item
+Environnement : ligne de commande et interpréteur Python, OS : Linux, MacOsX Requirements: OpenCascade, PythonOcc
+\end{list}
+%
+}
+
+
+
+%********************
+\section*{Annexe C\,: Bilan de l'ADT Siconos (2009--2011)}
+%********************
+
+
+\paragraph{Ingénierie sur l'infrastruture logicielle}
+
+Une infrastructure CMake a été mise en place pour cibler différents
+systèmes et plateformes matérielles afin d'améliorer la portabilité et
+la diffusabilité du code. Les tests ont été automatisés sur la
+plateforme pipol. Il faut noter que les automatisations misent en place
+pour Siconos servent quotidiennement une douzaine de projets
+aujourd'hui. 
+
+\paragraph{Techniques de programmation, ingénierie autour de C++ et Python}
+
+La gestion mémoire au sein du code C++ a été revue à l'aide de
+techniques aujourd'hui dans le standard C++11. Des patrons de conception
+offrent des solutions pour les articulations dans le code entre la
+simulation et la modélisation. L'API publique C++ a été revue. L'API
+Python développée met l'accent sur l'interaction simple avec les
+bibiliothèques numériques numpy et scipy et la possibilité d'héritage de
+Python depuis C++ pour prototyper des méthodes directement. Un nouveau
+module d'entrée-sortie permet la sérialisation entière de la mémoire sur
+disque pour des re-démarrages à froid.
+
+\paragraph{Ingénierie algorithmique}
+
+Les structure de données pour décrire les modélisations de systèmes et
+d'intéractions ont été redéfinies avec des graphes
+dynamiques. L'implémentation utilise la "boost graph library". La
+construction du problème non régulier à partir de ce graphe ne bloque
+pas le passage à l'échelle. 
+
+Au niveau des solveurs numériques, un
+solveur global "Alart et Curnier" a été implémenté autour de la
+résolution de systèmes linéaires par le logiciel MUMPS en vue de la
+résolution de problèmes issus de modélisation par éléments finis. La
+génération automatique de code C pour le calcul de gradients a été
+réalisée à partir de sympy.
+
+Enfin, des travaux ont été menés pour développer un prototype de gestion de collision en lien avec une librairie externe (Bullet). Ces travaux serviront de base pour l'objectif 1 de cette ADT.
+
+
+
+
+%-----------------------------------------------------------------------
+
+% {\small
+% %\addtocontents{toc}{\protect\vspace{\tocvspace}}
+% \renewcommand{\refname}{Bibliographie}
+% \addcontentsline{toc}{section}{\refname}
+% \bibliography{dossier}
+% \bibliographystyle{plain_f}
+% }
+% 
+% {\small
+% \printindex
+% }
+
+\end{document}
