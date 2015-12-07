@@ -1,0 +1,137 @@
+\documentclass[12 pt]{article}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{latexsym}
+
+\begin{document}
+
+Consider the simple case to get used to the code.
+
+\begin{figure}[htbp]
+\begin{center}
+\input{Chapter/simplecaseplot_t} 
+\caption{Model}
+\end{center}
+\end{figure}
+
+
+The kinetic energy is 
+\begin{equation}
+K=\frac{1}{2}m(\dot{x}^2+\dot{y}^2)+\frac{1}{2}J\dot{\theta}^2
+\end{equation}
+
+
+In the interaction point of the wheel and the ground, we have friction force $R_f$,and reaction force $R_n$
+the coordinate is $(x+rsin\theta,y+rcos\theta)$
+
+Make the coordinate transformation 
+\begin{equation}
+\begin{pmatrix}
+F_x\\F_y
+\end{pmatrix}=
+\frac{1}{\sqrt{k^2+1}}\begin{pmatrix}
+-k & 1\\
+1 & k \end{pmatrix}
+\begin{pmatrix}
+\lambda_n \\ \lambda_t
+\end{pmatrix}
+\end{equation}
+
+Generilized Force:
+\begin{equation}
+Q_k=F_x\frac{\partial x}{\partial q_k} + F_y\frac{\partial y}{\partial q_k}
+\end{equation}
+
+\begin{equation}
+\begin{aligned}
+\begin{pmatrix}
+R_x \\ R_y \\R_{\theta}
+\end{pmatrix}
+=&\begin{pmatrix}
+1 & 0 \\
+0 & 1 \\
+rcos\theta & -rsin\theta
+\end{pmatrix}
+\begin{pmatrix}
+F_x\\F_y
+\end{pmatrix}\\
+=&\begin{pmatrix}
+1 & 0 \\
+0 & 1 \\
+rcos\theta & -rsin\theta
+\end{pmatrix}
+\frac{1}{\sqrt{k^2+1}}\begin{pmatrix}
+-k & 1\\
+1 & k \end{pmatrix}
+\begin{pmatrix}
+\lambda_n \\ \lambda_t
+\end{pmatrix}
+\end{aligned}
+\end{equation}
+Calculate the generalized force, then we get Lagrangian equations:
+
+\begin{eqnarray}
+&\frac{d}{dt}(\frac{\partial K}{\partial \dot{x}})-\frac{\partial K}{\partial x}=R_x& \label{k2} \\
+&\frac{d}{dt}(\frac{\partial K}{\partial \dot{y}})-\frac{\partial K}{\partial y}=-mg+R_y& \label{k3} \\
+&\frac{d}{dt}(\frac{\partial K}{\partial \dot{\theta}})-\frac{\partial K}{\partial \theta}=R_{\theta}\label{k2} \\
+\end{eqnarray}
+
+\begin{eqnarray}
+&m\ddot{x}=-R_x&\\
+&m\ddot{y}=-mg+R_y&\\
+&J\ddot{\theta}=R_{\theta}&
+\end{eqnarray}
+
+NewtonimpactFrictionNSL
+
+\begin{equation}
+y=[y_n,y_t]^T,\lambda=[\lambda_n,\lambda_t]^T
+\end{equation}
+
+\begin{equation}
+if y_n=0, \left\{ \begin{matrix} 
+0\le \dot{y}_n \bot \lambda_n \ge 0 \\
+\dot{y}_t=o,\|\lambda_t \| \le \mu \lambda_n\\
+\dot{y}_n \neq0, \lambda_t=-\mu \lambda_n sign(\dot{y}_t)
+\end{matrix} \right.
+\end{equation}
+
+In matrix form:
+\begin{equation}
+\begin{pmatrix} m & 0 & 0 \\
+0 & m & \\
+0 & 0 & J \end{pmatrix}
+\ddot{q}= \begin{pmatrix}
+0 \\ -mg \\ 0 
+\end{pmatrix}+R
+\end{equation}
+
+\begin{equation}
+R=\begin{pmatrix}
+R_x \\ R_y \\ R_{\theta}
+\end{pmatrix}
+\end{equation}
+
+\begin{equation}
+q=\begin{pmatrix} x \\y \\ \theta \end{pmatrix}
+\end{equation}
+
+\begin{equation}
+R=H\begin{pmatrix}
+\lambda_n
+\\ \lambda_t \end{pmatrix}
+\end{equation}
+
+
+\begin{equation}
+H=\frac{1}{\sqrt{k^2+1}}\begin{pmatrix}
+-k & 1 \\
+1 & k \\
+-krcos\theta-rsin\theta & rcos\theta-krsin\theta
+\end{pmatrix}
+\end{equation}
+
+\begin{equation}
+y_{constrain}(d,y,\theta)=h(q)=y-kx-b-\frac{r\sqrt{k^2+1}}{k}
+\end{equation}
+\end{document}

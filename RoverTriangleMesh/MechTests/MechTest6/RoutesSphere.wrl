@@ -1,0 +1,15 @@
+
+ROUTE Animation_Time.fraction_changed TO  FLWheelInterp.set_fraction
+ROUTE Animation_Time.fraction_changed TO  FRWheelInterp.set_fraction
+ROUTE Animation_Time.fraction_changed TO  CLWheelInterp.set_fraction
+ROUTE Animation_Time.fraction_changed TO  CRWheelInterp.set_fraction
+ROUTE Animation_Time.fraction_changed TO  RLWheelInterp.set_fraction
+ROUTE Animation_Time.fraction_changed TO  RRWheelInterp.set_fraction
+
+ROUTE FLWheelInterp.value_changed TO FLWheel.set_translation
+ROUTE FRWheelInterp.value_changed TO FRWheel.set_translation
+ROUTE CLWheelInterp.value_changed TO CLWheel.set_translation
+ROUTE CRWheelInterp.value_changed TO CRWheel.set_translation
+ROUTE RLWheelInterp.value_changed TO RLWheel.set_translation
+ROUTE RRWheelInterp.value_changed TO RRWheel.set_translation
+

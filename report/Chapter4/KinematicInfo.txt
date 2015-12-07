@@ -1,0 +1,49 @@
+Mass center of Rover
+$(q_1,q_2,q_3)$ Global coordinates
+$(q_4,q_5,q_6)$ Rotation in $x,y,z$
+
+Axle F
+$(q_7)$ Rotataion in $x$
+
+Steering Axle FL
+$(q_8)$ Rotataion in $y$
+
+Steering Axle FR
+$(q_9)$ Rotataion in $y$
+
+Wheel FL
+$(q_10)$ Rotataion in $z$
+
+Wheel FR
+$(q_11)$ Rotataion in $z$
+
+Axle BL
+$(q_12)$ Rotataion in $z$
+
+Steering Axle ML
+$(q_13)$ Rotataion in $y$ 
+
+Steering Axle BL
+$(q_14)$ Rotataion in $y$
+
+Wheel ML
+$(q_15)$ Rotataion in $y$
+
+Wheel BL
+$(q_16)$ Rotataion in $y$
+
+Axle BR
+$(q_17)$ Rotataion in $z$
+
+Steering Axle MR
+$(q_18)$ Rotataion in $y$ 
+
+Steering Axle BR
+$(q_19)$ Rotataion in $y$
+
+Wheel MR
+$(q_20)$ Rotataion in $y$
+
+Wheel BR
+$(q_21)$ Rotataion in $y$
+

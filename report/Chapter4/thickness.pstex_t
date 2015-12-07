@@ -1,0 +1,27 @@
+\begin{picture}(0,0)%
+\includegraphics{Chapter4/thickness.pstex}%
+\end{picture}%
+\setlength{\unitlength}{2763sp}%
+%
+\begingroup\makeatletter\ifx\SetFigFont\undefined%
+\gdef\SetFigFont#1#2#3#4#5{%
+  \reset@font\fontsize{#1}{#2pt}%
+  \fontfamily{#3}\fontseries{#4}\fontshape{#5}%
+  \selectfont}%
+\fi\endgroup%
+\begin{picture}(5425,5799)(2088,-5993)
+\put(3901,-2086){\makebox(0,0)[lb]{\smash{{\SetFigFont{11}{13.2}{\rmdefault}{\mddefault}{\updefault}{\color[rgb]{0,0,0}$\vec{s}$}%
+}}}}
+\put(5176,-5911){\makebox(0,0)[lb]{\smash{{\SetFigFont{11}{13.2}{\rmdefault}{\mddefault}{\updefault}{\color[rgb]{0,0,0}$O$}%
+}}}}
+\put(7276,-5911){\makebox(0,0)[lb]{\smash{{\SetFigFont{11}{13.2}{\rmdefault}{\mddefault}{\updefault}{\color[rgb]{0,0,0}$x$}%
+}}}}
+\put(5626,-3961){\makebox(0,0)[lb]{\smash{{\SetFigFont{11}{13.2}{\rmdefault}{\mddefault}{\updefault}{\color[rgb]{0,0,0}$y$}%
+}}}}
+\put(6826,-4786){\makebox(0,0)[lb]{\smash{{\SetFigFont{11}{13.2}{\rmdefault}{\mddefault}{\updefault}{\color[rgb]{0,0,0}$z$}%
+}}}}
+\put(2701,-3586){\makebox(0,0)[lb]{\smash{{\SetFigFont{11}{13.2}{\rmdefault}{\mddefault}{\updefault}{\color[rgb]{0,0,0}$A$}%
+}}}}
+\put(3301,-3361){\makebox(0,0)[lb]{\smash{{\SetFigFont{11}{13.2}{\rmdefault}{\mddefault}{\updefault}{\color[rgb]{0,0,0}$B$}%
+}}}}
+\end{picture}%

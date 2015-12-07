@@ -1,0 +1,101 @@
+\ProvidesFile{RoverReport.tex}
+
+\documentclass[a4paper]{article}
+
+\pagestyle{empty}
+
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{hyperref}
+
+\usepackage{float}
+
+\usepackage{times}
+\usepackage{natbib}
+\usepackage{graphicx}
+\usepackage{url}
+
+\usepackage{amsmath,amssymb}
+\usepackage{cases}
+\usepackage{color}
+\usepackage{a4wide}
+
+\begin{document}
+
+\input{./title.tex}
+
+\section{Introduction}
+
+This document contains specification and documentation of the tests performed 
+on the Exomars robot model using Siconos software. The intention thereof is a common reference and unification
+of tests across different platforms. As of now, eight tests have been performed:
+
+\begin{itemize}
+  \item Rover stabilization on a horizontal plane after a free-fall phase
+  \item Rover stabilization on a horizontal plane with linearly varying velocity of one steering axle
+  \item Rover stabilization on a horizontal plane with acceleration and deceleration phases
+  \item Rover stabilization on an inclined plane with acceleration and deceleration phases 
+  \item Spherical obstacle crossing on a horizontal plane 
+  \item Rover stabilization on a horizontal plane with linearly varying velocity of one steering axe
+  \item Rover driving in a circle on an inclined plane
+  \item Spherical obstacle crossing on a vertical step 
+
+\end{itemize}
+
+\noindent Each of the above test settings will be detailed in the following sections. \\
+
+\noindent For each test some or all of the following quantities have been gathered and plotted:
+
+\begin{itemize}
+  \item $x_{COM}$ - mass center coordinates
+  \item $x_{wheels}$ - wheels angular displacement 
+  \item $v_{COM}$ - mass center velocity
+  \item $v_{wheels}$ - wheels angular velocity
+  \item $R$ - reaction forces in lagrangian coordinates
+  \item $\lambda_{N}$ ($\lambda_{\bar{n}}$) - normal component of the contact force (impulsion)
+  \item $\lambda_{T_x}$ ($\lambda_{\bar{t}}$) - tangential component of the contact force in the x direction
+  \item $\lambda_{T_z}$ ($\lambda_{\bar{s}}$) - tangential component of the contact force in the z direction
+  \item $y_{N}$ ($y_{\bar{n}}$) - gap function (distance between contact point and the constraint function)
+  \item $\dot{y}_{N}$ ($\dot{y}_{\bar{n}}$) - normal component of the local contact velocity
+  \item $\dot{y}_{T_x}$ ($\dot{y}_{\bar{t}}$) - tangential component x of the local contact velocity
+  \item $\dot{y}_{T_z}$ ($\dot{y}_{\bar{s}}$) - tangential component z of the local contact velocity
+\end{itemize}
+
+\noindent For each scenario a subset of the above quantities have been plotted.
+For visualization purposes VRML language has been used (fig. 1). \\
+
+\begin{figure}[h!]
+  \centering
+    \includegraphics[width=0.8\textwidth]{rovereps}
+  \caption{Assumed model of the robot}
+\end{figure}
+
+\newpage
+
+\noindent Kinematic structure of the robot is as follows:
+
+\begin{figure}[h!]
+  \centering
+    \includegraphics[width=0.8\textwidth]{kinematics}
+  \caption{Geometry of the model}
+\end{figure}
+  
+\input{./test_1}
+
+\input{./test_2}
+
+\input{./test_3}
+
+\input{./test_4}
+
+\input{./test_5}
+
+\input{./test_6}
+
+\input{./test_7}
+
+\input{./test_8}
+
+\end{document}
+ 

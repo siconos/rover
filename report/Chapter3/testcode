@@ -1,0 +1,5 @@
+set terminal latex
+set output "tes.tex"
+set xlabel "strain"
+set ylabel "stress"
+plot[1:26] 'zerodegreee11.txt' using 1:2 title 'Numerical result' with linespoints pointtype 3,[1:537] 'zerodegreee11exp.txt' using 1:2 title 'Experimental result' with linespoints pointtype 5 

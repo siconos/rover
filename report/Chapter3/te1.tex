@@ -1,0 +1,258 @@
+\documentclass[12 pt]{article}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{latexsym}
+
+\begin{document}
+We start with a model considering a rover with two wheel, and with friction when contact happens.
+We use Lagrange´s equation to create the differential equations system.
+In this system the number of degree of freedom is 5, we use generalized coordinates $x,y,$ and $\theta$, $\theta_A$, $\theta_B$ to describe the system.
+
+$x and y$ is the location of centre of gravity, and $\theta$ is the angle of the rob, $\theta_A$, $\theta_B$ are the angle of the wheel A and B receptively.
+
+
+The kinetic Emery of rod is 
+\begin{eqnarray}
+\frac{1}{2}m_1(\dot{x}^2+\dot{y}^2)+\frac{1}{2}J_1\dot{\theta}^2
+\end{eqnarray}
+
+
+The velocity of the end of the rob is
+Point A
+\begin{eqnarray}
+&v_{rollerA}=\sqrt{(l\dot{\theta}cos\theta+\dot{y})^2+(-l\dot{\theta}sin\theta+\dot{x})^2} \quad \text{Point A}&\\
+&v_{rollerB}=\sqrt{(-l\dot{\theta}cos\theta+\dot{y})^2+(l\dot{\theta}sin\theta+\dot{x})^2} \quad \text{Point B}&
+\end{eqnarray}
+
+So the kinetic energy and rotation energy of roller is
+
+\begin{eqnarray}
+\frac{1}{2}m_2v_{roller}^2+\frac{1}{2}J_2\dot{\theta}^2
+\end{eqnarray}
+
+The total kinetic energy of the system is
+\begin{equation}
+\begin{aligned}
+K=&\frac{1}{2}m_1(\dot{x}^2+\dot{y}^2)+\frac{1}{2}J_1\dot{\theta}^2\\
+&+m_2(l^2\dot{\theta}^2+\dot{y}^2
++\dot{x}^2)+\frac{1}{2}J_2(\dot{\theta_A}^2+\dot{\theta_B}^2)
+\label{k1}
+\end{aligned}
+\end{equation}
+
+If we ignore the friction force, and set centre of roller1 is A,centre of roller2 is B and the gravity centre is O
+the coordinates of these three points are:
+
+\begin{eqnarray}
+&(x_A,y_A)=(x-lcos\theta+rsin\theta_A,y-lsin\theta+rcos\theta_A)& \notag \\
+&(x_B,y_B)=(x+lcos\theta+rsin\theta_B,y+lsin\theta+rcos\theta_B)& \notag \\
+&(x_O,y_O)=(x,y)& \notag 
+\end{eqnarray}
+
+\begin{figure}[htbp]
+\begin{center}
+\input{pic1.pstex_t} 
+\caption{pic1}
+\label{figure:sdd}
+\end{center}
+\end{figure}
+
+\begin{figure}[htbp]
+\begin{center}
+\input{pic2_t} 
+\caption{pic2}
+\label{figure:sdd}
+\end{center}
+\end{figure}
+
+To compute the generilized force, we make a transformation for coordinate system and the equation \ref{k3a}
+Take wheel A as an example.
+\begin{equation}
+Q_{k}=\sum_{i=1}^n (F_{xi}\frac{\partial x_{i}}{\partial q_k}+F_{y_i}\frac{\partial y_{i}}{\partial q_k}+F_{zi}\frac{\partial z_{i}}{\partial q_k})
+\label{k3a}
+\end{equation}
+
+\begin{equation}
+\begin{pmatrix}
+F_Ax\\F_Ay
+\end{pmatrix}=
+\frac{1}{\sqrt{k_A^2+1}}\begin{pmatrix}
+-k_A & 1\\
+1 & k_A \end{pmatrix}
+\begin{pmatrix}
+\lambda_An \\ \lambda_At
+\label{k2a}
+\end{pmatrix}
+\end{equation}
+
+\begin{equation}
+\begin{pmatrix}
+R_{Ax}\\ R_{Ay}\\ R_{A\theta} \\R_{A\theta_A}\\ R_{A\theta_B}
+\end{pmatrix}=\begin{pmatrix}
+1 & 0 \\
+0 & 1 \\
+lsin\theta & -lcos\theta \\
+rcos\theta_A & -rsin\theta_A \\
+0 & 0 \end{pmatrix}
+\begin{pmatrix}
+F_{Ax} \\ F_{Ay}
+\label{k1a}
+\end{pmatrix}
+\end{equation}
+
+Substitude Equ \ref{k2a} into Equ \ref{k1a}
+we have the relation from local to global coordinate.
+
+\begin{equation}
+\begin{pmatrix}
+R_{Ax}\\ R_{Ay}\\ R_{A\theta} \\R_{A\theta_A}\\ R_{A\theta_B}
+\end{pmatrix}=\frac{1}{\sqrt{k_A^2+1}}
+\begin{pmatrix}
+-k_A & 1 \\
+1 & k_A \\
+ -k_Alsin\theta-lcos\theta & lsin\theta-k_Alcos\theta \\
+ -k_Arcos\theta_A-rsin\theta_A & rcos\theta_A-k_Arsin\theta_A\\
+0& 0 \end{pmatrix}
+\begin{pmatrix}
+\lambda_An \\ \lambda_At
+\end{pmatrix}
+\end{equation}
+
+Use similar procedure for wheel B
+\begin{equation}
+\begin{pmatrix}
+R_{Bx}\\ R_{By}\\ R_{B\theta} \\R_{B\theta_A}\\ R_{B\theta_B}
+\end{pmatrix}=\frac{1}{\sqrt{k_B^2+1}}
+\begin{pmatrix}
+ -k_B & 1\\
+1 & k_B  \\
+k_Blsin\theta+lcos\theta & -lsin\theta+k_Blcos\theta\\
+0& 0 \\
+-k_Brcos\theta_B-rsin\theta_B & rcos\theta_B-k_Brsin\theta_B
+ \end{pmatrix}
+\begin{pmatrix}
+\lambda_Bn \\ \lambda_Bt
+\end{pmatrix}
+\end{equation}
+
+So ,we can get the generalised force (without external force):
+
+\begin{equation}
+F=\begin{pmatrix}
+0 \\ -m_1-2m_2 \\ 0 \\0 \\ 0 \end{pmatrix} +R_A+R_B
+\end{equation}
+
+We can have Lagrange equations as follow:
+\begin{eqnarray}
+&\frac{d}{dt}(\frac{\partial K}{\partial \dot{x}})-\frac{\partial K}{\partial x}=R_{Ax}+R_{Bx}& \label{k2} \\
+&\frac{d}{dt}(\frac{\partial K}{\partial \dot{y}})-\frac{\partial K}{\partial y}=-m_1-2m_2+R_{Ay}+R_{By}& \label{k3} \\
+&\frac{d}{dt}(\frac{\partial K}{\partial \dot{\theta}})-\frac{\partial K}{\partial \theta}=R_{A\theta}+R_{B\theta}& \\ \label{k4}
+&\frac{d}{dt}(\frac{\partial K}{\partial \dot{\theta_A}})-\frac{\partial K}{\partial \theta_A}=R_{A\theta_A}+R_{B\theta_A}&\\
+&\frac{d}{dt}(\frac{\partial K}{\partial \dot{\theta_B}})-\frac{\partial K}{\partial \theta_B}=R_{A\theta_B}+R_{B\theta_B}&\\
+\end{eqnarray}
+
+We define two functions $d_A(x,y,\theta), \quad d_B(x,y,\theta)$in the genernalized coordinates system to illustrate the nearest distance from the point A and B to the ground surface function $g(x)$
+
+\begin{equation}
+  \left\{
+   \begin{aligned}
+   &d_A(x,y,\theta)\ge 0\\
+   &d_B(x,y,\theta)\ge0 \\
+   R_A&=0 \quad \text{if $d_A(x,y,\theta)>0$}\\
+   R_B&=0 \quad \text{if $d_B(x,y,\theta)>0$} \\
+   R_A&>0 \quad \text{if $d_A(x,y,\theta)=0$}\\
+   R_B&>0 \quad \text{if $d_B(x,y,\theta)=0$}\\
+   f_A&=\mu R_A\\
+   f_B&=\mu R_B 
+   \end{aligned}
+  \right.
+  \end{equation}
+
+Substitude equation\ref{k1} into equation \ref{k2},\ref{k3},\ref{k4}, we have 
+\begin{eqnarray}
+&m_1\ddot{x}=R_{Ax}+R_{Bx}& \\
+&m_1\ddot{y}=-m_1g-2m_2g+R_{Ay}+R_{By}&\\
+&J_1+2l^2m_2=R_{A\theta}+R_{B\theta}&\\
+&J_2\ddot{\theta_A}=R_{A\theta_A}+R_{B\theta_A}&\\
+&J_2\ddot{\theta_B}=R_{A\theta_B}+R_{B\theta_B}&
+\end{eqnarray}
+
+In matrix form:
+\begin{equation}
+q=\begin{pmatrix}
+x\\y\\ \theta \\ \theta_A \\ \theta_B
+\end{pmatrix} 
+\end{equation}
+
+\begin{equation}
+\begin{pmatrix} m_1+2m_2 & 0 & 0 & 0 & 0\\
+               0 & m_1+2m_2 & 0 & 0 & 0\\
+               0 & 0 & J_1+2l^2m_2& 0 & 0\\
+               0& 0& 0& J_2 & 0 \\
+               0 & 0 & 0& 0& J_2
+\end{pmatrix}\ddot{q}=F
+\end{equation}
+
+Relations:
+
+\begin{eqnarray}
+&h_1(q)=d_A(x,y,\theta)& \\
+&h_2(1)=d_B(x,y,\theta)&\\
+&H_1=\frac{1}{\sqrt{k_A^2+1}}
+\begin{pmatrix}
+-k_A &1 \\
+1 & k_A \\
+ -k_Alsin\theta-lcos\theta & lsin\theta-k_Alcos\theta \\
+ -k_Arcos\theta_A-rsin\theta_A & rcos\theta_A-k_Arsin\theta_A\\
+0& 0 \end{pmatrix}&\\
+&H_2=\frac{1}{\sqrt{k_B^2+1}}
+\begin{pmatrix}
+ -k_B & 1\\
+1 & k_B  \\
+k_Blsin\theta+lcos\theta & -lsin\theta+k_Blcos\theta\\
+0& 0 \\
+-k_Brcos\theta_B-rsin\theta_B & rcos\theta_B-k_Brsin\theta_B
+ \end{pmatrix}&
+\end{eqnarray}
+
+The relation between global velocity and local velocity can also obtained by using coordinate transformation.
+Take the wheel A as an example.
+\begin{equation}
+\begin{pmatrix}
+v_{xlocal}\\
+v_{ylocal}
+\end{pmatrix}=
+\frac{1}{\sqrt{k^2+1}}\begin{pmatrix}
+1 & k\\
+-k & 1 
+\end{pmatrix}
+\begin{pmatrix}
+1& 0 & lsin\theta & 0 & 0\\
+0 & 1 & -lcos\theta & 0& 0
+\end{pmatrix}
+\begin{pmatrix}
+\dot{x}\\ \dot{y}\\ \dot{\theta} \\ \dot{\theta}_A \\ \dot{\theta}_B
+\end{pmatrix}+
+\begin{pmatrix}
+0 & 0 & 0 & R & 0
+\end{pmatrix}
+\begin{pmatrix}
+\dot{x}\\ \dot{y}\\ \dot{\theta} \\ \dot{\theta}_A \\ \dot{\theta}_B
+\end{pmatrix}
+\end{equation}
+\begin{equation}
+\begin{pmatrix}
+v_{ylocal}\\
+v_{xlocal}
+\end{pmatrix}=
+\begin{pmatrix}
+\frac{-k}{\sqrt{k^2+1}} & \frac{1}{\sqrt{k^2+1}} & \frac{-klsin\theta-lcos\theta}{\sqrt{k^2+1}} & 0 & 0\\
+\frac{1}{\sqrt{k^2+1}} & \frac{k}{\sqrt{k^2+1}} & \frac{lsin\theta-klcos\theta}{\sqrt{k^2+1}} & R & 0\\
+\end{pmatrix}
+\begin{pmatrix}
+\dot{x}\\ \dot{y}\\ \dot{\theta} \\ \dot{\theta}_A \\ \dot{\theta}_B
+\end{pmatrix}
+\end{equation}
+\end{document}
+
+

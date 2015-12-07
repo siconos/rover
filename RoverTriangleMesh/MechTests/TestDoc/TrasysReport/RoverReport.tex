@@ -1,0 +1,168 @@
+\ProvidesFile{RoverReport.tex}
+
+\documentclass[a4paper]{article}
+
+\makeatletter
+\def\ps@myPS{%
+    \def\@oddfoot{\null\hfill\thepage}
+    \def\@evenfoot{\thepage}%
+    \def\@evenhead{\null\hfil\slshape\leftmark}%
+    \def\@oddhead{{\slshape\rightmark}}}%
+\makeatother
+
+\pagestyle{myPS}
+
+\usepackage{epsfig}
+\usepackage{afterpage}
+\usepackage{floatpag}
+\usepackage{color}
+\DeclareGraphicsRule{.pdftex}{pdf}{.pdftex}{}
+
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{hyperref}
+
+\usepackage{float}
+
+\usepackage{times}
+\usepackage{natbib}
+\usepackage{graphicx}
+\usepackage{url}
+
+\usepackage{amsmath,amssymb}
+\usepackage{cases}
+\usepackage{a4wide}
+\usepackage{tikz}
+
+\begin{document}
+
+\setcounter{page}{1}
+\pagenumbering{arabic}
+
+\input{./title.tex}
+
+\section{Introduction}
+
+This document contains specification and documentation of the tests performed 
+on the Exomars rover model using Siconos software. Model has been created using HuMAnS software and implemented using its C code generator. 
+The intention thereof is a common reference and unification of mechanical tests of the exomars rover across different platforms. As of now, seven tests have been performed:
+
+\begin{enumerate}
+
+  \item Rover stabilization on a horizontal plane after a free-fall phase.\\[1mm]
+        In the first test setting the rover falls freely from the height of 2 meters onto a horizontal plane.
+        No torques are applied in any of the joints. The only external forces acting on the rover are
+        the gravity and the ground reaction forces. Initial position of the rover has been set to (x, y, z) = (5, 5, 2) [m].
+        Friction coefficient has been set to 0.7. This case has been divided into two sub-cases: first one with the normal restituion coefficient set to zero and
+        the second one with the normal restitution coefficient set to 0.2. Tangential restitution coefficients have been set to zero in both sub-cases. 
+  
+  \item Rover stabilization on a horizontal plane with linearly varying velocity of one steering axis.\\[1mm]
+        In the second test setting rover is dropped onto a horizontal plane and stands idle on it during the first 50 seconds of the simulation.
+        After 50 seconds from the beginning of the simulation a constant torque $\tau = 0.00002Nm$ is applied in one of the steering axes (steering axis FL)
+        causing its rotational motion with linear velocity. Wheel makes two full rotations around its vertical steering axis (FL). 
+        Other external forces acting on the rover are the gravity and ground reaction. Initial position of the center of mass of the robot
+        has been set to (x, y, z) = (5, 5, 2) [m]. Friction coefficient has been set to 0.4. Restitution coefficients (tangential and normal) have been set to zero.
+        
+  \item Rover stabilization on a horizontal plane with acceleration and deceleration phases.\\[1mm]
+        In the third test setting rover's parcour is divided into six time intervals with different values of torques applied to the wheels:
+
+        \begin{itemize} 
+          \item $0s < t_s < 20s$, $\tau = 0Nm$           
+          \item $20s < t_s < 40s$, $\tau = 0.0007Nm$        
+          \item $40s < t_s < 80s$, $\tau = 0Nm$         
+          \item $80s < t_s < 105s$, $\tau = -0.0007Nm$
+          \item $105s < t_s < 150s$, $\tau = 0Nm$         
+          \item $150s < t_s < 200s$, $\tau = -0.0005Nm$ 
+        \end{itemize}
+
+        \noindent Other external forces acting on the rover are the gravity and ground reactions. Initial position of the center of mass of the robot
+        has been set to (x, y, z) = (5, 8, 0.57) [m]. In the $5^{th}$ phase rover effectively stops its motion until negative torques are applied.
+        Friction coefficient has been set to 0.7. Restitution coefficients (tangential and normal) have been set to zero. 
+
+  \item Rover stabilization on an inclined plane with a phase of upwards motion.\\[1mm]
+        In the fourth test setting rover is set to stand steadily on an inclined plane.   
+        Inclination angle of the slope has been set to 10$^\circ$. Torques applied to the wheels counterbalance torques caused by
+        the gravity. After initial period higher torques are applied to the wheels which cause the robot to drive upwards. Blocking torques are equal to  
+        $\tau_{b} = -0.87072Nm$. During the second phase of motion linearly varying torques are applied to all wheels.\\[1mm] 
+        \noindent Rover's parcour has been devided into two phases:
+
+        \begin{itemize} 
+          \item $0s < t_s < 30s$, $\tau_{b}$ $-$  $constant$ $blocking$ $torques$           
+          \item $30s < t_s < 40s$, $\tau_{m}$ $-$ $linearly$ $increasing$ $torques$        
+        \end{itemize}
+
+        Friction coefficient has been set to 0.8. Restitution coefficients (tangential and normal) have been set to zero. 
+
+  \item Rover stabilization on an inclined plane with acceleration and deceleration phases.\\[1mm]
+        In the fifth test setting rover is dropped onto the inclined plane.
+        Inclination angle of the slope has been set to 10$^\circ$. After the 10$^{th}$ second of motion a simple PD controller
+        is set using position and velocity of the center of mass in order to stop the rover on the slope. Rover stops effectively at $t = 25s$.
+        Friction coefficient has been set to 0.8. Restitution coefficients (tangential and normal) have been set to zero. 
+
+  \item Spherical obstacle crossing on a horizontal plane.\\[1mm] 
+        In the sixth test setting rover is dropped onto the horizontal plane from the height of $2$ $m$. After $10$ $s$ linearly varying torques are applied to all wheels. 
+        A spherical obstacle has been set in front of the rover. The obstacle is in the form of a sphere which protudes outside the plane.
+        Center of the sphere has been set so that the protrusion is equal to $20$ $cm$. Coefficients of friction and restitution (normal) are in this case respectively:
+        0.3 and 0. 
+
+  \item Vertical step obstacle crossing.\\[1mm]
+        In the seveth test setting rover is dropped onto a horizontal plane.
+        An obstacle in the form of a horizontal step of height $0.1m$ (roughly equal to the wheel radius) has been set in front of the rover.
+        At certain point of time ($t$ $=$ $10s$) rover starts moving towards the step and crosses it mounting on the higher plane.
+        Friction coefficient has been set to 0.6. Restitution coefficient (normal) has been set to 0.1. 
+
+\end{enumerate}
+
+\noindent Results of each of the above tests  will be detailed in the following sections.\\[1mm]
+\noindent In mechanical simulations with nonsmooth approach one is mostly interested in the following quantities:
+
+\begin{itemize}
+  \item $x_{COM}$ - mass center coordinates
+  \item $x_{wheels}$ - wheels angular displacement 
+  \item $v_{COM}$ - mass center velocity
+  \item $v_{wheels}$ - wheels angular velocity
+  \item $R$ - reaction forces (impulsions) in lagrangian (global) coordinates
+  \item $\lambda_{N}$ ($\lambda_{\bar{n}}$) - normal component of the contact force (impulsion) in local coordinates
+  \item $\lambda_{T_x}$ ($\lambda_{\bar{t}}$) - tangential component of the contact force (impulsion) in local coordinates in the x direction
+  \item $\lambda_{T_z}$ ($\lambda_{\bar{s}}$) - tangential component of the contact force (impulsion) in local coordinates in the z direction
+  \item $y_{N}$ ($y_{\bar{n}}$) - gap function (distance between contact point and the constraint function)
+  \item $\dot{y}_{N}$ ($\dot{y}_{\bar{n}}$) - normal component of the local contact velocity
+  \item $\dot{y}_{T_x}$ ($\dot{y}_{\bar{t}}$) - tangential component x of the local contact velocity
+  \item $\dot{y}_{T_z}$ ($\dot{y}_{\bar{s}}$) - tangential component z of the local contact velocity
+\end{itemize}
+
+\noindent For each scenario a subset of the above quantities has been plotted.\\
+
+\begin{figure}[h!]
+  \centering
+    \includegraphics[width=0.8\textwidth]{rovereps}
+  \caption{Assumed model of the robot}
+\end{figure}
+
+\newpage
+
+\noindent Simplified kinematic structure of the robot is as follows:
+
+\begin{figure}[h!]
+  \centering
+    \input{kkk.pdftex_t}  
+  \caption{Geometry of the model}
+\end{figure}
+
+\input{./test_1}
+
+\input{./test_2}
+
+\input{./test_3}
+
+\input{./test_4}
+
+\input{./test_5}
+
+\input{./test_6}
+
+\input{./test_7}
+
+\end{document}
+ 

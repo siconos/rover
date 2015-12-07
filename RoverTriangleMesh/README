@@ -1,0 +1,19 @@
+Simulation of a mars rover on a triangle mesh terrain
+
+author: jan michalczyk
+
+1) in pyTriangulation folder run script triang.py with a .txt file with points as an input
+
+ex.: ./triang.py sample.txt
+
+sample.txt should contain list of points to triangulate. Points should be arranged one point per line.
+Space key is used as separator. Script will output a graph with triangulation plot and two files.
+
+ 1) SICout.txt which will be read by SICONOS.
+ 2) output.wrl which will be used to visualize the terrain in VRML.
+
+After generating the mesh run the simulation.
+
+ex.: siconos Rover3D_Multi_TriangleVRML.cpp
+
+2) Check your output in run.wrl file.

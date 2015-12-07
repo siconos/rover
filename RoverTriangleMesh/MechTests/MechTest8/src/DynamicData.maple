@@ -1,0 +1,94 @@
+# Copyright (C) INRIA 1999-2005
+# 
+# This program is free software; you can redistribute it and/or modify it
+# under the terms of the GNU General Public License version 2 as published
+# by the Free Software Foundation.
+# 
+# This program is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+# Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, write to the Free Software Foundation, Inc.,
+# 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+# 
+# Author(s): Jianhui Yang
+# Affiliation(s): INRIA, team BIPOP
+# Email(s): jianhui.yang@inrialpes.fr
+#
+
+#dynamic data for the Rover on the plane
+
+# Gravity vector
+Gravity := vector([0, -9.81, 0]):
+
+
+# solid size matrix (a,b,c) on (x,y,z) in meters unity
+sizematrix := [[30,0,0]]: #  trunk: Orientation and position
+
+# Rover total mass in kilogrammes unity
+Mass := 1:	
+
+
+# solid mass matrix
+massmatrix := [7]*2:   #	 Wheel BR 
+
+MatHuygens := proc(G) option remember;
+
+	RETURN(matrix([[G[3]^2+G[2]^2, -G[2]*G[1], -G[3]*G[1]],
+		[-G[2]*G[1], G[3]^2+G[1]^2, -G[3]*G[2]],
+		[-G[3]*G[1], -G[3]*G[2], G[2]^2+G[1]^2]])):
+end:
+
+
+# function created to compute the inertia matrix
+
+IOMatrix := proc(k) option remember;
+local mk, IG, Gk;
+	
+	mk := Mass * massmatrix[k]:
+	IG := matrix([[mk*(sizematrix[k,3]^2 + sizematrix[k,2]^2) /12, 0, 0],
+		      [0, mk*(sizematrix[k,1]^2 + sizematrix[k,3]^2) /12, 0],
+		      [0, 0, mk*(sizematrix[k,1]^2 + sizematrix[k,2]^2) /12]]):
+	Gk := G_||(k):
+	RETURN(evalm(IG + mk*MatHuygens(Gk))):	
+end:
+
+IOMatrixDisk :=proc(k) option remember;
+local mk , r, IG;
+      mk := Mass*massmatrix[k]:
+      r  := sizematrix[k,1]:
+      IG := matrix([[mk*r^2/4, 0, 0],
+		      [0,mk*r^2/4, 0],
+		      [0, 0,mk*r^2/2 ]]):
+      RETURN(IG):	
+end:
+
+IOMatrixCylinder := proc(k) option remember;
+local mk, r, h, IG;
+       mk :=Mass*massmatrix[k]:
+       r  := sizematrix[k,1]:
+       h  := sizematrix[k,2]:
+       IG := matrix([[mk*(3*r^2+h^2)/12,0,0],
+                     [0,mk*r^2/2,0],
+                     [0,0,mk*(3*r^2+h^2)/12]]):
+       RETURN(IG):
+end:
+
+
+
+
+
+TestMatrix := matrix([[10,0,0],
+                     [0,0,0],
+                     [0,0,0]]):
+
+
+# Solid 1 : trunk: Orientation and position
+m_1  := massmatrix[1]*Mass:
+G_1  := vector([0, 0, 0]):
+IO_1 := IOMatrixCylinder(1):
+#IO_1 := TestMatrix:
+
+printf("DynamicData Loading Complete");

@@ -1,0 +1,135 @@
+
+%input macros (i.e. write your own macros file called MacroFile1.tex)
+%\include{Macros/MacroFile1}
+
+\documentclass[oneside,12pt]{Classes/CUEDthesisPSnPDF}
+\usepackage{amsmath}
+\usepackage{latexsym}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{booktabs}
+\usepackage{listings}
+\usepackage{overcite}
+\usepackage{pgf}
+\usepackage{multirow}
+
+\renewcommand\citeleft{[}  % parentheses around list
+\renewcommand\citeright{]} % parentheses around list
+
+\ifpdf
+    \pdfinfo { /Title  (Internship Report)
+               /Creator (Jianhui Yang)
+              /Producer (pdfTeX)
+               /Author (Jianhui Yang Jianhui.yang@eleves.nantes.fr)
+               /CreationDate (D:20100601000000)  %format D:YYYYMMDDhhmmss
+               /ModDate (D:20100601213532)
+               /Subject (Simulation of a Mars Rover on granular soils)
+               /Keywords (MSc, Thesis)}
+    \pdfcatalog { /PageMode (/UseOutlines)
+                  /OpenAction (fitbh)  }
+\fi
+
+\title{\Huge Simulation of a Mars Rover on granular soils}
+
+\ifpdf
+  \author{\href{dd}}
+  \collegeordept{\href{http://www.inrialpes.fr}{Team Bipop}}
+  \university{\href{http://www.inrialpes.fr}{INRIA Rh\^one Alpes}}
+% insert below the file name that contains the crest in-place of 'UnivShield'
+  \crest{\includegraphics[width=60mm]{INRIA}}
+\else
+  \author{Jianhui Yang}
+  \collegeordept{\normalsize Supervisor: Vincent Acary\\Team Bipop }
+  \university{\normalsize INRIA Rh\^one Alpes }
+% insert below the file name that contains the crest in-place of 'UnivShield'
+  \crest{\includegraphics[width=60mm]{INRIA}}
+\fi
+
+
+
+%
+% insert below the file name that contains the crest in-place of 'LOGO CENTRALE NANTES'
+% \crest{\IncludeGraphicsW{LOGO CENTRALE NANTES}{40mm}{14 14 73 81}}
+
+\renewcommand{\submittedtext}{A internship report submitted for}
+\degree{Erasmus Mundus Master} \degreedate{14 June 2010}
+
+% turn of those nasty overfull and underfull hboxes
+\hbadness=10000
+\hfuzz=50pt
+
+% Put all the style files you want in the directory StyleFiles and usepackage like this:
+\usepackage{StyleFiles/watermark}
+
+
+\begin{document}
+
+%\language{english}
+
+ \renewcommand\baselinestretch{1.2}
+\baselineskip=18pt plus1pt
+
+% A page with the abstract on including title and author etc may be
+% required to be handed in separately. If this is not so, then comment
+% the below 3 lines (between '\begin{abstractseparte}' and
+% 'end{abstractseparate}'), normally like a declaration ... needs some more
+% work, mind as environment abstracts creates a new page!
+% \begin{abstractseparate}
+%   \input{Abstract/abstract}
+% \end{abstractseparate}
+
+
+
+
+% Using the watermark package which is in StyleFiles/
+% and to remove DRAFT COPY ONLY appearing on the top of all pages comment out below line
+%\watermark{DRAFT COPY ONLY}
+
+
+\maketitle
+
+%set the number of sectioning levels that get number and appear in the contents
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
+
+\frontmatter
+%\include{Dedication/dedication}
+%\include{Acknowledgement/acknowledgement}
+%\include{Abstract/abstract}
+
+\tableofcontents
+\listoffigures
+%\printglossary  %% Print the nomenclature
+%\addcontentsline{toc}{chapter}{Nomenclature} %-------------
+
+
+%\include{Introduction/introduction}
+
+\mainmatter
+
+
+\include{Chapter1/chapter1}
+\include{Chapter2/chapter2}
+\include{Chapter3/chapter3}
+\include{Chapter4/chapter4}
+\include{Chapter5/chapter5}
+%\include{Conclusions/conclusions}
+
+%\appendix
+%\include{Appendix1/appendix1}
+
+
+
+
+%\bibliographystyle{Classes/CUEDbiblio}
+%\bibliographystyle{Classes/jmb}
+%bibliographystyle{plainnat} %this works with package natbib
+%\bibliographystyle{plain} % bibliography style
+%\renewcommand{\bibname}{References} % changes default name Bibliography to References
+%\bibliography{References/references} % References file
+
+
+
+%\addcontentsline{toc}{chapter}{References} %adds References to contents page
+%\include{Acknowledgement/acknowledgement}
+\end{document}

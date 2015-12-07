@@ -1,0 +1,17 @@
+#My informal notes on git <2012-11-30 Fri> taken during going through docs
+
+* merge * 
+
+When I have two files A and B in different branches - branch A is master. Now, I want to merge branch B into main main branch (A).
+If I run merge, then the resulting file in the main branch will incorporate changes made in A and B. The problem arises if the same
+block of code is edited in both files, because git has no way of knowing which block of code (from A or B) to take - because these blocks
+were changed in both files. This causes merging conflicts which have to be resolved by hand. 
+
+* rebase * 
+
+Basically to include changes in git-managed project I can use /merge/ or /rebase/. Merge will simply connect the changes from certain branch
+with  my respective branch. With rebase, the changes will be rebased on my current branch, which means that changes from another branch will be applied 
+as a patch onto the top of my rebased branch. This causes the branching of the project to be less complex. Basically, at the end of teh day, the end-effect of
+merge and rebase is the same, but rebase gives the cleaner history, because there is no branching. It's good to do rebase your project onto your origin/master
+on your local dierctory before pushing onto a remote becuse the project tree is clean and linear.
+

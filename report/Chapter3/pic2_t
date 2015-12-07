@@ -1,0 +1,19 @@
+\begin{picture}(0,0)%
+\includegraphics{Chapter3/pic2.eps}%
+\end{picture}%
+\setlength{\unitlength}{3552sp}%
+%
+\begingroup\makeatletter\ifx\SetFigFont\undefined%
+\gdef\SetFigFont#1#2#3#4#5{%
+  \reset@font\fontsize{#1}{#2pt}%
+  \fontfamily{#3}\fontseries{#4}\fontshape{#5}%
+  \selectfont}%
+\fi\endgroup%
+\begin{picture}(5949,1743)(-236,752)
+\put(1426,2264){\makebox(0,0)[lb]{\smash{{\SetFigFont{11}{13.2}{\rmdefault}{\mddefault}{\updefault}{$R_B$}%
+}}}}
+\put(1576,1514){\makebox(0,0)[lb]{\smash{{\SetFigFont{11}{13.2}{\rmdefault}{\mddefault}{\updefault}{$R_{Bx}$}%
+}}}}
+\put(2176,2339){\makebox(0,0)[lb]{\smash{{\SetFigFont{11}{13.2}{\rmdefault}{\mddefault}{\updefault}{$R_{By}$}%
+}}}}
+\end{picture}%

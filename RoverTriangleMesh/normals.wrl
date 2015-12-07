@@ -1,0 +1,4224 @@
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -0 0 -0,
+			     -0 5 -0,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -0 0 -0,
+			     -0 5 -0,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -25 0 -0,
+			     -25 5 -0,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -25 0 -25,
+			     -25 5 -25,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -50 0 -0,
+			     -50 4.996 0.19984,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -50 0 -25,
+			     -49.8002 4.996 -25,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -75 0 -0,
+			     -74.0377 4.81125 -0.96225,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -75 1 -25,
+			     -75.1997 5.99202 -24.8003,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -25 0 -25,
+			     -25 4.9372 -24.21,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -0 0 -25,
+			     0.789953 4.9372 -25,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -50 0 -25,
+			     -50 4.86194 -23.8331,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -25 4 -50,
+			     -24.6063 8.92187 -49.2125,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -75 1 -25,
+			     -74.8003 5.99202 -25.1997,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -50 6 -50,
+			     -51.1363 10.7347 -48.8637,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -100 0 -25,
+			     -100.2 4.996 -25,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -75 0 -50,
+			     -75 4.996 -50.1998,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -25 4 -50,
+			     -24.2197 8.87671 -50.7803,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -0 0 -50,
+			     -0.591542 4.92952 -49.4085,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -50 6 -50,
+			     -49.6122 10.8473 -51.1634,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -25 0 -75,
+			     -25 4.9372 -75.79,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -75 0 -50,
+			     -76.166 4.85826 -49.8057,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -50 0 -75,
+			     -49.8057 4.85826 -76.166,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -100 0 -50,
+			     -100 5 -50,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -75 1 -75,
+			     -75.1997 5.99202 -74.8003,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -25 0 -75,
+			     -25.5957 4.96438 -75,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -0 1 -100,
+			     -0.199205 5.98012 -100.398,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -50 0 -75,
+			     -50 5 -75,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -25 0 -100,
+			     -25 5 -100,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -75 1 -75,
+			     -74.8002 5.996 -75,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -50 0 -100,
+			     -49.8002 4.996 -100,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -100 0 -75,
+			     -100.2 4.996 -75,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -75 1 -100,
+			     -75.1998 5.996 -100,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -0 0 -0,
+			     -0 5 -0,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -0 0 -0,
+			     -0 5 -0,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -25 0 -0,
+			     -25 5 -0,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -25 0 -25,
+			     -25 5 -25,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -50 0 -0,
+			     -50 4.996 0.19984,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -50 0 -25,
+			     -49.8002 4.996 -25,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -75 0 -0,
+			     -74.0377 4.81125 -0.96225,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -75 1 -25,
+			     -75.1997 5.99202 -24.8003,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -25 0 -25,
+			     -25 4.9372 -24.21,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -0 0 -25,
+			     0.789953 4.9372 -25,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -50 0 -25,
+			     -50 4.86194 -23.8331,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -25 4 -50,
+			     -24.6063 8.92187 -49.2125,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -75 1 -25,
+			     -74.8003 5.99202 -25.1997,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -50 6 -50,
+			     -51.1363 10.7347 -48.8637,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -100 0 -25,
+			     -100.2 4.996 -25,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -75 0 -50,
+			     -75 4.996 -50.1998,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -25 4 -50,
+			     -24.2197 8.87671 -50.7803,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -0 0 -50,
+			     -0.591542 4.92952 -49.4085,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -50 6 -50,
+			     -49.6122 10.8473 -51.1634,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -25 0 -75,
+			     -25 4.9372 -75.79,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -75 0 -50,
+			     -76.166 4.85826 -49.8057,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -50 0 -75,
+			     -49.8057 4.85826 -76.166,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -100 0 -50,
+			     -100 5 -50,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -75 1 -75,
+			     -75.1997 5.99202 -74.8003,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -25 0 -75,
+			     -25.5957 4.96438 -75,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -0 1 -100,
+			     -0.199205 5.98012 -100.398,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -50 0 -75,
+			     -50 5 -75,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -25 0 -100,
+			     -25 5 -100,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -75 1 -75,
+			     -74.8002 5.996 -75,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -50 0 -100,
+			     -49.8002 4.996 -100,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -100 0 -75,
+			     -100.2 4.996 -75,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -75 1 -100,
+			     -75.1998 5.996 -100,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -0 0 -0,
+			     -0 5 -0,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -0 0 -0,
+			     -0 5 -0,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -25 0 -0,
+			     -25 5 -0,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -25 0 -25,
+			     -25 5 -25,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -50 0 -0,
+			     -50 4.996 0.19984,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -50 0 -25,
+			     -49.8002 4.996 -25,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -75 0 -0,
+			     -74.0377 4.81125 -0.96225,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -75 1 -25,
+			     -75.1997 5.99202 -24.8003,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -25 0 -25,
+			     -25 4.9372 -24.21,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -0 0 -25,
+			     0.789953 4.9372 -25,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -50 0 -25,
+			     -50 4.86194 -23.8331,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -25 4 -50,
+			     -24.6063 8.92187 -49.2125,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -75 1 -25,
+			     -74.8003 5.99202 -25.1997,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -50 6 -50,
+			     -51.1363 10.7347 -48.8637,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -100 0 -25,
+			     -100.2 4.996 -25,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -75 0 -50,
+			     -75 4.996 -50.1998,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -25 4 -50,
+			     -24.2197 8.87671 -50.7803,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -0 0 -50,
+			     -0.591542 4.92952 -49.4085,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -50 6 -50,
+			     -49.6122 10.8473 -51.1634,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -25 0 -75,
+			     -25 4.9372 -75.79,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -75 0 -50,
+			     -76.166 4.85826 -49.8057,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -50 0 -75,
+			     -49.8057 4.85826 -76.166,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -100 0 -50,
+			     -100 5 -50,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -75 1 -75,
+			     -75.1997 5.99202 -74.8003,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -25 0 -75,
+			     -25.5957 4.96438 -75,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -0 1 -100,
+			     -0.199205 5.98012 -100.398,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -50 0 -75,
+			     -50 5 -75,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -25 0 -100,
+			     -25 5 -100,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -75 1 -75,
+			     -74.8002 5.996 -75,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -50 0 -100,
+			     -49.8002 4.996 -100,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -100 0 -75,
+			     -100.2 4.996 -75,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -75 1 -100,
+			     -75.1998 5.996 -100,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -0 0 -0,
+			     -0 5 -0,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -0 0 -0,
+			     -0 5 -0,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -25 0 -0,
+			     -25 5 -0,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -25 0 -25,
+			     -25 5 -25,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -50 0 -0,
+			     -50 4.996 0.19984,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -50 0 -25,
+			     -49.8002 4.996 -25,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -75 0 -0,
+			     -74.0377 4.81125 -0.96225,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -75 1 -25,
+			     -75.1997 5.99202 -24.8003,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -25 0 -25,
+			     -25 4.9372 -24.21,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -0 0 -25,
+			     0.789953 4.9372 -25,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -50 0 -25,
+			     -50 4.86194 -23.8331,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -25 4 -50,
+			     -24.6063 8.92187 -49.2125,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -75 1 -25,
+			     -74.8003 5.99202 -25.1997,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -50 6 -50,
+			     -51.1363 10.7347 -48.8637,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -100 0 -25,
+			     -100.2 4.996 -25,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -75 0 -50,
+			     -75 4.996 -50.1998,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -25 4 -50,
+			     -24.2197 8.87671 -50.7803,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -0 0 -50,
+			     -0.591542 4.92952 -49.4085,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -50 6 -50,
+			     -49.6122 10.8473 -51.1634,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -25 0 -75,
+			     -25 4.9372 -75.79,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -75 0 -50,
+			     -76.166 4.85826 -49.8057,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -50 0 -75,
+			     -49.8057 4.85826 -76.166,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -100 0 -50,
+			     -100 5 -50,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -75 1 -75,
+			     -75.1997 5.99202 -74.8003,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -25 0 -75,
+			     -25.5957 4.96438 -75,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -0 1 -100,
+			     -0.199205 5.98012 -100.398,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -50 0 -75,
+			     -50 5 -75,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -25 0 -100,
+			     -25 5 -100,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -75 1 -75,
+			     -74.8002 5.996 -75,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -50 0 -100,
+			     -49.8002 4.996 -100,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -100 0 -75,
+			     -100.2 4.996 -75,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -75 1 -100,
+			     -75.1998 5.996 -100,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -0 0 -0,
+			     -0 5 -0,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -0 0 -0,
+			     -0 5 -0,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -25 0 -0,
+			     -25 5 -0,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -25 0 -25,
+			     -25 5 -25,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -50 0 -0,
+			     -50 4.996 0.19984,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -50 0 -25,
+			     -49.8002 4.996 -25,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -75 0 -0,
+			     -74.0377 4.81125 -0.96225,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -75 1 -25,
+			     -75.1997 5.99202 -24.8003,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -25 0 -25,
+			     -25 4.9372 -24.21,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -0 0 -25,
+			     0.789953 4.9372 -25,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -50 0 -25,
+			     -50 4.86194 -23.8331,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -25 4 -50,
+			     -24.6063 8.92187 -49.2125,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -75 1 -25,
+			     -74.8003 5.99202 -25.1997,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -50 6 -50,
+			     -51.1363 10.7347 -48.8637,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -100 0 -25,
+			     -100.2 4.996 -25,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -75 0 -50,
+			     -75 4.996 -50.1998,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -25 4 -50,
+			     -24.2197 8.87671 -50.7803,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -0 0 -50,
+			     -0.591542 4.92952 -49.4085,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -50 6 -50,
+			     -49.6122 10.8473 -51.1634,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -25 0 -75,
+			     -25 4.9372 -75.79,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -75 0 -50,
+			     -76.166 4.85826 -49.8057,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -50 0 -75,
+			     -49.8057 4.85826 -76.166,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -100 0 -50,
+			     -100 5 -50,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -75 1 -75,
+			     -75.1997 5.99202 -74.8003,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -25 0 -75,
+			     -25.5957 4.96438 -75,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -0 1 -100,
+			     -0.199205 5.98012 -100.398,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -50 0 -75,
+			     -50 5 -75,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -25 0 -100,
+			     -25 5 -100,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -75 1 -75,
+			     -74.8002 5.996 -75,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -50 0 -100,
+			     -49.8002 4.996 -100,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -100 0 -75,
+			     -100.2 4.996 -75,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -75 1 -100,
+			     -75.1998 5.996 -100,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -0 0 -0,
+			     -0 5 -0,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -0 0 -0,
+			     -0 5 -0,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -25 0 -0,
+			     -25 5 -0,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -25 0 -25,
+			     -25 5 -25,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -50 0 -0,
+			     -50 4.996 0.19984,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -50 0 -25,
+			     -49.8002 4.996 -25,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -75 0 -0,
+			     -74.0377 4.81125 -0.96225,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -75 1 -25,
+			     -75.1997 5.99202 -24.8003,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -25 0 -25,
+			     -25 4.9372 -24.21,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -0 0 -25,
+			     0.789953 4.9372 -25,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -50 0 -25,
+			     -50 4.86194 -23.8331,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -25 4 -50,
+			     -24.6063 8.92187 -49.2125,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -75 1 -25,
+			     -74.8003 5.99202 -25.1997,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -50 6 -50,
+			     -51.1363 10.7347 -48.8637,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -100 0 -25,
+			     -100.2 4.996 -25,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -75 0 -50,
+			     -75 4.996 -50.1998,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -25 4 -50,
+			     -24.2197 8.87671 -50.7803,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -0 0 -50,
+			     -0.591542 4.92952 -49.4085,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -50 6 -50,
+			     -49.6122 10.8473 -51.1634,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -25 0 -75,
+			     -25 4.9372 -75.79,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -75 0 -50,
+			     -76.166 4.85826 -49.8057,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -50 0 -75,
+			     -49.8057 4.85826 -76.166,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -100 0 -50,
+			     -100 5 -50,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -75 1 -75,
+			     -75.1997 5.99202 -74.8003,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -25 0 -75,
+			     -25.5957 4.96438 -75,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -0 1 -100,
+			     -0.199205 5.98012 -100.398,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -50 0 -75,
+			     -50 5 -75,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -25 0 -100,
+			     -25 5 -100,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -75 1 -75,
+			     -74.8002 5.996 -75,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -50 0 -100,
+			     -49.8002 4.996 -100,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -100 0 -75,
+			     -100.2 4.996 -75,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 
+Shape { 
+	 geometry IndexedLineSet { 
+		 coord Coordinate { 
+			 point [
+			     -75 1 -100,
+			     -75.1998 5.996 -100,
+			 ]
+		 }
+		 color Color { 
+			 color [ 
+			      1.0 0.0 0.0,
+			      1.0 0.0 0.0,
+			 ] 
+		  } 
+		 coordIndex [ 
+			 0, 1, -1, 
+		 ] 
+		 colorIndex [ 
+			 0, 1 
+		 ] 
+	 } 
+} 

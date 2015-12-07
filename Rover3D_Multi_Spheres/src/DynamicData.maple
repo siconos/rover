@@ -1,0 +1,212 @@
+# Copyright (C) INRIA 1999-2005
+# 
+# This program is free software; you can redistribute it and/or modify it
+# under the terms of the GNU General Public License version 2 as published
+# by the Free Software Foundation.
+# 
+# This program is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+# Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, write to the Free Software Foundation, Inc.,
+# 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+# 
+# Author(s): Jianhui Yang
+# Affiliation(s): INRIA, team BIPOP
+# Email(s): jianhui.yang@inrialpes.fr
+#
+
+#dynamic data for Rover3D
+
+# Gravity vector
+Gravity := vector([0, -9.81, 0]):
+
+
+# solid size matrix (a,b,c) on (x,y,z) in meters unity
+sizematrix := [[120,40,100], #  trunk: Orientation and position   	Rectangle
+               [6,6,115],    #  Axle F (Front)			  	Rectangle
+               [3,15,0],     #	Steering Axle FL (Front Left)	  	Cylinder input format (radius,height,Non)	
+               [3,15,0],     #  Steering Axle FR (Front Right)	  	Cylinder input format (radius,height,Non)
+               [10,0,0],     #  Wheel FL		          	Disk input format:(radius,Non,Non)
+               [10,0,0],     #  Wheel FR			  	Disk input format:(radius,Non,Non)
+               [70,6,6],     #  Axle BL					Rectangle
+               [3,15,0],     #  Steering Axle ML 			Cylinder input format (radius,height,Non)
+               [3,15,0],     #  Steering Axle BL 			Cylinder input format (radius,height,Non)
+               [10,0,0],     #  Wheel ML				Disk input format:(radius,Non,Non)
+               [10,0,0],     #  Wheel BL 				Disk input format:(radius,Non,Non)
+               [70,6,6],     #  Axle BR					Rectangle
+               [3,15,0],     #  Steering Axle MR 			Cylinder input format (radius,height,Non)	
+               [3,15,0],     #  Steering Axle BR 			Cylinder input format (radius,height,Non)	
+               [10,0,0],     #  Wheel MR 				Disk input format:(radius,Non,Non)
+               [10,0,0]]:    #	Wheel BR 				Disk input format:(radius,Non,Non)
+
+
+# Rover total mass in kilogrammes unity
+Mass := 1:	
+
+
+# solid mass matrix in rate of total mass
+massmatrix := [600,   #  trunk: Orientation and position
+               50,    #  Axle F (Front)
+               5,     #	 Steering Axle FL (Front Left)
+               5,     #  Steering Axle FR (Front Right)
+               30,    #  Wheel FL
+               30,    #  Wheel FR
+               50,    #  Axle BL
+               5,     #  Steering Axle ML 
+               5,     #  Steering Axle BL 
+               30,    #  Wheel ML
+               30,    #  Wheel BL 
+               50,    #  Axle BR
+               5,     #  Steering Axle MR 
+               5,     #  Steering Axle BR 
+               30,    #  Wheel MR 
+               30]*1:   #	 Wheel BR 
+
+MatHuygens := proc(G) option remember;
+
+	RETURN(matrix([[G[3]^2+G[2]^2, -G[2]*G[1], -G[3]*G[1]],
+		[-G[2]*G[1], G[3]^2+G[1]^2, -G[3]*G[2]],
+		[-G[3]*G[1], -G[3]*G[2], G[2]^2+G[1]^2]])):
+end:
+
+
+# function created to compute the inertia matrix
+
+IOMatrix := proc(k) option remember;
+local mk, IG, Gk;
+	
+	mk := Mass * massmatrix[k]:
+	IG := matrix([[mk*(sizematrix[k,3]^2 + sizematrix[k,2]^2) /12, 0, 0],
+		      [0, mk*(sizematrix[k,1]^2 + sizematrix[k,3]^2) /12, 0],
+		      [0, 0, mk*(sizematrix[k,1]^2 + sizematrix[k,2]^2) /12]]):
+	Gk := G_||(k):
+	RETURN(evalm(IG + mk*MatHuygens(Gk))):	
+end:
+
+#Inertia matrix for Disk
+IOMatrixDisk :=proc(k) option remember;
+local mk , r, IG;
+      mk := Mass*massmatrix[k]:
+      r  := sizematrix[k,1]:
+      IG := matrix([[mk*r^2/4, 0, 0],
+		      [0,mk*r^2/4, 0],
+		      [0, 0,mk*r^2/2 ]]):
+      RETURN(IG):	
+end:
+
+
+#Inertia matrix for Cylinder
+IOMatrixCylinder := proc(k) option remember;
+local mk, r, h, IG;
+       mk :=Mass*massmatrix[k]:
+       r  := sizematrix[k,1]:
+       h  := sizematrix[k,2]:
+       IG := matrix([[mk*(3*r^2+h^2)/12,0,0],
+                     [0,mk*r^2/2,0],
+                     [0,0,mk*(3*r^2+h^2)/12]]):
+       RETURN(IG):
+end:
+
+
+
+# Solid 1 : trunk: Orientation and position
+m_1  := massmatrix[1]*Mass:
+G_1  := vector([0, 0, 0]):
+IO_1 := IOMatrix(1):
+
+
+# Solid 2 : Axle F (Front)
+m_2  := massmatrix[2]*Mass:
+G_2  := vector([0, 0, 0]):
+IO_2 := IOMatrix(2):
+
+
+# Solid 3 : Steering Axle FL (Front Left)
+m_3  := massmatrix[3]*Mass:
+G_3  := vector([0, 0, 0]):
+IO_3 := IOMatrixCylinder(3):
+
+
+# Solid 4 : Steering Axle FR (Front Right)
+m_4  := massmatrix[4]*Mass:
+G_4  := vector([0, 0, 0]):
+IO_4 := IOMatrixCylinder(4):
+
+
+# Solid 5 : Wheel FL
+m_5  := massmatrix[5]*Mass:
+G_5  := vector([0, 0, 0]):
+IO_5 := IOMatrixDisk(5):
+
+
+# Solid 6 : Wheel FR
+m_6  := massmatrix[6]*Mass:
+G_6  := vector([0, 0, 0]):
+IO_6 := IOMatrixDisk(6):
+
+
+# Solid 7 : Axle BL
+m_7  := massmatrix[7]*Mass:
+G_7  := vector([0, 0, 0]):
+IO_7 := IOMatrix(7):
+
+
+# Solid 8 : Steering Axle ML
+m_8  := massmatrix[8]*Mass:
+G_8  := vector([0, 0, 0]):
+IO_8 := IOMatrixCylinder(8):
+
+
+# Solid 9 : Steering Axle BL
+m_9  := massmatrix[9]*Mass:
+G_9  := vector([0, 0, 0]):
+IO_9 := IOMatrixCylinder(9):
+
+
+# Solid 10 : Wheel ML 
+m_10  := massmatrix[10]*Mass:
+G_10  := vector([0, 0, 0]):
+IO_10 := IOMatrixDisk(10):
+
+
+# Solid 11 : Wheel BL 
+m_11 := massmatrix[11]*Mass:
+G_11 := vector([0, 0, 0]):
+IO_11:= IOMatrixDisk(11):
+
+
+# Solid 12 : Axle BR
+m_12  := massmatrix[12]*Mass:
+G_12  := vector([0, 0, 0]):
+IO_12 := IOMatrix(12):
+
+
+# Solid 13 : Steering Axle MR
+m_13  := massmatrix[13]*Mass:
+G_13  := vector([0, 0, 0]):
+IO_13 := IOMatrixCylinder(13):
+
+
+# Solid 14 : Steering Axle BR
+m_14  := massmatrix[14]*Mass:
+G_14  := vector([0, 0, 0]):
+IO_14 := IOMatrixCylinder(14):
+
+
+# Solid 15 : Wheel MR 
+m_15  := massmatrix[15]*Mass:
+G_15  := vector([0, 0, 0]):
+IO_15 := IOMatrixDisk(15):
+
+
+# Solid 16 : Wheel BR 
+m_16 := massmatrix[16]*Mass:
+G_16 := vector([0, 0, 0]):
+IO_16:= IOMatrixDisk(16):
+
+
+
+printf("DynamicData Loading Complete");

@@ -1,0 +1,211 @@
+# Copyright (C) INRIA 1999-2005
+# 
+# This program is free software; you can redistribute it and/or modify it
+# under the terms of the GNU General Public License version 2 as published
+# by the Free Software Foundation.
+# 
+# This program is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+# Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, write to the Free Software Foundation, Inc.,
+# 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+# 
+# Author(s): Jianhui Yang
+# Affiliation(s): INRIA, team BIPOP
+# Email(s): jianhui.yang@inrialpes.fr
+#
+
+#dynamic data for the Rover on the plane
+
+# Gravity vector
+Gravity := vector([0, -3.69, 0]):
+
+# solid size matrix (a,b,c) on (x,y,z) in meters unity
+
+sizematrix := [[71.3,56.55,89.6],             #  trunk: Orientation and position
+               [26.1,18.4284,104.4],          #  RBogie
+               [12.5964,22.7982,13.8849],     #	 RLSteering
+               [12.5964,22.7982,13.8849],     #  RRSteering
+               [12.9,3,0],                    #  RLWheel
+               [12.9,3,0],                    #  RRWheel
+               [8.70001,11.2,61.2],           #  FLBogie
+               [12.5964,22.7982,13.8849],     #  CLSteering 
+               [12.5964,22.7982,13.8849],     #  FLSteering 
+               [12.9,3,0],                    #  CLWheel
+               [12.9,3,0],                    #  FLWheel 
+               [8.70001,11.2,61.2],           #  FRBogie
+               [12.5964,22.7982,13.8849],     #  CRSteering 
+               [12.5964,22.7982,13.8849],     #  FRSteering 
+               [12.9,3,0],                    #  CRWheel 
+               [12.9,3,0]]:                   #  FRWheel 
+
+# Rover total mass in kilogrammes unity
+Mass := 1:	
+
+#if mass of the platform set to 5000 as should be then simulation goes crazy
+
+# solid mass matrix
+massmatrix := [5000,     #  trunk: Orientation and position
+               400,      #  RBogie  
+               100,      #  RLBogie	
+               100,      #  RRBogie
+               10,    #  RLWheel
+               10,    #  RRWheel
+               200,      #  FLBogie
+               100,      #  CLSteering
+               100,      #  FLSteering
+               10,    #  CLWheel
+               10,    #  FLWheel
+               200,      #  FRBogie
+               100,      #  CRSteering
+               100,      #  FRSteering
+               10,    #  CRWheel
+               10]*1: #  FRWheel
+
+MatHuygens := proc(G) option remember;
+
+	RETURN(matrix([[G[3]^2+G[2]^2, -G[2]*G[1], -G[3]*G[1]],
+		[-G[2]*G[1], G[3]^2+G[1]^2, -G[3]*G[2]],
+		[-G[3]*G[1], -G[3]*G[2], G[2]^2+G[1]^2]])):
+end:
+
+# function created to compute the inertia matrix
+
+# trasys has wheels as 'capsules' we model them as thin cylinders
+
+IOMatrix := proc(k) option remember;
+local mk, IG, Gk;
+	
+	mk := Mass * massmatrix[k]:
+	IG := matrix([[mk*(sizematrix[k,3]^2 + sizematrix[k,2]^2) /12, 0, 0],
+		      [0, mk*(sizematrix[k,1]^2 + sizematrix[k,3]^2) /12, 0],
+		      [0, 0, mk*(sizematrix[k,1]^2 + sizematrix[k,2]^2) /12]]):
+	Gk := G_||(k):
+	RETURN(evalm(IG + mk*MatHuygens(Gk))):	
+end:
+
+IOMatrixDisk :=proc(k) option remember;
+local mk , r, IG;
+      mk := Mass*massmatrix[k]:
+      r  := sizematrix[k,1]:
+      IG := matrix([[mk*r^2/4, 0, 0],
+		      [0,mk*r^2/4, 0],
+		      [0, 0,mk*r^2/2 ]]):
+      RETURN(IG):	
+end:
+
+IOMatrixCylinder := proc(k) option remember;
+local mk, r, h, IG;
+       mk :=Mass*massmatrix[k]:
+       r  := sizematrix[k,1]:
+       h  := sizematrix[k,2]:
+       IG := matrix([[mk*(3*r^2+h^2)/12,0,0],
+                     [0,mk*r^2/2,0],
+                     [0,0,mk*(3*r^2+h^2)/12]]):
+       RETURN(IG):
+end:
+
+TestMatrix := matrix([[10,0,0],
+                     [0,0,0],
+                     [0,0,0]]):
+
+# Solid 1 : trunk: Orientation and position
+m_1  := massmatrix[1]*Mass:
+G_1  := vector([0, 0, 0]):
+IO_1 := IOMatrix(1):
+#IO_1 := TestMatrix:
+
+# Solid 2 : Axle F (Front)
+m_2  := massmatrix[2]*Mass:
+G_2  := vector([0, 0, 0]):
+IO_2 := IOMatrix(2):
+#IO_2 := TestMatrix:
+
+# Solid 3 : Steering Axle FL (Front Left)
+m_3  := massmatrix[3]*Mass:
+G_3  := vector([0, 0, 0]):
+IO_3 := IOMatrix(3):
+#IO_3 := TestMatrix:
+
+# Solid 4 : Steering Axle FR (Front Right)
+m_4  := massmatrix[4]*Mass:
+G_4  := vector([0, 0, 0]):
+IO_4 := IOMatrix(4):
+#IO_4 := TestMatrix:
+
+# Solid 5 : Wheel FL
+m_5  := massmatrix[5]*Mass:
+G_5  := vector([0, 0, 0]):
+IO_5 := IOMatrixCylinder(5):
+#IO_5 := TestMatrix:
+
+# Solid 6 : Wheel FR
+m_6  := massmatrix[6]*Mass:
+G_6  := vector([0, 0, 0]):
+IO_6 := IOMatrixCylinder(6):
+#IO_6 := TestMatrix:
+
+# Solid 7 : Axle BL
+m_7  := massmatrix[7]*Mass:
+G_7  := vector([0, 0, 0]):
+IO_7 := IOMatrix(7):
+#IO_7 := TestMatrix:
+
+# Solid 8 : Steering Axle ML
+m_8  := massmatrix[8]*Mass:
+G_8  := vector([0, 0, 0]):
+IO_8 := IOMatrix(8):
+#IO_8 := TestMatrix:
+
+# Solid 9 : Steering Axle BL
+m_9  := massmatrix[9]*Mass:
+G_9  := vector([0, 0, 0]):
+IO_9 := IOMatrix(9):
+#IO_9 := TestMatrix:
+
+# Solid 10 : Wheel ML 
+m_10  := massmatrix[10]*Mass:
+G_10  := vector([0, 0, 0]):
+IO_10 := IOMatrixCylinder(10):
+#IO_10 := TestMatrix:
+
+# Solid 11 : Wheel BL 
+m_11 := massmatrix[11]*Mass:
+G_11 := vector([0, 0, 0]):
+IO_11:= IOMatrixCylinder(11):
+#IO_11:= TestMatrix:
+
+# Solid 12 : Axle BR
+m_12  := massmatrix[12]*Mass:
+G_12  := vector([0, 0, 0]):
+IO_12 := IOMatrix(12):
+#IO_12 := TestMatrix:
+
+# Solid 13 : Steering Axle MR
+m_13  := massmatrix[13]*Mass:
+G_13  := vector([0, 0, 0]):
+IO_13 := IOMatrix(13):
+#IO_13 := TestMatrix:
+
+# Solid 14 : Steering Axle BR
+m_14  := massmatrix[14]*Mass:
+G_14  := vector([0, 0, 0]):
+IO_14 := IOMatrix(14):
+#IO_14:= TestMatrix:
+
+# Solid 15 : Wheel MR 
+m_15  := massmatrix[15]*Mass:
+G_15  := vector([0, 0, 0]):
+IO_15 := IOMatrixCylinder(15):
+#IO_15 := TestMatrix:
+
+# Solid 16 : Wheel BR 
+m_16 := massmatrix[16]*Mass:
+G_16 := vector([0, 0, 0]):
+IO_16:= IOMatrixCylinder(16):
+#IO_16:= TestMatrix:
+
+printf("DynamicData Loading Complete");

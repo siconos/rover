@@ -1,0 +1,387 @@
+#Notes on the project
+#Author: Jasiek Michalczyk
+#Starting date: <2012-11-09 Fri>
+#Remarks: to get the pdf compile the exports with pdflatex
+
+* First meeting on <2012-10-26 Fri> in Grenoble 
+
+** General objective's outline 
+
+   Project's objective is to elaborate in terms of both design and implementa-
+   tion a library for multibody systems simulation - SICONOS MECHANICS.
+   Designed solution will be based on already developed SALADYN project.
+   In essence, the goal is to enhance SALADYN by equipping it with more
+   functionalities such as: collision detection engines from already existing li-
+   braries like PhysX/Bullet (used by TRASYS in 3DROV), CAD, geometry
+   and visualization capabilities from OpenCASCADE and FreeCAD, models
+   description using XML language or Python scripting in order to avoid hav-
+   ing to define them in C++ from the front-end side. The use of a reliable
+   collision detection library coupled with SICONOS as computation engine is
+   expected to provide a simulation environment for multibody systems where
+   contact phenomena are taken into account. Up to now such tool does not
+   exist. Thus, an expected outcome will be a more complete simulation tool
+   for multibody systems using SICONOS Kernel and Numerics as contact sim-
+   ulation engine interconnected with other tools as shown on the figure below.
+   As displayed on the figure, there are different tools available as for example
+   ROS parser for urdf files which might be used in order to generate robot
+   model equations replacing HuMAns and Maple. Furthermore, urdf file for-
+   mat allows the exportation to Gazebo robot simulator where also a controller
+   can be designed and visualization can be achieved. Models can be described
+   in Python at front-end and thereafter parsed into urdf format. Coherence
+   between the used mathematical formalism in expressing the dynamics of the
+   system and the formalisms used in the aforementioned libraries (i.e. Bul-
+   let/OpenCASCADE) needs to be assured on the level of API.
+   
+   #+CAPTION: Functionalities scheme
+   #+LABEL:   fig:fig1
+   #+ATTR_LaTeX: width=10cm
+ 
+   [[./scheme.jpg]]
+
+   An important aspect of the short-term project timespan is a survey on existing tools 
+   which provide the above listed features. Among ones already mentioned are:
+   MbDyn library, Gazebo, ROS.
+
+** Timespan of planned work for next weeks
+
+*** Get familiar with SICONOS
+
+    - Examine the "Bouncing Ball" example
+    - Examine the "double Pendulum" example as an example requiring the use of plug-ins
+    + Expected duration: 2 weeks
+
+*** Exammine and upgrade the "Rover" example	
+
+    - Examine its relation with HuMAns software (equations generation)
+    - Generate the triangle mesh as a ground for new simulation
+    - Run the simulation on the previously generated triangle mesh
+    + Expected duration: 3 weeks
+
+*** Examine the purposefullness of using Bullet library for collision detection
+
+    - Use collision detection from Bullet in the "Rover" example
+    + Duration: undefined
+
+*** Examine SALADYN an OpenCASCADE
+
+    - Link SALADYN and openCASCADE
+    + Duration: undefined
+
+** Additional remarks
+
+   Meetings will be held every second week to assure the right progress
+      
+
+* Second meeting on <2012-11-09 Fri> in Grenoble 
+
+** First important point - theoretical background on collisions
+
+   The meaning of different coordinate systems transformations is crucial in understanding
+   and implementing numerically an algorithm for an interaction of a wheel (or other object)
+   with a plane. Let's consider that situation in details on the example of a manipulator arm
+   colliding with a motionless rigid body.
+
+   #+CAPTION: Collision between two rigid bodies
+   #+LABEL:   fig:fig2
+   #+ATTR_LaTeX: width=10cm
+
+   [[./contact.jpeg]]
+     
+   In this situation one has a geometric robot jacobian which maps the joint-space velocity
+   into the velocity of the end-point (or any other point in the kinematic chain).
+   One calculates this jacobian by taking the derivatives of cartesian coordinates of 
+   end-effector (which are functions of generalized coordinates given by the forward
+   kinematics) with respect to generalized coordinates. For the purposes of simulation we
+   need to calculate the distance between the end-effector and the plane. We do that to be
+   able to detect the moment when the constraint is being violated (impact occurs).
+   When dealing with impact one has to know the velocity of the impacting body with respect
+   to the local frame (the frame consisting of the plane and the normal to the plane in the
+   point of impact). This velocity is needed by the Newton's impact law. The local frame is
+   where the contact point is - this is very important as we will have to transform the 
+   velocity of the end-effector expressed in the global frame into the velocity relative 
+   to the plane (expressed in the local frame). Therefore we need to establish a new 
+   transformation matrix between the local and global frames. This new transformation 
+   maps global (cartesian) velocity of the end-effector into the velocity in the local frame. 
+   This operator will also be used to transform the contact forces into the generalized 
+   forces in robot joints. That is because contact forces are always expressed in the local 
+   frame defined in the contact point. 
+  
+** Detailed description of the algorithm
+  
+*** Distance calculation
+
+    We project the point in space on each of the planes defined by each of the triangles.
+    In this way we create as many interactions as there are wheels, times the number of
+    triangles. This is not the most efficient method but it will be the first attempt.
+    In the next attempt a space filter should be used which will discard the triangles
+    with which a wheel has no possibility to enter in contact. 
+    After projection on the plane there is a possibility that either point lies inside the 
+    triangle or outside of it. If it lies inside then there is no problem and we calculate
+    the distance between the point and the plane.
+    If it lies outside of the triangle we need to be able to 
+    calculate the distance nevertheless. Therefore, we project the point on each of the 
+    segments which consitute the edges of the triangle. If the projection lies inside some segment, 
+    we take it as the distance. If the projection lies outside each segment, we proceed to
+    calculating the distances from the point to the vertices and we take the smallest distance 
+    between the vertex and point.
+    
+*** Calculation of the normal to the plane and the local coordinate frame
+
+    Once the distance function assumed zero value, it means that the contact occured.
+    Then we should proceed to calculate the local coordinate frame in the contact point. 
+    We will need it to have the rotation matrix from global frame to the local one.
+    We can compute the normal by taking the cross product of two vectors defining the plane.
+    The problem which might occur is that when on a segment or edge, multiple normals can be taken.
+    For example on an edge there will be two normals as the edge is shared by two planes. 
+    In the algorithm we do not account for this problem - we just leave it. In the future there
+    should be some way of handling this, for example by taking one normal as a resultant from all
+    that exist.
+
+*** Calculation of the contact jacobian
+
+    Contact jacobian can be calculated as follows (assuming the local frame is not moving):
+    \begin{equation}
+    v_{c_{1}} = -R^{-1}J(q)\dot{q}
+    \end{equation}
+    Where:
+    \begin{equation}
+    -R^{-1}J(q)\dot{q} = G
+    \end{equation}
+    Which is a contact jacobian we're looking for. Inverse of that jacobian allows to obtain
+    velocities and forces after impact.
+    We also assume that: 
+    \begin{equation}
+    v_{c_{2}} = 0 
+    \end{equation}
+    Which means that the local frame is not moving.
+
+** Activities
+
+*** DONE Terrain generation
+
+    Static terrain with some fixed area filled with triangles with some 
+    elevation needs to be generated. This terrain will initialize the terrain in
+    C++ code used for simulation.
+    That is to say, values read from VRML or .DEM file will initialize relation objects in
+    C++. Terrain should be generated in .DEM file or the file format imposed by Trasys. 
+    The keypoint is to be able to initialize from this format the values of objects in C++
+    (plane coefficients and other values needed for computations).
+    Each triangle from the map will instantiate six relations (one triangle forms one constraint
+    plane). There will be six sets of relations representing constraint planes - one for
+    each wheel. There should be also a way to visualize the content of the file
+    (there are methods to convert .DEM into VRML).
+    
+*** DONE Relation definition
+
+    With respect to what has been exposed in the first section in the relation class I need
+    to provide methods to calculate distance according to the algorithm described above, as
+    well as Jacobian transforming velocities and forces from local into global frame.
+    A class representing relation plane-wheel needs to be written. This class will inherit
+    from the class representing the scleronomous relation in SICONOS. Crucial methods in this
+    class are: ComupteJacobianh() and Computeh().
+
+*** DONE Combine it alltogether, simulate and visualize the results
+    
+    In order to run the simulation the existing code will be reused.
+    New relation class will be insterted into the main piece of code. Also, code reading in
+    the initialization data for the relations from the VRML (or .DEM) file needs to be
+    included in the main file.
+    
+    
+    
+    
+* Third meeting <2012-11-23 Fri> *
+  
+** DONE python script for reading in the png file **
+
+There's a need for a python script reading in the .png file and performing a delaunay triangulation thereon.
+There is a function for this in matplotlib. Script reads in the .png as a matrix, does the triangulation and 
+streams the output into a .txt file which can be read in by c++ code and based on which respective relation
+classes can be instantiated.
+
+** DONE go through the maple code **
+
+Go through the maple code for HuMAns and see the details of implementation of the functions called from within
+siconos.
+
+
+* Fourth meeting <2012-12-07 Fri> *
+
+** Debugging the simulation **
+
+*** DONE Make the robot roll on a single triangle (bigger than the robot) and make sure it crosses triangles correctly.
+
+    distances are correct. Simulation works fine (without contact solver failures). VRML display fails (probably because of an orientation problem).
+*** TODO Make the robot roll on smaller triangles.
+
+*** TODO Make work the example with bullet in siconos.
+
+*** TODO Generate the terrain in bullet and use it in a relation class in siconos.
+
+** Normals **
+
+Test if the normals of all triangles are in a good direction. If not flip them upside down.
+Object appears to 'sink in' when the normal is miscalculated.
+
+** Additionals **
+
+Roger's drawing which I find useful.
+
+   #+CAPTION: Drawing
+   #+LABEL:   fig:fig2
+   #+ATTR_LaTeX: width=10cm
+ 
+   [[./schemeSoft.png]]
+
+Conference in may for which abstract has to be ready by the mid-january.
+
+
+* Fifth meeting <2013-01-11 Fri> * 
+
+With Constantin  
+ [...]
+
+Robot description under xml (from Ogremax)
+Scene description under xml
+
+
+* Sixth meeting <2013-02-02 Sat> * 
+
+Roger is creating a private project on gforge for Trasys Tools (under svn).
+Next : a little doc for the setup.
+
+Maurice is creating Siconos/Mechanics. This is the place where Jan
+developments will go.
+
+** first step:
+We can use Trasys tool with the same robot as the one given in Maple and get distances and normals.
+paper for conference
+
+Rover Bullet experimentations with Siconos : 
+1. make 6 wheels as bullet spheres
+2. For cylinders, add a margin in Siconos for Cylinders.
+
+
+** second step:
+For the modelisation issues, we have to think about Maple sim, sympy, Recursive Euler in C++
+
+
+
+
+* Seventh meeting <2013-02-15 Fri> * 
+
+Structuring of the SiconosMechanics. Subdirectories include: 
+- CADMechanisms which comprise importing of models from CAD toold. FreeCAD can be used for visualization.
+- 2D
+- 3D
+- Contact Detection 
+- Joints 
+- There is also a possibility of integrating Ogre3d or Blender into Mechanics.
+
+** Tasks
+
+   Jan should see MBdyn plugin and blender and see if it can be integrated (later). Blender and MBdyn plugin. Install trasys tools.
+
+   Maurice: cDash.
+
+** Conference ESA/ASTRA
+
+   Objectives:
+   
+   1) Simulation over mesh 
+   2) DEM/Bullet tools
+   3) Bind 3drocks with siconos
+   4) Simulation in 3dRocks - input state: q, qdot (from siconos). output: gaps and normals (from 3drocks).  
+
+   Deadline for the paper: 15 avril.
+
+
+* Eight meeting <2013-03-12 Tue> * 
+  
+  Discussion about the details on trasys API. The needed data are two contact points (one on each body), tangent vectors, distance and the normal vector.
+  
+  The siconos revision for use in trasys preliminary software has been tagged as Trasys1.0. (sha 8f1a08a).
+
+  Until friday jan is working on python/blender visualization tool.
+
+
+* Ninth meeting <2013-03-15 Fri> *
+
+  Visualization in blender. Investigate .blend file possibilities to make the procedure generic. The procedure of writing the description of the whole simulation
+  together with the scene, primitives and time evolution thereof. One solution would be to create a proprietary description format in ( in .txt, .xml or .yaml) to
+  describe the content of the scene, objects' properties and time evolutions. Another solution would be to use an existing format like .obj.
+
+  
+
+* Tenth's meeting <2013-03-29 Fri> * 
+
+Visualization for Siconos. Drafts of the xml document for the visualization.
+
+Two files: one for describing the scene and another for specifiying time evolution.
+
+We need to specify fps for the simulation.
+
+We need to output frame number (frame id).
+
+<SiconosScene>
+
+<Sphere tag ="large">
+
+<radius> 1 </radius>
+
+</Sphere>
+
+<Box tag = "small box">
+<edges> 1 2 1</edges>
+</Box>
+
+
+
+<Group>
+  <instances> 100 </instances>
+  <tag> large </tag>
+  <id0> 1 </id0>
+</group>
+
+
+<Group>  
+    <instances> 10 </instances>
+   <tag> small box </tag>
+   <id0> 1000 </id0>  
+</Group>
+
+
+
+</SiconosScene>
+
+
+ex:
+
+fps 10
+1 1 0 0 0 1 0 0 0
+1 1001 0 10 0 1 0 0 0
+1 3 0 20 0 1 0 0 0
+2 1001 0 11 0 1 0 0 0 
+3 1 0 
+
+
+* Eleventh meeting <2013-04-12 Fri> *
+
+For the article for astra2013: integration of siconos in the 3DRov. Siconos standalone simulation with mesh. How to generate mesh. Interaction in siconos
+for simulation: need for distance and jacobian. Not go far into details in how to calculate the distance. Some results: plots of velocities and force 
+in the case when robot is on an inclined plane and when it falls down on the even plane with bounces. 
+
+
+* Twelvth meeting <2013-06-21 Fri> *
+
+Refining the 1st year report on IJD.   
+
+
+* Thirteenth meeting <2013-07-18 Thu> *
+
+See the vector q when e_n=0.1. Without friction. 
+Case e_n==0.1 and n_e==0.0 and after stabilization watch ydot, M and q in the LCP. (nsosb->display()).
+see if q are symmetric.
+
+Next step after correction of lambdas -> integration in 3DRov of siconos.
+Agree on the model used in the simulation with Trasys.

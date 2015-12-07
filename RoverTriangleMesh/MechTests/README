@@ -1,0 +1,13 @@
+MechTest1 - free fall on the plane
+MechTest2 - turning the front left wheel on the plane
+MechTest3 - acceleration and deceleration on the plane
+MechTest4 - acceleration deceleration on the inclined slope
+MechTest5 - crossing a spherical obstacle
+MechTest6 - mounting a step
+Mechtest7 - circle on an inclined slope
+Mechtest8 - circle on an inclined slope (coorected - with a fixed 45 deg normal)
+TestDoc - documentation
+RelationsClasses - relation classes for triangle and the sphere
+
+Everywhere the relation class with the triangle should be replaced with the relation class from folder RelationsClasses.
+ 

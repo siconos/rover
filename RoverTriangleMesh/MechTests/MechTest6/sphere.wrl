@@ -1,0 +1,151 @@
+#VRML V2.0 utf8 
+ 
+#Shape { 
+#	 appearance DEF theTexture Appearance { 
+#
+#		 texture ImageTexture { 
+#
+#			 url ["texture.png"] 
+#
+#		 } 
+#
+#	 } 
+#
+#	 geometry IndexedFaceSet { 
+#
+#		 solid FALSE  
+#
+#		 coord Coordinate { 
+#		 point [ 
+#			-5.0 0.0 -0.0
+#			-0.0 0.0 -10.0
+#			-10.0 0.0 -10.0
+#			-0.0 0.0 -10.0
+#			-0.0 0.1 -10.0
+#			-10.0 0.1 -10.0
+#			-10.0 0.0 -10.0
+#			-10.0 0.1 -10.0
+#			-0.0 0.0 -10.0
+#			-0.0 0.1 -10.0
+#			-10.0 0.1 -10.0
+#			-5.0 0.1 -20.0
+#		    ] 
+#		 } 
+#
+#		 coordIndex [ 
+#			0 1 2 -1
+#			2 3 5 -1
+#			5 4 3 -1
+#			5 4 11 -1
+#		    ] 
+#
+#	 } 
+#} 
+
+DEF FLWheel Transform {
+
+     translation 0 0 0 
+
+     children Shape { 
+     appearance Appearance { material Material { diffuseColor 1 0 0 }}
+     geometry Sphere {radius 0.05} 
+
+     } 
+
+} 
+
+DEF FRWheel Transform {
+
+     translation 0 0 1 
+
+     children Shape { 
+     appearance Appearance { material Material { diffuseColor 1 0 0 }}
+     geometry Sphere {radius 0.05} 
+
+     } 
+
+} 
+
+DEF CLWheel Transform {
+
+     translation 0 0 2 
+
+     children Shape { 
+     appearance Appearance { material Material { diffuseColor 1 0 0 }}
+     geometry Sphere {radius 0.05} 
+
+     } 
+
+} 
+
+DEF CRWheel Transform {
+
+     translation 0 0 3 
+
+     children Shape { 
+     appearance Appearance { material Material { diffuseColor 1 0 0 }}
+     geometry Sphere {radius 0.05} 
+
+     } 
+
+} 
+
+DEF RLWheel Transform {
+
+     translation 0 0 4 
+
+     children Shape { 
+     appearance Appearance { material Material { diffuseColor 1 0 0 }}
+     geometry Sphere {radius 0.05} 
+
+     } 
+
+} 
+
+DEF RRWheel Transform {
+
+     translation 0 0 5 
+
+     children Shape { 
+     appearance Appearance { material Material { diffuseColor 1 0 0 }}
+     geometry Sphere {radius 0.05} 
+
+     } 
+
+} 
+
+ 
+DEF Animation_Time TimeSensor {
+
+      cycleInterval 15.0000
+      startTime 0
+      stopTime 0
+      loop TRUE
+
+}
+
+DEF Omnidir PointLight {
+
+  intensity 0.5
+  color 1 1 1
+  location 0 200 0
+  on TRUE
+  radius 6000
+
+}
+
+WorldInfo {
+
+  title "Contact points"
+
+}
+
+NavigationInfo {
+
+  avatarSize [ 0.3, 1.0, 0.3 ]
+  headlight TRUE
+  speed 4.0
+  type "EXAMINE"
+
+}
+ 

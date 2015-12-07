@@ -1,0 +1,52 @@
+# Copyright (C) INRIA 1999-2005
+# 
+# This program is free software; you can redistribute it and/or modify it
+# under the terms of the GNU General Public License version 2 as published
+# by the Free Software Foundation.
+# 
+# This program is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+# Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, write to the Free Software Foundation, Inc.,
+# 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+# 
+# Author(s): Jianhui Yang
+# Affiliation(s): INRIA, team BIPOP
+# Email(s): jianhui.yang@inrialpes.fr
+#
+
+# kinematic data for the Kondo KHR-1
+#
+# Free base == pelvis
+#
+# 
+
+# solids number
+NSOL := 1:
+
+# degrees of freedom number
+NDDL := 6:
+
+#generalized coordinates and velocity definition
+q := vector(NDDL):
+qdot := vector(NDDL):
+
+# l = vector of mechanical lenghts
+
+#Cardan Rotation: We begin with the rotation around x, then around y then
+#around z.
+
+# Frame 1 : Mass center: Orientation and position
+ref_1	:= 0:
+z_1 := q[6]:
+y_1 := q[5]:
+x_1 := q[4]:
+Tx_1 := q[1]:
+Ty_1 := q[2]:
+Tz_1 := q[3]:
+
+printf("KinematicData Loading Complete");
+

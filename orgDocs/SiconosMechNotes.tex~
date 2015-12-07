@@ -1,0 +1,35 @@
+% Created 2012-11-12 Mon 15:25
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{soul}
+\usepackage{amssymb}
+\usepackage{hyperref}
+
+
+\title{SiconosMechNotes}
+\author{jan michalczyk}
+\date{12 November 2012}
+
+\begin{document}
+
+\maketitle
+
+\setcounter{tocdepth}{3}
+\tableofcontents
+\vspace*{1cm}
+    Contact jacobian can be aclculated as follows (assuming the local frame is not moving):
+    \begin{equation}
+    v_{c_{1}} = -R^{-1}J(q)\dot{q}
+    \end{equation}
+    Where:
+    \begin{equation}
+    -R^{-1}J(q)\dot{q} = G
+    \end{equation}
+    Which is a contact jacobian we're looking for. Inverse of that jacobian allows to obtain
+    velocities and forces after impact.
+\end{document}

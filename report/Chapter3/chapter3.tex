@@ -1,0 +1,465 @@
+\chapter{Work completed}
+\ifpdf
+    \graphicspath{{Chapter3/PNG/}{Chapter3/PDF/}{Chapter3/}}
+\else
+    \graphicspath{{Chapter3/}{Chapter3/}}
+\fi
+
+\section{Starting point: 2D model for a ball with plane}
+
+I started with the simplest model, use Siconos to simulate the motion and the contact of a ball falling down on a plane. The Lagrangian dynamical system and the interaction relations are formulated by hand.
+
+Consider the simple case to get used to the code.
+
+\begin{figure}[htbp]
+\begin{center}
+ \input{Chapter3/simplecaseplot.pstex_t}
+\caption{Model}
+\end{center}
+\end{figure}
+
+Where $q=(x,y,\theta)$ defines the generalized coordinates.
+
+The kinetic energy is 
+\begin{equation}
+K=\frac{1}{2}m(\dot{x}^2+\dot{y}^2)+\frac{1}{2}J\dot{\theta}^2
+\end{equation}
+
+
+In the interaction point between wheel and the ground, we have friction force $\lambda_t$,and reaction force $\lambda_n$
+the coordinate of the contact point is $(x+rsin\theta,y+rcos\theta)$
+
+In order to transform the force from the local coordinate system to the global coordinate system, the coordinate transformation is used
+\begin{equation}
+\begin{pmatrix}
+F_x\\F_y
+\end{pmatrix}=
+\frac{1}{\sqrt{k^2+1}}\begin{pmatrix}
+-k & 1\\
+1 & k \end{pmatrix}
+\begin{pmatrix}
+\lambda_n \\ \lambda_t
+\end{pmatrix}
+\end{equation}
+Where, $k$ is the slope of the ground.\\
+
+
+We write the generalized forces as:
+\begin{equation}
+Q_k=F_x\frac{\partial x}{\partial q_k} + F_y\frac{\partial y}{\partial q_k}
+\end{equation}
+
+\begin{equation}
+\begin{aligned}
+\begin{pmatrix}
+R_x \\ R_y \\R_{\theta}
+\end{pmatrix}
+=&\begin{pmatrix}
+1 & 0 \\
+0 & 1 \\
+rcos\theta & -rsin\theta
+\end{pmatrix}
+\begin{pmatrix}
+F_x\\F_y
+\end{pmatrix}\\
+=&\begin{pmatrix}
+1 & 0 \\
+0 & 1 \\
+rcos\theta & -rsin\theta
+\end{pmatrix}
+\frac{1}{\sqrt{k^2+1}}\begin{pmatrix}
+-k & 1\\
+1 & k \end{pmatrix}
+\begin{pmatrix}
+\lambda_n \\ \lambda_t
+\end{pmatrix}
+\end{aligned}
+\end{equation}
+After the calculus of the generalized forces, then we get the Lagrangian equations of motion:
+
+\begin{eqnarray}
+&\frac{d}{dt}(\frac{\partial K}{\partial \dot{x}})-\frac{\partial K}{\partial x}=R_x& \label{k2} \\
+&\frac{d}{dt}(\frac{\partial K}{\partial \dot{y}})-\frac{\partial K}{\partial y}=-mg+R_y& \label{k3} \\
+&\frac{d}{dt}(\frac{\partial K}{\partial \dot{\theta}})-\frac{\partial K}{\partial \theta}=R_{\theta}\label{k2} 
+\end{eqnarray}
+
+
+That is,
+
+\begin{eqnarray}
+&m\ddot{x}=-R_x&\\
+&m\ddot{y}=-mg+R_y&\\
+&J\ddot{\theta}=R_{\theta}&
+\end{eqnarray}
+
+The formulation of friction contact model is:
+
+\begin{equation}
+y=[y_n,y_t]^T,\lambda=[\lambda_n,\lambda_t]^T
+\end{equation}
+
+\begin{equation}
+\text{if \quad}  y_n=0, \left\{ \begin{matrix} 
+0\le \dot{y}_n \bot \lambda_n \ge 0 \\
+\dot{y}_t=0,\|\lambda_t \| \le \mu \lambda_n\\
+\dot{y}_n \neq0, \lambda_t=-\mu \lambda_n sign(\dot{y}_t)
+\end{matrix} \right.
+\end{equation}
+
+This model is given in Siconos by the nonsmooth law: NewtonimpactFrictionNSL. 
+
+In matrix form, we obtain:
+\begin{equation}
+\begin{pmatrix} m & 0 & 0 \\
+0 & m & \\
+0 & 0 & J \end{pmatrix}
+\ddot{q}= \begin{pmatrix}
+0 \\ -mg \\ 0 
+\end{pmatrix}+R
+\end{equation}
+
+\begin{equation}
+R=\begin{pmatrix}
+R_x \\ R_y \\ R_{\theta}
+\end{pmatrix}
+\end{equation}
+
+\begin{equation}
+q=\begin{pmatrix} x \\y \\ \theta \end{pmatrix}
+\end{equation}
+
+\begin{equation}
+R=H\begin{pmatrix}
+\lambda_n
+\\ \lambda_t \end{pmatrix}
+\end{equation}
+
+
+\begin{equation}
+H=\frac{1}{\sqrt{k^2+1}}\begin{pmatrix}
+-k & 1 \\
+1 & k \\
+-krcos\theta-rsin\theta & rcos\theta-krsin\theta
+\end{pmatrix}
+\end{equation}
+
+\begin{equation}
+y_{constraint}(x,y,\theta)=h(q)=y-kx-b-\frac{r\sqrt{k^2+1}}{k}
+\end{equation}
+
+
+\subsection{Numerical Examples}
+Here is two simulation results.\\
+($k=-0.2$, and with initial condition $q(t_0)=(3,10,0)$ and $\dot{q}(t_0)=(0,0,0)$)
+
+\begin{figure}[H]
+\input{Chapter3/f1.tex}\\
+\caption{Simulation of a ball on a plan}
+\label{ballonplan}
+\end{figure}
+
+The first example \footnote{Source file location: siconos/trunk/SandBox/Rover/2D} is the simulation of the motion of a ball falling down over an inclined plane. The mechanical model includes a reaction force and friction between the ball and the plane. The figure \eqref{ballonplan} shows us the movement of the ball along with the time. The figure \eqref{RFFFV} is the simulation result of velocity of the ball, the reaction force, friction force along with the time. 
+
+\begin{figure}
+\input{Chapter3/sinfunctionvelocity.tex}\\
+\caption{Reaction force,friction force and velocity of the ball}
+\label{RFFFV}
+\end{figure}
+
+
+
+The second case is the ball falling down to a curve surface, with is $y=sinx$. And still the reaction force and friction are considered in the model.\footnote{Source file location: siconos/trunk/SandBox/Rover/2D}\\
+
+Initial condition: ($q(t_0)=(5,10,0)$ and $\dot{q}(t_0)=(0,0,0)$),coefficient of restitution $e=0.7$, coefficient of friction $\lambda=0.5$
+
+\begin{figure}[H]
+ \begin{center}
+      \includegraphics[width=12cm]{ballonsin.eps}
+      \caption{Simulation of a ball on a Sine curve}
+      \label{ballonsin}
+  \end{center}
+\end{figure}
+
+\begin{figure}[H]
+ \begin{center}
+      \includegraphics[width=12cm]{ballonsinRFV.eps}
+      \caption{Reaction,Friction and velocity}
+      \label{ballonsinRFV}
+  \end{center}
+\end{figure}
+
+
+
+
+
+Then we are going to do some more complex cases.
+We start with a model considering a rover with two wheels, and with friction when a contact happens.
+We use Lagrange's equations to create the Dynamical system.
+In this system the number of degree of freedom is 5, we use the generalized coordinates $x,y,$ and $\theta$, $\theta_A$, $\theta_B$ to describe the system.
+
+The variables $x$ and $y$ are the location of center of gravity, and $\theta$ is the angle of the rod, $\theta_A$, $\theta_B$ are the angle of the wheel A and B respectively.
+
+
+The kinetic Energy of the rod is 
+\begin{eqnarray}
+K_r=\frac{1}{2}m_1(\dot{x}^2+\dot{y}^2)+\frac{1}{2}J_1\dot{\theta}^2
+\end{eqnarray}
+
+
+The velocity of the end of the rod is
+
+\begin{eqnarray}
+&v_{rollerA}=\sqrt{(l\dot{\theta}cos\theta+\dot{y})^2+(-l\dot{\theta}sin\theta+\dot{x})^2} \quad \text{At Point A}&\\
+&v_{rollerB}=\sqrt{(-l\dot{\theta}cos\theta+\dot{y})^2+(l\dot{\theta}sin\theta+\dot{x})^2} \quad \text{At Point B}&
+\end{eqnarray}
+
+The kinetic energy and rotation energy of each roller is
+
+\begin{eqnarray}
+\frac{1}{2}m_2v_{roller}^2+\frac{1}{2}J_2\dot{\theta}^2
+\end{eqnarray}
+
+The total kinetic energy of the system is
+\begin{equation}
+\begin{aligned}
+K=&\frac{1}{2}m_1(\dot{x}^2+\dot{y}^2)+\frac{1}{2}J_1\dot{\theta}^2\\
+&+m_2(l^2\dot{\theta}^2+\dot{y}^2
++\dot{x}^2)+\frac{1}{2}J_2(\dot{\theta_A}^2+\dot{\theta_B}^2)
+\label{k1}
+\end{aligned}
+\end{equation}
+
+We name the center of the front wheel "Wheel B", and the center of the back wheel "Wheel A". The gravity center is O. We write the coordinates of these three points with global coordinate parameters $(x,y,\theta,\theta_A,\theta_B)$
+
+\begin{eqnarray}
+&(x_A,y_A)=(x-lcos\theta+rsin\theta_A,y-lsin\theta+rcos\theta_A)& \notag \\
+&(x_B,y_B)=(x+lcos\theta+rsin\theta_B,y+lsin\theta+rcos\theta_B)& \notag \\
+&(x_O,y_O)=(x,y)& \notag 
+\end{eqnarray}
+
+\begin{figure}[htbp]
+\begin{center}
+\input{Chapter3/pic1.pstex_t} 
+\caption{The wheels of the rover  on the ground}
+\label{figure:sdd}
+\end{center}
+\end{figure}
+
+\begin{figure}[htbp]
+\begin{center}
+\input{Chapter3/pic2_t} 
+\caption{Local and Global coordinate system for the wheel}
+\label{figure:sdd}
+\end{center}
+\end{figure}
+
+To compute the generalized forces, we use a transformation of the coordinate system and the equation (\eqref{k3a})
+Let's consider the wheel A for example:
+
+\begin{equation}
+Q_{k}=\sum_{i=1}^n (F_{xi}\frac{\partial x_{i}}{\partial q_k}+F_{y_i}\frac{\partial y_{i}}{\partial q_k}+F_{zi}\frac{\partial z_{i}}{\partial q_k})
+\label{k3a}
+\end{equation}
+
+\begin{equation}
+\begin{pmatrix}
+F_Ax\\F_Ay
+\end{pmatrix}=
+\frac{1}{\sqrt{k_A^2+1}}\begin{pmatrix}
+-k_A & 1\\
+1 & k_A \end{pmatrix}
+\begin{pmatrix}
+\lambda_An \\ \lambda_At
+\label{k2a}
+\end{pmatrix}
+\end{equation}
+
+\begin{equation}
+\begin{pmatrix}
+R_{Ax}\\ R_{Ay}\\ R_{A\theta} \\R_{A\theta_A}\\ R_{A\theta_B}
+\end{pmatrix}=\begin{pmatrix}
+1 & 0 \\
+0 & 1 \\
+lsin\theta & -lcos\theta \\
+rcos\theta_A & -rsin\theta_A \\
+0 & 0 \end{pmatrix}
+\begin{pmatrix}
+F_{Ax} \\ F_{Ay}
+\label{k1a}
+\end{pmatrix}
+\end{equation}
+
+Let us substitute \eqref{k2a} into \eqref{k1a}
+we obtain the relation from local to global coordinate.
+
+\begin{equation}
+\begin{pmatrix}
+R_{Ax}\\ R_{Ay}\\ R_{A\theta} \\R_{A\theta_A}\\ R_{A\theta_B}
+\end{pmatrix}=\frac{1}{\sqrt{k_A^2+1}}
+\begin{pmatrix}
+-k_A & 1 \\
+1 & k_A \\
+ -k_Alsin\theta-lcos\theta & lsin\theta-k_Alcos\theta \\
+ -k_Arcos\theta_A-rsin\theta_A & rcos\theta_A-k_Arsin\theta_A\\
+0& 0 \end{pmatrix}
+\begin{pmatrix}
+\lambda_An \\ \lambda_At
+\end{pmatrix}
+\end{equation}
+
+We use a similar procedure for wheel B
+\begin{equation}
+\begin{pmatrix}
+R_{Bx}\\ R_{By}\\ R_{B\theta} \\R_{B\theta_A}\\ R_{B\theta_B}
+\end{pmatrix}=\frac{1}{\sqrt{k_B^2+1}}
+\begin{pmatrix}
+ -k_B & 1\\
+1 & k_B  \\
+k_Blsin\theta+lcos\theta & -lsin\theta+k_Blcos\theta\\
+0& 0 \\
+-k_Brcos\theta_B-rsin\theta_B & rcos\theta_B-k_Brsin\theta_B
+ \end{pmatrix}
+\begin{pmatrix}
+\lambda_Bn \\ \lambda_Bt
+\end{pmatrix}
+\end{equation}
+
+The generalized force (without external force) is obtained by:
+
+\begin{equation}
+F=\begin{pmatrix}
+0 \\ -m_1-2m_2 \\ 0 \\0 \\ 0 \end{pmatrix} +R_A+R_B
+\end{equation}
+
+We can have Lagrange's equations as follows:
+\begin{eqnarray}
+&\frac{d}{dt}(\frac{\partial K}{\partial \dot{x}})-\frac{\partial K}{\partial x}=R_{Ax}+R_{Bx}& \label{k2} \\
+&\frac{d}{dt}(\frac{\partial K}{\partial \dot{y}})-\frac{\partial K}{\partial y}=-m_1-2m_2+R_{Ay}+R_{By}& \label{k3} \\
+&\frac{d}{dt}(\frac{\partial K}{\partial \dot{\theta}})-\frac{\partial K}{\partial \theta}=R_{A\theta}+R_{B\theta}& \\ \label{k4}
+&\frac{d}{dt}(\frac{\partial K}{\partial \dot{\theta_A}})-\frac{\partial K}{\partial \theta_A}=R_{A\theta_A}+R_{B\theta_A}&\\
+&\frac{d}{dt}(\frac{\partial K}{\partial \dot{\theta_B}})-\frac{\partial K}{\partial \theta_B}=R_{A\theta_B}+R_{B\theta_B}&\\
+\end{eqnarray}
+
+We define two functions $d_A(x,y,\theta), \quad d_B(x,y,\theta)$ in the generalized coordinates system to illustrate the nearest distance from the point A and B to the ground surface function $g(x)$
+
+\begin{equation}
+  \left\{
+   \begin{aligned}
+   &d_A(x,y,\theta)\ge 0\\
+   &d_B(x,y,\theta)\ge0 \\
+   R_A&=0 \quad \text{if $d_A(x,y,\theta)>0$}\\
+   R_B&=0 \quad \text{if $d_B(x,y,\theta)>0$} \\
+   R_A&>0 \quad \text{if $d_A(x,y,\theta)=0$}\\
+   R_B&>0 \quad \text{if $d_B(x,y,\theta)=0$}\\
+   f_A&=\mu R_A\\
+   f_B&=\mu R_B 
+   \end{aligned}
+  \right.
+  \end{equation}
+
+Substitude equation\eqref{k1} into equation \eqref{k2},\eqref{k3},\eqref{k4}, we have 
+\begin{eqnarray}
+&m_1\ddot{x}=R_{Ax}+R_{Bx}& \\
+&m_1\ddot{y}=-m_1g-2m_2g+R_{Ay}+R_{By}&\\
+&J_1+2l^2m_2=R_{A\theta}+R_{B\theta}&\\
+&J_2\ddot{\theta_A}=R_{A\theta_A}+R_{B\theta_A}&\\
+&J_2\ddot{\theta_B}=R_{A\theta_B}+R_{B\theta_B}&
+\end{eqnarray}
+
+In matrix form, we get:
+\begin{equation}
+q=\begin{pmatrix}
+x\\y\\ \theta \\ \theta_A \\ \theta_B
+\end{pmatrix}, 
+\end{equation}
+
+\begin{equation}
+\begin{pmatrix} m_1+2m_2 & 0 & 0 & 0 & 0\\
+               0 & m_1+2m_2 & 0 & 0 & 0\\
+               0 & 0 & J_1+2l^2m_2& 0 & 0\\
+               0& 0& 0& J_2 & 0 \\
+               0 & 0 & 0& 0& J_2
+\end{pmatrix}\ddot{q}=F,
+\end{equation}
+
+with the relations,
+
+\begin{eqnarray}
+&h_1(q)=d_A(x,y,\theta)& \\
+&h_2(q)=d_B(x,y,\theta)&\\
+&H_1=\frac{1}{\sqrt{k_A^2+1}}
+\begin{pmatrix}
+-k_A &1 \\
+1 & k_A \\
+ -k_Alsin\theta-lcos\theta & lsin\theta-k_Alcos\theta \\
+ -k_Arcos\theta_A-rsin\theta_A & rcos\theta_A-k_Arsin\theta_A\\
+0& 0 \end{pmatrix}&\\
+&H_2=\frac{1}{\sqrt{k_B^2+1}}
+\begin{pmatrix}
+ -k_B & 1\\
+1 & k_B  \\
+k_Blsin\theta+lcos\theta & -lsin\theta+k_Blcos\theta\\
+0& 0 \\
+-k_Brcos\theta_B-rsin\theta_B & rcos\theta_B-k_Brsin\theta_B
+ \end{pmatrix}&
+\end{eqnarray}
+
+
+With a similar method, we can write the equations for a ball to ball contact, which could describe the contact between the wheel and the sand. Using the multibody tools in Siconos, we can inject small disks automatically. The multibody tool enable us to simulate the Rover on granular soil in 2D\footnote{Source File Location: siconos/trunk/SandBox/Rover/RoverDisks} Fig\eqref{ROVER2D}:\\
+
+
+In this case, we use small disk to simulate the granular soil, the relations between the disks will be generated automatically when any two disks are close to each other. And during the simulation, the SpaceFilter class will detect the distance between disks with relations, if they become far from each other, this class will remove the relation, to reduce the memory use and computing cost.
+
+
+\begin{figure}[H]
+ \begin{center}
+      \includegraphics[width=8cm]{toto-0076.EPS}
+      \caption{Rover on granular soil in 2D}
+      \label{ROVER2D}
+  \end{center}
+\end{figure}
+
+
+\section{Extension to 3D model}
+
+For 3D Rover modeling, the inertia matrix and contact model interaction relation will be very complex. So, we can write a Maple code to generate this relations automatically, and export into C files. In our Siconos code, we can import this relations as a plug-in function. The Maple code enable us to easily do complex modeling easily with high accuracy. \\
+
+The software HuMAns developed by team Bipop is used to generate the dynamical model for the Rover. In the software HuMAns, we need to create several maple input files to indicate the relative location of key-points of the model and the degree of freedom of every connecting point. \\
+
+However, HuMAns is designed for the Robotics dynamic system and contact. In the HuMAns the contact model is for flat plane contact. In the case of Rover, more complex contact model is required to describe the phenomenon. Our simulation should be able to simulate the motion of Rover on uneven ground. So an improvement of HuMAns is required.
+
+A typical dynamic system can be set in the form:
+$$
+M(q) \ddot{q} + N(q,\dot{q}) \dot{q} + G(q) = T(q) u
+$$
+where $q$ is the system state variable, $M(q)$ the system inertia,
+$N(q,\dot{q})$ a non-linear effects matrix, $G(q)$ the forces which derived from a potential energy (for example the gravity), $u$ a command vector and a matrix
+describing the effect of this command on the system. \\ 
+
+When the Rover is moving on the ground, the Rover is support by some contact points between the tyres and the soil. Howewer, so we need to develop a contact model to describe the dynamic of a system
+with these constraints.\\
+
+So we have a set of inequalities on the position
+of the model (the robot or the human), that is, on the state vector
+$q$:
+$$
+\varphi_n(q) \geq 0
+$$
+If we consider the points in contact with the environment at time $t$
+and if we indicate them with an $*$, we can write:
+$$
+\varphi_n^*(q) = 0
+$$
+
+
+The aim of using HuMAns is to generate the Matrix $M(q)$, $N(q,\dot{q})$, $G(q)$, $T(q)$ , $\varphi_n(q)$ as well as $\frac{\partial \varphi_n(q)}{\partial q}$automatically. Then, this dynamical model could be used in the simulation of Siconos.
+
+%\section{Future work}
+%
+%This internship is still going on. The HuMAns improvement has been done, and the verification of this new version has also been done. With the %%guide of my supervisor, we will put this model in real 3D atmosphere, with small balls, and also link our code with 3DROV from Trasys to %improve the capability of 3DROV.
+
+
+
+
+
+
