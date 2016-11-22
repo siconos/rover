@@ -19,6 +19,7 @@
 #include "Robot.h"
 #include <stdio.h>
 #include <math.h>
+#include <stdlib.h>
 
 int NCONT = 6;
 double r = 20;

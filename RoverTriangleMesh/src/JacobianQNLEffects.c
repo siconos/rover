@@ -1,4 +1,5 @@
 #include <math.h>
+#include "Robot.h"
 void JacobianQNLEffects(NJ,q,qdot)
 double NJ[441];
 double q[21];

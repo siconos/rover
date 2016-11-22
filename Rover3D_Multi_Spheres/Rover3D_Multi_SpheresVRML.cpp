@@ -168,9 +168,9 @@ int main(int argc, char* argv[])
 
     arm->setFExtPtr(Force);
 
-    arm->setComputeNNLFunction("RobotPlugin.so","NNL");
-    arm->setComputeJacobianNNLqFunction("RobotPlugin.so","jacobianNNLq");
-    arm->setComputeJacobianNNLqDotFunction("RobotPlugin.so","jacobianVNNL");
+    arm->setComputeFGyrFunction("RobotPlugin.so","FGyr");
+    arm->setComputeJacobianFGyrqFunction("RobotPlugin.so","jacobianFGyrq");
+    arm->setComputeJacobianFGyrqDotFunction("RobotPlugin.so","jacobianVFGyr");
     arm->setComputeFIntFunction("RobotPlugin.so","U");
     arm->setComputeJacobianFIntqFunction("RobotPlugin.so","jacobFintQ");
     arm->setComputeJacobianFIntqDotFunction("RobotPlugin.so","jacobFintV");
@@ -179,10 +179,6 @@ int main(int argc, char* argv[])
     // -------------------
     // --- Interactions---
     // -------------------
-
-    InteractionsSet allInteractions;
-
-
 
     vector<SP::Relation> relation(6*NumSphere);
     vector<SP::Interaction> inter(6*NumSphere);
@@ -202,7 +198,7 @@ int main(int argc, char* argv[])
       {
         relation[i*6+j].reset(new Rover3DWheelFixedSphereR(j,Sphere[i][3],Sphere[i][0],Sphere[i][1],Sphere[i][2],R,WheelT));
         inter[i*6+j].reset(new Interaction(allDS,i*6+j,3, nslaw, relation[i*6+j]));
-        allInteractions.insert(inter[i*6+j]);
+	/// TODO LINK INSERT INTERACTION ///
       }
     }
 

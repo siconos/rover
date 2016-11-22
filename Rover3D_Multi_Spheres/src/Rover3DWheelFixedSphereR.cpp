@@ -27,6 +27,7 @@
 #include "Robot.h"
 #include <stdio.h>
 #include <math.h>
+#include <iostream>
 #include "Rover3DWheelFixedSphereR.hpp"
 using namespace std;
 
@@ -37,9 +38,9 @@ Rover3DWheelFixedSphereR::Rover3DWheelFixedSphereR(int WheelMark, double r, doub
   : LagrangianScleronomousR(), r(r), A(A), B(B), C(C)
 
 {
-  x = A;
-  y = B;
-  z = C;
+  _x = A;
+  _y = B;
+  _z = C;
   sphereR = r;
   TireR = WheelR;
   TireMark = WheelMark;
@@ -68,25 +69,20 @@ double Rover3DWheeelFixedSphereR::distance(double x, double y, double z, double 
 }                                 */
 
 
-void Rover3DWheelFixedSphereR::computeh(double, Interaction& inter)
+void Rover3DWheelFixedSphereR::computeh(SiconosVector& q, SiconosVector& z, SiconosVector& y)
 {
-  double * tmpQ = &(*inter.data(q0))(0);  //(double *)malloc(21*sizeof(double));
   double yValue;
 
   double tmp[6];
   double tmpAngle[4];
-  for(int i=0; i<21; i++)
-  {
-    tmpQ[i] = (*inter.data(q0))(i);
-  }
-  tmpAngle[0] = x; // coordinated data of Fixed Sphere
-  tmpAngle[1] = y;
-  tmpAngle[2] = z;
+  tmpAngle[0] = _x; // coordinated data of Fixed Sphere
+  tmpAngle[1] = _y;
+  tmpAngle[2] = _z;
   tmpAngle[3] = sphereR; //radius of Fixed Sphere
   yValue = 1000000;
   for(int i=0; i<NCont+1; i++)
   {
-    Distance(tmp,-TireT/2+i*(TireT/2/NCont),tmpAngle,tmpQ);
+    Distance(tmp,-TireT/2+i*(TireT/2/NCont),tmpAngle,q.getArray());
     if(tmp[TireMark] < yValue)
     {
       yValue = tmp[TireMark];
@@ -95,32 +91,21 @@ void Rover3DWheelFixedSphereR::computeh(double, Interaction& inter)
   }// Find the shortest distance between the wheel and the spheres.
   // Details could be found in the Chapter5 of the report
 
-
-
-  SP::SiconosVector y = inter.y(0);
-
-  y->setValue(0,yValue);
+  y.setValue(0,yValue);
 
 };
 
 void normalize(SP::SiconosVector, unsigned int);
 
-void Rover3DWheelFixedSphereR::computeJachq(double, Interaction& inter)
+void Rover3DWheelFixedSphereR::computeJachq(SiconosVector& q, SiconosVector& z)
 {
 
   //FL
   double tmpAngle[4];
   double tmp[63];
-  double *tmpQ = &(*inter.data(q0))(0); // (double *)malloc(21*sizeof(double));
-  //for (int i=0; i<21; i++)
-  //  {tmpQ[i] = (*data[q0])(i);}
-
-
-  //double * tmp = (double *)malloc(63*sizeof(double));
-  //double * tmpAngle = (double *)malloc(4*sizeof(double));
-  tmpAngle[0] = x;
-  tmpAngle[1] = y;
-  tmpAngle[2] = z;
+  tmpAngle[0] = _x;
+  tmpAngle[1] = _y;
+  tmpAngle[2] = _z;
   tmpAngle[3] = sphereR;
   //cout << y << endl;
 
@@ -130,7 +115,7 @@ void Rover3DWheelFixedSphereR::computeJachq(double, Interaction& inter)
   {
   case 0:
 
-    ContactJacobian1(tmp,tmpAngle,tmpQ);  //(double *)data[q0].get());
+    ContactJacobian1(tmp,tmpAngle,q.getArray());  //(double *)data[q0].get());
     for(int i=0 ; i<63; i++)
     {
       (*g)(i%3,i/3) = tmp[i];
@@ -140,7 +125,7 @@ void Rover3DWheelFixedSphereR::computeJachq(double, Interaction& inter)
 
   case 1:
 
-    ContactJacobian2(tmp,tmpAngle,tmpQ);  //(double *)data[q0].get());
+    ContactJacobian2(tmp,tmpAngle,q.getArray());  //(double *)data[q0].get());
     for(int i=0 ; i<63; i++)
     {
       (*g)(i%3,i/3) = tmp[i];
@@ -151,7 +136,7 @@ void Rover3DWheelFixedSphereR::computeJachq(double, Interaction& inter)
 
   case 2:
 
-    ContactJacobian3(tmp,tmpAngle,tmpQ);  //(double *)data[q0].get());
+    ContactJacobian3(tmp,tmpAngle,q.getArray());  //(double *)data[q0].get());
     for(int i=0 ; i<63; i++)
     {
       (*g)(i%3,i/3) = tmp[i];
@@ -162,7 +147,7 @@ void Rover3DWheelFixedSphereR::computeJachq(double, Interaction& inter)
 
   case 3:
 
-    ContactJacobian4(tmp,tmpAngle,tmpQ);  //(double *)data[q0].get());
+    ContactJacobian4(tmp,tmpAngle,q.getArray());  //(double *)data[q0].get());
     for(int i=0 ; i<63; i++)
     {
       (*g)(i%3,i/3) = tmp[i];
@@ -172,7 +157,7 @@ void Rover3DWheelFixedSphereR::computeJachq(double, Interaction& inter)
 
   case 4:
 
-    ContactJacobian5(tmp,tmpAngle,tmpQ);  //(double *)data[q0].get());
+    ContactJacobian5(tmp,tmpAngle,q.getArray());  //(double *)data[q0].get());
     for(int i=0 ; i<63; i++)
     {
       (*g)(i%3,i/3) = tmp[i];
@@ -183,7 +168,7 @@ void Rover3DWheelFixedSphereR::computeJachq(double, Interaction& inter)
 
   case 5:
 
-    ContactJacobian6(tmp,tmpAngle,tmpQ);  //(double *)data[q0].get());
+    ContactJacobian6(tmp,tmpAngle,q.getArray());  //(double *)data[q0].get());
     for(int i=0 ; i<63; i++)
     {
       (*g)(i%3,i/3) = tmp[i];
@@ -192,12 +177,8 @@ void Rover3DWheelFixedSphereR::computeJachq(double, Interaction& inter)
     break;
 
   default:
-    cout << "Please specify correct number of Wheel" << endl;
+    std::cout << "Please specify correct number of Wheel" << std::endl;
 
   }
-
-  //free (tmpQ);
-  //free(tmpAngle);
-  //free(tmp);
 }
 
