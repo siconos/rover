@@ -85,14 +85,12 @@ int main(int argc, char* argv[])
     // User-defined main parameters
     unsigned int nDof = 21;        // degrees of freedom for robot arm
     double t0 = 0;                 // initial computation time
-    double T = 30;                 // final computation time
+    double T = 3;                 // final computation time
     double h = 0.005;               // time step
     double eps_n=0.1;
     double eps_t=0.0;
     double mu=0.8;
     double R=30;                 //Wheel Radius
-    double l=20;
-    double g=9.8;
     int Ns = 20;                 //gravity
     double WheelT = 10;         //Wheel Thickness
 
@@ -243,11 +241,8 @@ int main(int argc, char* argv[])
 
 
     cout <<"End of initialisation" << endl;
-    int i=0;
     int k=0;
-    int kk= 0;
     int N = (int)((T-t0)/h)+1;
-    int NN=3*N+3;
     cout << "Number of time step   " << N << endl;
     // --- Get the values to be plotted ---
     // -> saved in a matrix dataPlot
@@ -320,12 +315,9 @@ int main(int argc, char* argv[])
     dataPlot(k,43)=(*y2func5)(0);
 
     //----------------------gnuplot data----------------************************
-    i=0;
-    while(i < nDof)
-    {
+    for(unsigned int i=0;i<nDof; ++i)
       qq[i]=(*q)(i);
-      i++;
-    }
+
     Tags(Test ,qq);
     testdatabase(k,0)= Test[4];
     testdatabase(k,1)= Test[27];
@@ -420,12 +412,9 @@ int main(int argc, char* argv[])
       dataPlot(k,42)=(*y2func4)(0);
       dataPlot(k,43)=(*y2func5)(0);
       //-------------------gnuplot ------------------*********************
-      i=0;
-      while(i < nDof)
-      {
+      for(unsigned int i=0;i<nDof;++i)
         qq[i]=(*q)(i);
-        i++;
-      }
+
       Tags(Test,qq);
       testdatabase(k,0)= Test[4];
       testdatabase(k,1)= Test[27];
@@ -523,8 +512,6 @@ int main(int argc, char* argv[])
     NamesDOF[16]=10;
 
     double RootRotationVector[4];
-    double PlaneRotationVector[4];
-
 
     FILE * pFile;
     pFile = fopen("data.wrl","w");
@@ -576,12 +563,9 @@ int main(int argc, char* argv[])
     fprintf(pFile,"]\n");
     fprintf(pFile,"    keyValue [  ");
 
-    i = 0;
-    while(i < nDof)
-    {
+    for(unsigned int i=0;i<nDof;++i)
       qq[i]=dataPlot(0,i+1);
-      i++;
-    }
+
     RRV(RootRotationVector,qq);
     if(RootRotationVector[3]==0)
     {
@@ -594,12 +578,9 @@ int main(int argc, char* argv[])
 
     for(int cmp =1; cmp <= N; cmp++)
     {
-      i = 0;
-      while(i < nDof)
-      {
+      for(unsigned int i=0;i<nDof;++i)
         qq[i]=dataPlot(cmp,i+1);
-        i++;
-      }
+
       RRV(RootRotationVector,qq);
       if(RootRotationVector[3]==0)
       {

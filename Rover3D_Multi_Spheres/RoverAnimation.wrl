@@ -1,0 +1,69 @@
+ 
+DEF Animation_Time TimeSensor {
+      cycleInterval 15.0000
+      startTime 0
+      stopTime 0
+      loop TRUE
+    }
+  ]
+}
+
+
+DEF Omnidir PointLight {
+  intensity 0.5
+  color 1 1 1
+  location 0 200 0
+  on TRUE
+  radius 6000
+}
+
+WorldInfo {
+  title "Rover"
+  info "created by Laurence Boissieux, V1.0 06/10/2010, (C) INRIA, 2010"
+}
+NavigationInfo {
+  avatarSize [ 0.3, 1.0, 0.3 ]
+  headlight TRUE
+  speed 4.0
+  type "EXAMINE"
+}
+
+ROUTE Animation_Time.fraction_changed TO  Rover_rootPosInterp.set_fraction
+ROUTE Animation_Time.fraction_changed TO  Rover_rootRotInterp.set_fraction
+#ROUTE Animation_Time.fraction_changed TO  Rover_body_jointRotInterp.set_fraction
+ROUTE Animation_Time.fraction_changed TO  Rover_l_pendulum_jointRotInterp.set_fraction
+ROUTE Animation_Time.fraction_changed TO  Rover_lf_wheelAxis_jointRotInterp.set_fraction
+ROUTE Animation_Time.fraction_changed TO  Rover_lf_wheel_jointRotInterp.set_fraction
+ROUTE Animation_Time.fraction_changed TO  Rover_lm_wheelAxis_jointRotInterp.set_fraction
+ROUTE Animation_Time.fraction_changed TO  Rover_lm_wheel_jointRotInterp.set_fraction
+ROUTE Animation_Time.fraction_changed TO  Rover_r_pendulum_jointRotInterp.set_fraction
+ROUTE Animation_Time.fraction_changed TO  Rover_rf_wheelAxis_jointRotInterp.set_fraction
+ROUTE Animation_Time.fraction_changed TO  Rover_rf_wheel_jointRotInterp.set_fraction
+ROUTE Animation_Time.fraction_changed TO  Rover_rm_wheelAxis_jointRotInterp.set_fraction
+ROUTE Animation_Time.fraction_changed TO  Rover_rm_wheel_jointRotInterp.set_fraction
+ROUTE Animation_Time.fraction_changed TO  Rover_b_pendulum_jointRotInterp.set_fraction
+ROUTE Animation_Time.fraction_changed TO  Rover_br_wheelAxis_jointRotInterp.set_fraction
+ROUTE Animation_Time.fraction_changed TO  Rover_br_wheel_jointRotInterp.set_fraction
+ROUTE Animation_Time.fraction_changed TO  Rover_bl_wheelAxis_jointRotInterp.set_fraction
+ROUTE Animation_Time.fraction_changed TO  Rover_bl_wheel_jointRotInterp.set_fraction
+
+ROUTE Rover_rootPosInterp.value_changed TO Rover_Root.set_translation
+ROUTE Rover_rootRotInterp.value_changed TO Rover_Root.set_rotation
+#ROUTE Rover_body_jointRotInterp.value_changed TO Rover_body_joint.set_rotation
+ROUTE Rover_l_pendulum_jointRotInterp.value_changed TO Rover_l_pendulum_joint.set_rotation
+ROUTE Rover_lf_wheelAxis_jointRotInterp.value_changed TO Rover_lf_wheelAxis_joint.set_rotation
+ROUTE Rover_lf_wheel_jointRotInterp.value_changed TO Rover_lf_wheel_joint.set_rotation
+ROUTE Rover_lm_wheelAxis_jointRotInterp.value_changed TO Rover_lm_wheelAxis_joint.set_rotation
+ROUTE Rover_lm_wheel_jointRotInterp.value_changed TO Rover_lm_wheel_joint.set_rotation
+ROUTE Rover_r_pendulum_jointRotInterp.value_changed TO Rover_r_pendulum_joint.set_rotation
+ROUTE Rover_rf_wheelAxis_jointRotInterp.value_changed TO Rover_rf_wheelAxis_joint.set_rotation
+ROUTE Rover_rf_wheel_jointRotInterp.value_changed TO Rover_rf_wheel_joint.set_rotation
+ROUTE Rover_rm_wheelAxis_jointRotInterp.value_changed TO Rover_rm_wheelAxis_joint.set_rotation
+ROUTE Rover_rm_wheel_jointRotInterp.value_changed TO Rover_rm_wheel_joint.set_rotation
+ROUTE Rover_b_pendulum_jointRotInterp.value_changed TO Rover_b_pendulum_joint.set_rotation
+ROUTE Rover_br_wheelAxis_jointRotInterp.value_changed TO Rover_br_wheelAxis_joint.set_rotation
+ROUTE Rover_br_wheel_jointRotInterp.value_changed TO Rover_br_wheel_joint.set_rotation
+ROUTE Rover_bl_wheelAxis_jointRotInterp.value_changed TO Rover_bl_wheelAxis_joint.set_rotation
+ROUTE Rover_bl_wheel_jointRotInterp.value_changed TO Rover_bl_wheel_joint.set_rotation
+
+
