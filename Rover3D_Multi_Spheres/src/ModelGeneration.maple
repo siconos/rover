@@ -456,12 +456,19 @@ global q, qdot,AngleT;
 	print(`Writing file "JacobianNLEffects.c"`):
 	NJ := convert(transpose(NJ), vector):
 	JacobianQNLEffects := makeproc(NJ, [NJ, q::array(1..vectdim(q)), qdot::array(1..vectdim(qdot))]):
+	fd := fopen("JacobianQNLEffects.c",WRITE);
+	fprintf(fd,"#include \"LagrangianModel.h\"\n"):
+	fclose(fd):
+
 	C(JacobianQNLEffects, optimized, filename="JacobianQNLEffects.c"):
 	
 	NVJ := JacobianVelocityNLEffectsMatrix():
 	print(`Writing file "JacobianVNLEffects.c"`):
 	NVJ := convert(transpose(NVJ), vector):
 	JacobianVNLEffects := makeproc(NVJ, [NVJ, q::array(1..vectdim(q)), qdot::array(1..vectdim(qdot))]):
+	fd := fopen("JacobianVNLEffects.c",WRITE);
+	fprintf(fd,"#include \"LagrangianModel.h\"\n"):
+	fclose(fd):
 	C(JacobianVNLEffects, optimized, filename="JacobianVNLEffects.c"):
 
 
