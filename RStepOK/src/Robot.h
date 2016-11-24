@@ -25,45 +25,34 @@
 ** version start HuMAnS
 **
 */
-#ifndef ROBOT_H
-#define ROBOT_H
 #include <math.h>
-#if defined(__cplusplus)
-extern "C"
-{
-#endif
 
+extern "C" void NLEffects(double *N,double* q, double *qdot);
 
- void NLEffects(double *N,double* q, double *qdot);
+extern "C" void Inertia(double *M, double *q);
 
- void Inertia(double *M, double *q);
+extern "C" void JacobianQNLEffects(double *jaco,double* q, double *qdot);
 
- void JacobianQNLEffects(double *jaco,double* q, double *qdot);
+extern "C" void JacobianVNLEffects(double *jaco,double* q, double *qdot);
 
- void JacobianVNLEffects(double *jaco,double* q, double *qdot);
+extern "C" void Contact(double *CC, double* q);
 
- void Contact(double *CC, double* q);
+extern "C" void Distance(double *CD,double *AngleT,  double* q);
 
- void Distance(double *CD, double gamma, double *AngleT,  double* q);
+extern "C" void ContactJacobian1(double *CJ, double *q);
 
- void ContactJacobian1(double *CJ,double *AngleT, double *q);
+extern "C" void ContactJacobian2(double *CJ, double *q);
 
- void ContactJacobian2(double *CJ,double *AngleT, double *q);
+extern "C" void ContactJacobian3(double *CJ, double *q);
 
- void ContactJacobian3(double *CJ,double *AngleT, double *q);
+extern "C" void ContactJacobian4(double *CJ, double *q);
 
- void ContactJacobian4(double *CJ,double *AngleT, double *q);
+extern "C" void ContactJacobian5(double *CJ, double *q);
 
- void ContactJacobian5(double *CJ,double *AngleT, double *q);
+extern "C" void ContactJacobian6(double *CJ, double *q);
 
- void ContactJacobian6(double *CJ,double *AngleT, double *q);
+extern "C" void Tags(double *M, double *q);
 
- void Tag(double *M, double *q);
+extern "C" void RRV(double RootRotationVector[4], double AngleT[3],double q[21]);
 
- void RRV(double RootRotationVector[4], double q[21]);
-
-// void PRV(double PlaneRotationVector[4],double AngleT[4], double q[21]);
-#if defined(__cplusplus)
-}
-#endif
-#endif
+extern "C" void PRV(double PlaneRotationVector[4],double AngleT[3], double q[21]);

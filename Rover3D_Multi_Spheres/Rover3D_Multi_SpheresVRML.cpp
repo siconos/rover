@@ -85,14 +85,12 @@ int main(int argc, char* argv[])
     // User-defined main parameters
     unsigned int nDof = 21;        // degrees of freedom for robot arm
     double t0 = 0;                 // initial computation time
-    double T = 30;                 // final computation time
+    double T = 3;                 // final computation time
     double h = 0.005;               // time step
     double eps_n=0.1;
     double eps_t=0.0;
     double mu=0.8;
     double R=30;                 //Wheel Radius
-    double l=20;
-    double g=9.8;
     int Ns = 20;                 //gravity
     double WheelT = 10;         //Wheel Thickness
 
@@ -137,7 +135,7 @@ int main(int argc, char* argv[])
     // -------------------------
     // --- Dynamical systems ---
     // -------------------------
-    DynamicalSystemsSet allDS;
+
     // --- DS: RoverDS ---
 
     // Initial position (angles in radian)
@@ -168,53 +166,37 @@ int main(int argc, char* argv[])
 
     arm->setFExtPtr(Force);
 
-    arm->setComputeNNLFunction("RobotPlugin.so","NNL");
-    arm->setComputeJacobianNNLqFunction("RobotPlugin.so","jacobianNNLq");
-    arm->setComputeJacobianNNLqDotFunction("RobotPlugin.so","jacobianVNNL");
+    arm->setComputeFGyrFunction("RobotPlugin.so","FGyr");
+    arm->setComputeJacobianFGyrqFunction("RobotPlugin.so","jacobianFGyrq");
+    arm->setComputeJacobianFGyrqDotFunction("RobotPlugin.so","jacobianVFGyr");
     arm->setComputeFIntFunction("RobotPlugin.so","U");
     arm->setComputeJacobianFIntqFunction("RobotPlugin.so","jacobFintQ");
     arm->setComputeJacobianFIntqDotFunction("RobotPlugin.so","jacobFintV");
-    allDS.insert(arm);
 
-    // -------------------
-    // --- Interactions---
-    // -------------------
-
-    InteractionsSet allInteractions;
-
-
+    // ------------------------------
+    // --- Interactions and Model ---
+    // ------------------------------
 
     vector<SP::Relation> relation(6*NumSphere);
     vector<SP::Interaction> inter(6*NumSphere);
 
     SP::NonSmoothLaw nslaw(new NewtonImpactFrictionNSL(eps_n, eps_t, mu,3));
 
-//---------------------------------------------------
-//---------------Interaction-------------------------
-//---------------------------------------------------
-
-
-
-
+    SP::Model Rover3D(new Model(t0,T));
+    // add the dynamical system into the non smooth dynamical system
+    Rover3D->nonSmoothDynamicalSystem()->insertDynamicalSystem(arm);
+    int interaction_number;
     for(int i=0; i<NumSphere; i++)
     {
       for(int j=0; j<6; j++)
       {
-        relation[i*6+j].reset(new Rover3DWheelFixedSphereR(j,Sphere[i][3],Sphere[i][0],Sphere[i][1],Sphere[i][2],R,WheelT));
-        inter[i*6+j].reset(new Interaction(allDS,i*6+j,3, nslaw, relation[i*6+j]));
-        allInteractions.insert(inter[i*6+j]);
+	interaction_number = i * 6 + j;
+        relation[interaction_number].reset(new Rover3DWheelFixedSphereR(j,Sphere[i][3],Sphere[i][0],Sphere[i][1],Sphere[i][2],R,WheelT));
+        inter[interaction_number].reset(new Interaction(3, nslaw, relation[interaction_number], interaction_number));
+	// link the interactions and the dynamical systems
+	Rover3D->nonSmoothDynamicalSystem()->link(inter[interaction_number], arm);
       }
     }
-
-
-
-
-    // -------------
-    // --- Model ---
-    // -------------
-
-    SP::Model Rover3D(new Model(t0,T,allDS, allInteractions));
-
 
     // ----------------
     // --- Simulation ---
@@ -223,19 +205,12 @@ int main(int argc, char* argv[])
     // -- Time discretisation --
     SP::TimeDiscretisation t(new TimeDiscretisation(t0,h));
 
-    SP::TimeStepping s(new TimeStepping(t));
-    //        s->setUseRelativeConvergenceCriteron(true);
-
-    // -- OneStepIntegrators --
-
+    // -- OneStepIntegrator --
     //double theta=0.500001;
     double theta=0.50000001;
 
-    SP::Moreau OSI(new Moreau(allDS,theta));
-    s->insertIntegrator(OSI);
+    SP::MoreauJeanOSI OSI(new MoreauJeanOSI(theta));
 
-
-    //*******************************************************
     // -- OneStepNsProblem --
     //osnspb.reset(new FrictionContact(3));
     SP::OneStepNSProblem osnspb(new FrictionContact(3));
@@ -250,10 +225,9 @@ int main(int argc, char* argv[])
     osnspb->numericsSolverOptions()->dparam[0]=1e-5;// Tolerance
     osnspb->numericsSolverOptions()->dparam[2]=1e-5;// Local tolerance
 
+    SP::TimeStepping s(new TimeStepping(t, OSI, osnspb));
+    //        s->setUseRelativeConvergenceCriteron(true);
 
-    //*********************************************************************************
-
-    s->insertNonSmoothProblem(osnspb);
     //s->setCheckSolverFunction(localCheckSolverOuput);
     cout << "=== End of model loading === " << endl;
 
@@ -261,18 +235,14 @@ int main(int argc, char* argv[])
     // ================================= Computation =================================
 
     // --- Simulation initialization ---
-    cout << "=== Simulation initialization ===" << endl;
-    Rover3D->initialize(s);
-
-
+    cout << "=== Initialization ===" << endl;
+    Rover3D->setSimulation(s);
+    Rover3D->initialize();
 
 
     cout <<"End of initialisation" << endl;
-    int i=0;
     int k=0;
-    int kk= 0;
     int N = (int)((T-t0)/h)+1;
-    int NN=3*N+3;
     cout << "Number of time step   " << N << endl;
     // --- Get the values to be plotted ---
     // -> saved in a matrix dataPlot
@@ -345,12 +315,9 @@ int main(int argc, char* argv[])
     dataPlot(k,43)=(*y2func5)(0);
 
     //----------------------gnuplot data----------------************************
-    i=0;
-    while(i < nDof)
-    {
+    for(unsigned int i=0;i<nDof; ++i)
       qq[i]=(*q)(i);
-      i++;
-    }
+
     Tags(Test ,qq);
     testdatabase(k,0)= Test[4];
     testdatabase(k,1)= Test[27];
@@ -445,12 +412,9 @@ int main(int argc, char* argv[])
       dataPlot(k,42)=(*y2func4)(0);
       dataPlot(k,43)=(*y2func5)(0);
       //-------------------gnuplot ------------------*********************
-      i=0;
-      while(i < nDof)
-      {
+      for(unsigned int i=0;i<nDof;++i)
         qq[i]=(*q)(i);
-        i++;
-      }
+
       Tags(Test,qq);
       testdatabase(k,0)= Test[4];
       testdatabase(k,1)= Test[27];
@@ -548,8 +512,6 @@ int main(int argc, char* argv[])
     NamesDOF[16]=10;
 
     double RootRotationVector[4];
-    double PlaneRotationVector[4];
-
 
     FILE * pFile;
     pFile = fopen("data.wrl","w");
@@ -601,12 +563,9 @@ int main(int argc, char* argv[])
     fprintf(pFile,"]\n");
     fprintf(pFile,"    keyValue [  ");
 
-    i = 0;
-    while(i < nDof)
-    {
+    for(unsigned int i=0;i<nDof;++i)
       qq[i]=dataPlot(0,i+1);
-      i++;
-    }
+
     RRV(RootRotationVector,qq);
     if(RootRotationVector[3]==0)
     {
@@ -619,12 +578,9 @@ int main(int argc, char* argv[])
 
     for(int cmp =1; cmp <= N; cmp++)
     {
-      i = 0;
-      while(i < nDof)
-      {
+      for(unsigned int i=0;i<nDof;++i)
         qq[i]=dataPlot(cmp,i+1);
-        i++;
-      }
+
       RRV(RootRotationVector,qq);
       if(RootRotationVector[3]==0)
       {
@@ -643,7 +599,7 @@ int main(int argc, char* argv[])
     for(int CountN=2; CountN<=16; CountN++)
     {
 
-      fprintf(pFile,Names[CountN]);
+      fprintf(pFile, "%s", Names[CountN]);
       fprintf(pFile,"    key [ 0 ");
       for(int cmp =1; cmp <= N; cmp++)
       {
@@ -652,12 +608,12 @@ int main(int argc, char* argv[])
 
       fprintf(pFile,"]\n");
       fprintf(pFile,"    keyValue [  ");
-      fprintf(pFile,NamesRotationVector[CountN]);
+      fprintf(pFile, "%s", NamesRotationVector[CountN]);
       fprintf(pFile," %e,\n",dataPlot(0,NamesDOF[CountN]));
 
       for(int cmp =1; cmp <= N; cmp++)
       {
-        fprintf(pFile,NamesRotationVector[CountN]);
+        fprintf(pFile, "%s", NamesRotationVector[CountN]);
         fprintf(pFile," %e,\n",dataPlot(cmp,NamesDOF[CountN]));
       }
 

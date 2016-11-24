@@ -1,0 +1,224 @@
+# Copyright (C) INRIA 1999-2005
+# 
+# This program is free software; you can redistribute it and/or modify it
+# under the terms of the GNU General Public License version 2 as published
+# by the Free Software Foundation.
+# 
+# This program is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+# Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, write to the Free Software Foundation, Inc.,
+# 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+# 
+# Author(s): Jianhui Yang
+# Affiliation(s): INRIA, team BIPOP
+# Email(s): jianhui.yang@inrialpes.fr
+#
+
+
+#Additional data input for Rover
+
+
+# Definition of some important points (tags)
+
+with(linalg):
+
+# Tags number
+NTAG := 22:
+
+# Contact Points choosen among the tags
+points_contact := [5,6,10,11,15,16]:
+
+#contact point correspoding axis
+ContactAxls:=[7,7,12,12,17,17]:
+
+
+
+#Number of contact solids
+NCONTSOL := 6:
+
+#Number of contacts
+NCONT := 6:
+
+#Lambda vector definition:
+Lambda := vector(3*NCONT):
+
+#Definition of arrow width in h-anim (x et z)
+vscale := 0.5:
+
+# Radius of Wheel
+RadiusW := 30:
+
+Wheelh := 0.25:
+
+
+
+#----------plane data input-------------------------------------------
+#Plane Equation in form: Ax+By+Cz+D=0:
+AA:=0:
+BB:=1:
+CC:=0:
+vec1:=[0,0,0]:
+DD:=-(AA*vec1[1]+BB*vec1[2]+CC*vec1[3]):
+
+
+AngleT:= vector(3):
+
+
+#---------Computation of new plane function--------------------------
+Rx:= matrix([[1,0,0],[0,cos(AngleT[1]),-sin(AngleT[1])],[0,sin(AngleT[1]),cos(AngleT[1])]]):
+Ry:= matrix([[cos(AngleT[2]),0,sin(AngleT[2])],[0,1,0],[-sin(AngleT[2]),0,cos(AngleT[2])]]):
+Rz:= matrix([[cos(AngleT[3]),-sin(AngleT[3]),0],[sin(AngleT[3]),cos(AngleT[3]),0],[0,0,1]]):
+RotationMatrix:= evalm(Rz &* Ry &* Rx):
+NormalVector:=evalm(RotationMatrix &* vector([AA,BB,CC])):
+TangentVector:=evalm(RotationMatrix &* vec1):
+
+
+Rxglobal:= matrix([[1,0,0],[0,cos(q[4]),-sin(q[4])],[0,sin(q[4]),cos(q[4])]]):
+Ryglobal:= matrix([[cos(q[5]),0,sin(q[5])],[0,1,0],[-sin(q[5]),0,cos(q[5])]]):
+Rzglobal:= matrix([[cos(q[6]),-sin(q[6]),0],[sin(q[6]),cos(q[6]),0],[0,0,1]]):
+
+RxVRML:=matrix([[1,0,0],[0,cos(AngleT[3]),-sin(AngleT[3])],[0,sin(AngleT[3]),cos(AngleT[3])]]):
+RyVRML:=matrix([[cos(AngleT[2]),0,sin(AngleT[2])],[0,1,0],[-sin(AngleT[2]),0,cos(AngleT[2])]]):
+RzVRML:=matrix([[cos(AngleT[1]),-sin(AngleT[1]),0],[sin(AngleT[1]),cos(AngleT[1]),0],[0,0,1]]):
+
+
+
+#RotationContactMatrix:= evalm(Rz &* Ryglobal &* Rx):
+RotationMatrixVRML:=evalm(RzVRML &* RyVRML &* RxVRML ):
+
+RotationContactVRML:=evalm(Rxglobal &*  transpose(Ryglobal) &* Rzglobal):
+
+
+
+
+#--------------Root Rotation VRML---------------------
+RootRotationTheta:=arccos((RotationContactVRML[1,1]+RotationContactVRML[2,2]+RotationContactVRML[3,3]-1)/2):
+RootRotation:=vector([0,0,0,0]): 
+if RootRotationTheta <>0 then
+RootRotation[1]:=(RotationContactVRML[3,2]-RotationContactVRML[2,3])/(2*sin(RootRotationTheta)):
+RootRotation[2]:=(RotationContactVRML[1,3]-RotationContactVRML[3,1])/(2*sin(RootRotationTheta)):
+RootRotation[3]:=(RotationContactVRML[2,1]-RotationContactVRML[1,2])/(2*sin(RootRotationTheta)):
+fi:
+RootRotation[4]:=RootRotationTheta:
+#--------------------------------------------------------
+
+#-----------Plane Rotation VRML-------------------------
+PlaneRotationTheta:=arccos((RotationMatrixVRML[1,1]+RotationMatrixVRML[2,2]+RotationMatrixVRML[3,3]-1)/2):
+PlaneRotation:=vector([0,0,0,0]):
+if PlaneRotationTheta <>0 then
+PlaneRotation[1]:=(RotationMatrixVRML[3,2]-RotationMatrixVRML[2,3])/(2*sin(PlaneRotationTheta)):
+PlaneRotation[2]:=(RotationMatrixVRML[1,3]-RotationMatrixVRML[3,1])/(2*sin(PlaneRotationTheta)):
+PlaneRotation[3]:=(RotationMatrixVRML[2,1]-RotationMatrixVRML[1,2])/(2*sin(PlaneRotationTheta)):
+fi:
+PlaneRotation[4]:=PlaneRotationTheta:
+#--------------------------------------------------------
+
+
+
+AR:=NormalVector[1]:
+BR:=NormalVector[2]:
+CR:=NormalVector[3]:
+DR:=-(AR*TangentVector[1]+BR*TangentVector[2]+CR*TangentVector[3]):
+
+
+#-------------------------------------------------------------------------
+
+
+r:= 20:
+
+# Tag 1 : Mass center
+reftag_1 := 1:
+tag_1    := vector([0,0,0]):
+
+# Tag 2 : Pivot F
+reftag_2 := 2:
+tag_2    := vector([0,0,0]):
+
+# Tag 3 : Steering Axle FL (Front Left)
+reftag_3 := 3:
+tag_3    := vector([0,0,0]):
+
+# Tag 4 : Steering Axle FR (Front Right)
+reftag_4 := 4:
+tag_4    := vector([0,0,0]):
+
+# Tag 5 : Wheel FL
+reftag_5 := 5:
+tag_5    := vector([0,0,0]):
+
+# Tag 6 : Wheel FR 
+reftag_6 := 6:
+tag_6    := vector([0,0,0]):
+
+# Tag 7 : Axle BL
+reftag_7 := 7:
+tag_7    := vector([0,0,0]):
+
+# Tag 8 : Steering Axle ML 
+reftag_8 := 8:
+tag_8    := vector([0,0,0]):
+
+# Tag 9 : Steering Axle BL
+reftag_9 := 9:
+tag_9    := vector([0,0,0]):
+
+# Tag 10 : Wheel ML 
+reftag_10 := 10:
+tag_10    := vector([0,0,0]):
+
+# Tag 11 : Wheel BL
+reftag_11 := 11:
+tag_11    := vector([0,0,0]):
+
+# Tag 12 : Axle BR
+reftag_12 := 12:
+tag_12    := vector([0,0,0]):
+
+# Tag 13 : Steering Axle MR 
+reftag_13 := 13:
+tag_13    := vector([0,0,0]):
+
+# Tag 14 : Steering Axle BR
+reftag_14 := 14:
+tag_14    := vector([0,0,0]):
+
+# Tag 15 : Wheel MR 
+reftag_15 := 15:
+tag_15    := vector([0,0,0]):
+
+# Tag 16 : Wheel BR
+reftag_16 := 16:
+tag_16    := vector([0,0,0]):
+
+# Tag 17 : Wheel FL Mark
+reftag_17 := 5:
+tag_17    := vector([0,0,1]):
+
+# Tag 18 : Wheel FR Mark
+reftag_18 := 6:
+tag_18    := vector([0,0,1]):
+
+
+# Tag 19 : Wheel ML Mark
+reftag_19 := 10:
+tag_19    := vector([0,0,1]):
+
+# Tag 20 : Wheel BL Mark
+reftag_20 := 11:
+tag_20    := vector([0,0,1]):
+
+# Tag 21 : Wheel MR Mark
+reftag_21 := 15:
+tag_21    := vector([0,0,1]):
+
+# Tag 22 : Wheel BR Mark
+reftag_22 := 16:
+tag_22    := vector([0,0,1]):
+
+
+printf("AdditionalData Loading Complete");
+

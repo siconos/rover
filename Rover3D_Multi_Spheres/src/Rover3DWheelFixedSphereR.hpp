@@ -36,7 +36,7 @@ private:
 
   // Coordicate data (A,B,C)
   double r, A, B, C, WheelR;
-  double x,y,z,sphereR,TireR,TireT;
+  double _x,_y,_z,sphereR,TireR,TireT;
   int TireMark,NCont;
 
   Rover3DWheelFixedSphereR();
@@ -57,9 +57,9 @@ public:
 
 //  double distance(double, double, double, double);
 
-  void computeh(double, Interaction&);
+  void computeh(SiconosVector& q, SiconosVector& z, SiconosVector& y);
 
-  void computeJachq(double, Interaction&);
+  void computeJachq(SiconosVector& q, SiconosVector& z);
 
 //  bool equal(double _A, double _B, double _C, double _D, double _r) const
 //  { return (A==_A && B==_B && C==_C && D==_D && r==_r) ;}
