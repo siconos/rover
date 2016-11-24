@@ -31,11 +31,6 @@
 #define extern __declspec (dllexport)
 #endif
 
-#define NDOF 23
-#define NTAGS (34+1)
-#define NCONT 8
-
-
 /**
  * Compute the matrix of contact for a given robot state
  *

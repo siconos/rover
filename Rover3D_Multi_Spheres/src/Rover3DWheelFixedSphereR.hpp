@@ -58,7 +58,7 @@ public:
 //  double distance(double, double, double, double);
 
   void computeh(SiconosVector& q, SiconosVector& z, SiconosVector& y);
-
+  
   void computeJachq(SiconosVector& q, SiconosVector& z);
 
 //  bool equal(double _A, double _B, double _C, double _D, double _r) const

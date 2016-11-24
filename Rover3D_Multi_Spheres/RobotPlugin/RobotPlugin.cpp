@@ -27,7 +27,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
-
+#include <iostream>
 int NCONT = 6;
 double r = 12.5;
 double PI=3.1415927;
@@ -55,7 +55,6 @@ extern "C" void mass(unsigned int sizeOfq, const double *q, double *mass, unsign
   
   // compute mass matrix
   Inertia(mass,(double*)q);
- 
 }
 
 extern "C" void FGyr(unsigned int sizeOfq, const double *q, const double *velocity, double *FGyr, unsigned int sizeZ, double* z)

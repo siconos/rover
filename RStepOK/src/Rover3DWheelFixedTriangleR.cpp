@@ -31,13 +31,14 @@
 
 #include "Robot.h"
 #include "Rover3DWheelFixedTriangleR.hpp"
+#include <map>
 
 #define PI 3.14159
 
 using namespace std;
 
 Rover3DWheelFixedTriangleR::Rover3DWheelFixedTriangleR(double Ax , double Ay, double Az, double Bx , double By, double Bz, double Cx , double Cy, double Cz, int WheelMark, double WheelRadius, double id)
-: LagrangianScleronomousR(), TireMark(WheelMark), TireRadius(WheelRadius), _id(id), vert1(3), vert2(3), vert3(3), planeNorm(3), jacNorm(3)
+  : LagrangianScleronomousR(),  _id(id), vert1(3), vert2(3), vert3(3), planeNorm(3), jacNorm(3), TireRadius(WheelRadius), TireMark(WheelMark)
 {
 
   vert1.setValue(0, Ax);
@@ -487,25 +488,12 @@ void Rover3DWheelFixedTriangleR::calcDistance(double* dist, double* q)
   
 }
 
-void Rover3DWheelFixedTriangleR::computeh(const double time, Interaction& inter)
+void Rover3DWheelFixedTriangleR::computeh(SiconosVector& q, SiconosVector& z, SiconosVector& y)
 {
-  
-  double * tmpQ = &(*inter.data(q0))(0);  
-
-  double yValue; 
-
+  double yValue = 100000; 
   double tmp[6];
 
-  for(int i = 0; i < 21; i++)
-  {
-    
-    tmpQ[i] = (*inter.data(q0))(i);
-
-  }
-
-  yValue = 100000;
-
-  calcDistance(tmp, tmpQ);
+  calcDistance(tmp, q.getArray());
 
   if(tmp[TireMark] < yValue)
   {
@@ -513,19 +501,15 @@ void Rover3DWheelFixedTriangleR::computeh(const double time, Interaction& inter)
     yValue = tmp[TireMark];
   
   }
-
-  SP::SiconosVector y = inter.y(0);
-  //cout << "Y :" << yValue << endl;
-  y->setValue(0,yValue);
-  
+  y.setValue(0,yValue);
 }
 
-void Rover3DWheelFixedTriangleR::computeJachq(const double time, Interaction& inter)
+void Rover3DWheelFixedTriangleR::computeJachq(SiconosVector& q, SiconosVector& z)
 {
     
   double tmp[63];
   
-  double *tmpQ = &(*inter.data(q0))(0); 
+  double *tmpQ = q.getArray();
   
   SimpleMatrix *g = (SimpleMatrix *)_jachq.get();
 

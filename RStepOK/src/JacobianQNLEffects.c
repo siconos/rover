@@ -1,3 +1,4 @@
+#include "LagrangianModel.h"
 #include <math.h>
 void JacobianQNLEffects(NJ,q,qdot)
 double NJ[441];

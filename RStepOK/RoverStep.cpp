@@ -105,25 +105,21 @@ int main(int argc, char* argv[])
 
     arm->setFExtPtr(Force);
 
-    arm->setComputeNNLFunction("RobotPlugin.so","NNL");
-    arm->setComputeJacobianNNLqFunction("RobotPlugin.so","jacobianNNLq");
-    arm->setComputeJacobianNNLqDotFunction("RobotPlugin.so","jacobianVNNL");
+    arm->setComputeFGyrFunction("RobotPlugin.so","FGyr");
+    arm->setComputeJacobianFGyrqFunction("RobotPlugin.so","jacobianFGyrq");
+    arm->setComputeJacobianFGyrqDotFunction("RobotPlugin.so","jacobianVFGyr");
     arm->setComputeFIntFunction("RobotPlugin.so","U");
     arm->setComputeJacobianFIntqFunction("RobotPlugin.so","jacobFintQ");
     arm->setComputeJacobianFIntqDotFunction("RobotPlugin.so","jacobFintV");
-    allDS.insert(arm);
 
-    // -------------------
-    // --- Interactions---
-    // -------------------
-
-    InteractionsSet allInteractions;
-
+    // ------------------------------
+    // --- Interactions and Model ---
+    // ------------------------------
     SP::NonSmoothLaw nslaw(new NewtonImpactFrictionNSL(eps_n, eps_t, mu,3));
 
-    //---------------------------------------------------
-    //---------------Interaction-------------------------
-    //---------------------------------------------------
+    SP::Model Rover3D(new Model(t0,T));
+    // add the dynamical system into the non smooth dynamical system
+    Rover3D->nonSmoothDynamicalSystem()->insertDynamicalSystem(arm);
 
     //number of triangles 
 
@@ -135,60 +131,35 @@ int main(int argc, char* argv[])
 
     vector<SP::Rover3DWheelFixedTriangleR> relation(6*NumTr);
     vector<SP::Interaction> inter(6*NumTr);
-
+    int inum;
     for(int j = 0; j < 6; ++j){
           
       //relation[j*NumTr + 0].reset(new Rover3DWheelFixedTriangleR(0, 0, 500, 1000, 0, 0, 1000, 0, 1000, j, R));
       //relation[j*NumTr + 1].reset(new Rover3DWheelFixedTriangleR(1010, 15, 0, 1010, 15, 1000, 1000, 0, 0, j, R));
       //relation[j*NumTr + 2].reset(new Rover3DWheelFixedTriangleR(1010, 15, 1000, 1000, 0, 1000, 1000, 0, 0, j, R));
       //relation[j*NumTr + 3].reset(new Rover3DWheelFixedTriangleR(1010, 15, 0, 1010, 15, 1000, 2010, 15, 500, j, R));
-
-      relation[j*NumTr + 0].reset(new Rover3DWheelFixedTriangleR(0, 0, 500, 1000, 0, 0, 1000, 0, 1000, j, R, (j*NumTr + 0)));
-      relation[j*NumTr + 1].reset(new Rover3DWheelFixedTriangleR(1000, 10, 0, 1000, 10, 1000, 1000, 0, 0, j, R, (j*NumTr + 1)));
-      relation[j*NumTr + 2].reset(new Rover3DWheelFixedTriangleR(1000, 10, 1000, 1000, 0, 1000, 1000, 0, 0, j, R, (j*NumTr + 2)));
-      relation[j*NumTr + 3].reset(new Rover3DWheelFixedTriangleR(1000, 10, 0, 1000, 10, 1000, 2000, 10, 500, j, R, (j*NumTr + 3)));
-
-      inter[j*NumTr + 0].reset(new Interaction(allDS, j*NumTr + 0, 3, nslaw, relation[j*NumTr + 0]));
-      inter[j*NumTr + 1].reset(new Interaction(allDS, j*NumTr + 1, 3, nslaw, relation[j*NumTr + 1]));
-      inter[j*NumTr + 2].reset(new Interaction(allDS, j*NumTr + 2, 3, nslaw, relation[j*NumTr + 2]));
-      inter[j*NumTr + 3].reset(new Interaction(allDS, j*NumTr + 3, 3, nslaw, relation[j*NumTr + 3]));        
-
-      allInteractions.insert(inter[j*NumTr + 0]);
-      allInteractions.insert(inter[j*NumTr + 1]);
-      allInteractions.insert(inter[j*NumTr + 2]);
-      allInteractions.insert(inter[j*NumTr + 3]);
-         
-
+      inum = j*NumTr;
+      relation[inum + 0].reset(new Rover3DWheelFixedTriangleR(0, 0, 500, 1000, 0, 0, 1000, 0, 1000, j, R, (inum + 0)));
+      relation[inum + 1].reset(new Rover3DWheelFixedTriangleR(1000, 10, 0, 1000, 10, 1000, 1000, 0, 0, j, R, (inum + 1)));
+      relation[inum + 2].reset(new Rover3DWheelFixedTriangleR(1000, 10, 1000, 1000, 0, 1000, 1000, 0, 0, j, R, (inum + 2)));
+      relation[inum + 3].reset(new Rover3DWheelFixedTriangleR(1000, 10, 0, 1000, 10, 1000, 2000, 10, 500, j, R, (inum + 3)));
+      for(int i =0; i<4;++i)
+	{
+	  inter[inum + i].reset(new Interaction(3, nslaw, relation[inum + i], inum + i));
+	  // link the interactions and the dynamical systems
+	  Rover3D->nonSmoothDynamicalSystem()->link(inter[inum + i], arm);
+	}
     }
-
-    // -------------
-    // --- Model ---
-    // -------------
-
-    SP::Model Rover3D(new Model(t0,T,allDS, allInteractions));
-
+    
     // ------------------
     // --- Simulation ---
     // ------------------
 
     // -- Time discretisation --
     SP::TimeDiscretisation t(new TimeDiscretisation(t0,h));
-
-    SP::TimeStepping s(new TimeStepping(t));
-    // s->setUseRelativeConvergenceCriteron(true);
-
-    // -- OneStepIntegrators --
-
     //double theta=0.500001;
     double theta=0.50000001;
-
-    SP::Moreau OSI(new Moreau(allDS,theta));
-    s->insertIntegrator(OSI);
-
-    //*******************************************************
-
-    // -- OneStepNsProblem --
-    //osnspb.reset(new FrictionContact(3));
+    SP::MoreauJeanOSI OSI(new MoreauJeanOSI(theta));
     SP::OneStepNSProblem osnspb(new FrictionContact(3));
 
     osnspb->numericsSolverOptions()->iparam[0]=100000; // Max number of
@@ -202,10 +173,8 @@ int main(int argc, char* argv[])
     osnspb->numericsSolverOptions()->dparam[2]=1e-5;// Local tolerance
     osnspb->setNumericsVerboseMode(true);
 
-    //********************************************************
+    SP::TimeStepping s(new TimeStepping(t, OSI, osnspb));
 
-    s->insertNonSmoothProblem(osnspb);
-    //s->setCheckSolverFunction(localCheckSolverOuput);
     cout << "=== End of model loading === " << endl;
 
     // ================================= Computation =================================

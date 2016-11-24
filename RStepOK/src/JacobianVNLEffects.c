@@ -1,3 +1,4 @@
+#include "LagrangianModel.h"
 #include <math.h>
 void JacobianVNLEffects(NVJ,q,qdot)
 double NVJ[441];

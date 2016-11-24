@@ -461,7 +461,6 @@ global q, qdot,AngleT;
 	fclose(fd):
 
 	C(JacobianQNLEffects, optimized, filename="JacobianQNLEffects.c"):
-	
 	NVJ := JacobianVelocityNLEffectsMatrix():
 	print(`Writing file "JacobianVNLEffects.c"`):
 	NVJ := convert(transpose(NVJ), vector):
