@@ -37,7 +37,7 @@ int main(int argc, char* argv[])
     // User-defined main parameters 
     unsigned int nDof = 21;           // degrees of freedom for robot rover_ds 
     double t0 = 0;                    // initial computation time
-    double T = 120;                    // final computation time 
+    double T = 5.;                    // final computation time 
     double h = 0.005;                  // time step
     double eps_n=0.3;                 
     double eps_t=0.0;
@@ -458,7 +458,7 @@ int main(int argc, char* argv[])
     fprintf(pFile,"DEF Animation Group {\n  children [\n");
     fprintf(pFile,"\n");
 
-    fprintf(pFile,"DEF Rover_rootPosInterp PositionInterpolator{\n");
+    fprintf(pFile,"DEF Rover_RootPosInterp PositionInterpolator{\n");
     fprintf(pFile,"    key [ 0 ");
     for (int cmp =1;cmp <= N;cmp++){
       fprintf(pFile,",%e",(dataPlot(cmp,0)-t0)/(T-t0));}
@@ -473,7 +473,7 @@ int main(int argc, char* argv[])
     fprintf(pFile,"  ]\n}\n");
 
     // ----------root oritation--------------
-    fprintf(pFile,"DEF Rover_rootRotInterp OrientationInterpolator{\n");
+    fprintf(pFile,"DEF Rover_RootRotInterp OrientationInterpolator{\n");
     fprintf(pFile,"    key [ 0 ");
     for (int cmp =1;cmp <= N;cmp++){
       fprintf(pFile,",%e",(dataPlot(cmp,0)-t0)/(T-t0));}

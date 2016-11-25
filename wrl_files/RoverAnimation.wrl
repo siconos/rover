@@ -28,8 +28,8 @@ NavigationInfo {
   type "EXAMINE"
 }
 
-ROUTE Animation_Time.fraction_changed TO  Rover_rootPosInterp.set_fraction
-ROUTE Animation_Time.fraction_changed TO  Rover_rootRotInterp.set_fraction
+ROUTE Animation_Time.fraction_changed TO  Rover_RootPosInterp.set_fraction
+ROUTE Animation_Time.fraction_changed TO  Rover_RootRotInterp.set_fraction
 #ROUTE Animation_Time.fraction_changed TO  Rover_body_jointRotInterp.set_fraction
 ROUTE Animation_Time.fraction_changed TO  Rover_l_pendulum_jointRotInterp.set_fraction
 ROUTE Animation_Time.fraction_changed TO  Rover_lf_wheelAxis_jointRotInterp.set_fraction
@@ -47,8 +47,8 @@ ROUTE Animation_Time.fraction_changed TO  Rover_br_wheel_jointRotInterp.set_frac
 ROUTE Animation_Time.fraction_changed TO  Rover_bl_wheelAxis_jointRotInterp.set_fraction
 ROUTE Animation_Time.fraction_changed TO  Rover_bl_wheel_jointRotInterp.set_fraction
 
-ROUTE Rover_rootPosInterp.value_changed TO Rover_Root.set_translation
-ROUTE Rover_rootRotInterp.value_changed TO Rover_Root.set_rotation
+ROUTE Rover_RootPosInterp.value_changed TO Rover_Root.set_translation
+ROUTE Rover_RootRotInterp.value_changed TO Rover_Root.set_rotation
 #ROUTE Rover_body_jointRotInterp.value_changed TO Rover_body_joint.set_rotation
 ROUTE Rover_l_pendulum_jointRotInterp.value_changed TO Rover_l_pendulum_joint.set_rotation
 ROUTE Rover_lf_wheelAxis_jointRotInterp.value_changed TO Rover_lf_wheelAxis_joint.set_rotation
