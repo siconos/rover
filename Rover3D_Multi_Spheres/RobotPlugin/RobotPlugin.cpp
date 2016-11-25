@@ -45,7 +45,7 @@ extern "C" void mass(unsigned int sizeOfq, const double *q, double *mass, unsign
   unsigned int n = sizeOfq;
   unsigned int n1 = n*n;
 
-  unsigned int i,j;
+  unsigned int i;
   
   
   // mass set to zero
@@ -80,7 +80,7 @@ extern "C" void jacobianFGyrq(unsigned int sizeOfq, const double *q, const doubl
   unsigned int n = sizeOfq;
   unsigned int n1 = n*n;
 
-  unsigned int i,j;
+  unsigned int i;
   
  
   // set to zero
@@ -99,7 +99,7 @@ extern "C" void jacobianVFGyr(unsigned int sizeOfq, const double *q,const  doubl
   unsigned int n = sizeOfq;
   unsigned int n1 = n*n;
 
-  unsigned int i,j;
+  unsigned int i;
   
 
   // set to zero
@@ -138,8 +138,8 @@ extern "C" void G0(unsigned int sizeOfq, const double* q, unsigned int sizeOfY, 
   tmpAngle[2] = RotationAngle[2];
   tmpAngle[3] = RotationAngle[3];
   ContactJacobian1(G,tmpAngle,(double *)q);
-  G[28]=G[28]+r;//*cos(q[7]);
-  G[29]=G[29];//*sin(q[7]); //cout << "y[0]= " << angleB << endl;
+  G[28]=G[28]+r;// *cos(q[7]);
+  G[29]=G[29];// *sin(q[7]); //cout << "y[0]= " << angleB << endl;
 
   free(tmpAngle);
 }
@@ -167,7 +167,7 @@ extern "C" void G1(unsigned int sizeOfq, const double* q, unsigned int sizeOfY, 
   tmpAngle[2] = RotationAngle[2];
   tmpAngle[3] = RotationAngle[3];
   ContactJacobian2(G,tmpAngle,(double *)q);
-  G[31]=G[31]+r;//*cos(q[8]);
+  G[31]=G[31]+r;// *cos(q[8]);
   G[32]=G[32];//+r*sin(q[8]);
   free(tmpAngle);
 }
@@ -194,7 +194,7 @@ extern "C" void G2(unsigned int sizeOfq, const double* q, unsigned int sizeOfY, 
   tmpAngle[2] = RotationAngle[2];
   tmpAngle[3] = RotationAngle[3];
   ContactJacobian3(G,tmpAngle,(double *)q);
-  G[43]=G[43]+r;//*cos(q[12]);
+  G[43]=G[43]+r;// *cos(q[12]);
   G[44]=G[44];//+r*sin(q[12]);
   free(tmpAngle);
 }
@@ -223,7 +223,7 @@ extern "C" void G3(unsigned int sizeOfq, const double* q, unsigned int sizeOfY, 
   tmpAngle[2] = RotationAngle[2];
   tmpAngle[3] = RotationAngle[3];
   ContactJacobian4(G,tmpAngle,(double *)q);
-  G[46]=G[46]+r;//*cos(q[13]);
+  G[46]=G[46]+r;// *cos(q[13]);
   G[47]=G[47];//+r*sin(q[13]);
   free(tmpAngle);
 }
@@ -252,7 +252,7 @@ extern "C" void G4(unsigned int sizeOfq, const double* q, unsigned int sizeOfY, 
   tmpAngle[2] = RotationAngle[2];
   tmpAngle[3] = RotationAngle[3];
   ContactJacobian5(G,tmpAngle,(double *)q);
-  G[58]=G[58]+r;//*cos(q[17]);
+  G[58]=G[58]+r;// *cos(q[17]);
   G[59]=G[59];//+r*sin(q[17]);
 
   free(tmpAngle);
@@ -283,7 +283,7 @@ extern "C" void G5(unsigned int sizeOfq, const double* q, unsigned int sizeOfY, 
   tmpAngle[3] = RotationAngle[3];
   //BR
   ContactJacobian6(G,tmpAngle,(double *)q);
-  G[61]=G[61]+r;//*cos(q[18]);
+  G[61]=G[61]+r;// *cos(q[18]);
   G[62]=G[62];//+r*sin(q[18]);
   
   
@@ -315,8 +315,8 @@ extern "C" void G20(unsigned int sizeOfq, const double* q, unsigned int sizeOfY,
   tmpAngle[2] = RotationAngle2[2];
   tmpAngle[3] = RotationAngle2[3];
   ContactJacobian1(G,tmpAngle,(double *)q);
-  G[28]=G[28]+r;//*cos(q[7]);
-  G[29]=G[29];//*sin(q[7]); //cout << "y[0]= " << angleB << endl;
+  G[28]=G[28]+r;// *cos(q[7]);
+  G[29]=G[29];// *sin(q[7]); //cout << "y[0]= " << angleB << endl;
 
   free(tmpAngle);
 }
@@ -344,7 +344,7 @@ extern "C" void G21(unsigned int sizeOfq, const double* q, unsigned int sizeOfY,
   tmpAngle[2] = RotationAngle2[2];
   tmpAngle[3] = RotationAngle2[3];
   ContactJacobian2(G,tmpAngle,(double *)q);
-  G[31]=G[31]+r;//*cos(q[8]);
+  G[31]=G[31]+r;// *cos(q[8]);
   G[32]=G[32];//+r*sin(q[8]);
   free(tmpAngle);
 }
@@ -371,7 +371,7 @@ extern "C" void G22(unsigned int sizeOfq, const double* q, unsigned int sizeOfY,
   tmpAngle[2] = RotationAngle2[2];
   tmpAngle[3] = RotationAngle2[3];
   ContactJacobian3(G,tmpAngle,(double *)q);
-  G[43]=G[43]+r;//*cos(q[12]);
+  G[43]=G[43]+r;// *cos(q[12]);
   G[44]=G[44];//+r*sin(q[12]);
   free(tmpAngle);
 }
@@ -400,7 +400,7 @@ extern "C" void G23(unsigned int sizeOfq, const double* q, unsigned int sizeOfY,
   tmpAngle[2] = RotationAngle2[2];
   tmpAngle[3] = RotationAngle2[3];
   ContactJacobian4(G,tmpAngle,(double *)q);
-  G[46]=G[46]+r;//*cos(q[13]);
+  G[46]=G[46]+r;// *cos(q[13]);
   G[47]=G[47];//+r*sin(q[13]);
   free(tmpAngle);
 }
@@ -429,7 +429,7 @@ extern "C" void G24(unsigned int sizeOfq, const double* q, unsigned int sizeOfY,
   tmpAngle[2] = RotationAngle2[2];
   tmpAngle[3] = RotationAngle2[3];
   ContactJacobian5(G,tmpAngle,(double *)q);
-  G[58]=G[58]+r;//*cos(q[17]);
+  G[58]=G[58]+r;// *cos(q[17]);
   G[59]=G[59];//+r*sin(q[17]);
 
   free(tmpAngle);
@@ -460,7 +460,7 @@ extern "C" void G25(unsigned int sizeOfq, const double* q, unsigned int sizeOfY,
   tmpAngle[3] = RotationAngle2[3];
   //BR
   ContactJacobian6(G,tmpAngle,(double *)q);
-  G[61]=G[61]+r;//*cos(q[18]);
+  G[61]=G[61]+r;// *cos(q[18]);
   G[62]=G[62];//+r*sin(q[18]);
   
   
@@ -473,7 +473,7 @@ extern "C" void U(double time, unsigned int sizeOfq, const double *q,const  doub
 {  
    if (sFirst){
                 sQ0=(double *)malloc(sizeOfq * sizeof(double));
-                 for (int i=0;i<sizeOfq; i++)
+                 for (unsigned int i=0;i<sizeOfq; i++)
                  sQ0[i]=q[i];
 		sFirst=0;
 	       }

@@ -73,7 +73,7 @@ static int iteration_failed = 0;
 // };
 
 
-void write_vrml(SimpleMatrix * data, double** Sphere, int nb_spheres, int nb_time_steps, double T, double t0, unsigned int ndof)
+void write_vrml(SimpleMatrix * data, int nb_spheres, double Sphere[nb_spheres][4], int nb_time_steps, double T, double t0, unsigned int ndof)
 {
 
   
@@ -146,6 +146,7 @@ void write_vrml(SimpleMatrix * data, double** Sphere, int nb_spheres, int nb_tim
     FILE * pFile;
     pFile = fopen("data.wrl","w");
 
+    
 //---------------Sphere---------------------
     for(int i=0; i<nb_spheres; i++)
     {
@@ -194,7 +195,6 @@ void write_vrml(SimpleMatrix * data, double** Sphere, int nb_spheres, int nb_tim
     fprintf(pFile,"    keyValue [  ");
 
     double qq[ndof];
-    double Test[69];
     
     for(unsigned int i=0;i<ndof;++i)
       qq[i]=(*data)(0,i+1);
@@ -271,7 +271,7 @@ int main(int argc, char* argv[])
     // User-defined main parameters
     unsigned int nDof = 21;        // degrees of freedom for robot arm
     double t0 = 0;                 // initial computation time
-    double T = 0.1;                 // final computation time
+    double T = 4.;                 // final computation time
     double h = 0.005;               // time step
     double eps_n=0.1;
     double eps_t=0.0;
@@ -381,7 +381,7 @@ int main(int argc, char* argv[])
         relation[interaction_number].reset(new Rover3DWheelFixedSphereR(j,Sphere[i][3],Sphere[i][0],Sphere[i][1],Sphere[i][2],R,WheelT));
         inter[interaction_number].reset(new Interaction(3, nslaw, relation[interaction_number], interaction_number));
 	// link the interactions and the dynamical systems
-	//Rover3D->nonSmoothDynamicalSystem()->link(inter[interaction_number], arm);
+	Rover3D->nonSmoothDynamicalSystem()->link(inter[interaction_number], arm);
       }
     }
 
@@ -401,17 +401,15 @@ int main(int argc, char* argv[])
     // -- OneStepNsProblem --
     //osnspb.reset(new FrictionContact(3));
     SP::OneStepNSProblem osnspb(new FrictionContact(3));
-
-    // osnspb->numericsSolverOptions()->iparam[0]=10000; // Max number of
-    // // iterations
-    // // osnspb->numericsSolverOptions()->iparam[1]=10000;  // compute error
-    // //                                                  // iterations
-
-    // osnspb->numericsSolverOptions()->iparam[4]=1;   // projection
-    // // Solver/formulation  0: projection, 1: Newton/AlartCurnier, 2: Newton/Fischer-Burmeister
-    // osnspb->numericsSolverOptions()->dparam[0]=1e-5;// Tolerance
-    // osnspb->numericsSolverOptions()->dparam[2]=1e-5;// Local tolerance
-
+    osnspb->numericsSolverOptions()->iparam[SICONOS_IPARAM_MAX_ITER]=10000; // Max number of
+                                                      // iterations
+    osnspb->numericsSolverOptions()->iparam[1]=10000;  // compute error
+    // iterations
+    //osnspb->numericsSolverOptions()->iparam[4]=1;   // projection
+    // Solver/formulation  0: projection, 1: Newton/AlartCurnier, 2: Newton/Fischer-Burmeister
+    osnspb->numericsSolverOptions()->dparam[SICONOS_DPARAM_TOL]=1e-5;// Tolerance
+    //osnspb->numericsSolverOptions()->dparam[2]=1e-5;// Local tolerance
+    osnspb->numericsSolverOptions()->internalSolvers->dparam[SICONOS_DPARAM_TOL]=1e-5;
     SP::TimeStepping s(new TimeStepping(t, OSI, osnspb));
     //        s->setUseRelativeConvergenceCriteron(true);
 
@@ -433,7 +431,7 @@ int main(int argc, char* argv[])
     cout << "Number of time step   " << N << endl;
     // --- Get the values to be plotted ---
     // -> saved in a matrix dataPlot
-    SimpleMatrix dataPlot(N,nDof+17+6);
+    SimpleMatrix dataPlot(N+1,nDof+17+6);
 
     double qq[21];
     double Test[69];
@@ -442,19 +440,19 @@ int main(int argc, char* argv[])
 
     SP::SiconosVector q = arm->q();
     SP::SiconosVector v = arm->velocity();
-    // SP::SiconosVector yfunc = inter[0]->y(0);
-    // SP::SiconosVector yfunc1 = inter[1]->y(0);
-    // SP::SiconosVector yfunc2 = inter[2]->y(0);
-    // SP::SiconosVector yfunc3 = inter[3]->y(0);
-    // SP::SiconosVector yfunc4 = inter[4]->y(0);
-    // SP::SiconosVector yfunc5 = inter[5]->y(0);
-    // SP::SiconosVector lambda = inter[1]->lambda(1);
-    // SP::SiconosVector y2func = inter[6]->y(0);
-    // SP::SiconosVector y2func1 = inter[7]->y(0);
-    // SP::SiconosVector y2func2 = inter[8]->y(0);
-    // SP::SiconosVector y2func3 = inter[9]->y(0);
-    // SP::SiconosVector y2func4 = inter[10]->y(0);
-    // SP::SiconosVector y2func5 = inter[11]->y(0);
+    SP::SiconosVector yfunc = inter[0]->y(0);
+    SP::SiconosVector yfunc1 = inter[1]->y(0);
+    SP::SiconosVector yfunc2 = inter[2]->y(0);
+    SP::SiconosVector yfunc3 = inter[3]->y(0);
+    SP::SiconosVector yfunc4 = inter[4]->y(0);
+    SP::SiconosVector yfunc5 = inter[5]->y(0);
+    SP::SiconosVector lambda = inter[1]->lambda(1);
+    SP::SiconosVector y2func = inter[6]->y(0);
+    SP::SiconosVector y2func1 = inter[7]->y(0);
+    SP::SiconosVector y2func2 = inter[8]->y(0);
+    SP::SiconosVector y2func3 = inter[9]->y(0);
+    SP::SiconosVector y2func4 = inter[10]->y(0);
+    SP::SiconosVector y2func5 = inter[11]->y(0);
 
     dataPlot(k,0)= t0;
     dataPlot(k,1)=(*q)(0)/100;
@@ -481,50 +479,50 @@ int main(int argc, char* argv[])
     dataPlot(k,22)=(*v)(0);
     dataPlot(k,23)=(*v)(1);
     dataPlot(k,24)=(*v)(2);
-    //  dataPlot(k,25)=(*yfunc)(0);
-//     dataPlot(k,26)=(*yfunc1)(0);
-//     dataPlot(k,27)=(*yfunc2)(0);
-//     dataPlot(k,28)=(*yfunc3)(0);
-//     dataPlot(k,29)=(*yfunc4)(0);
-//     dataPlot(k,30)=(*yfunc5)(0);
-//     dataPlot(k,31)=(*lambda)(0);
-//     dataPlot(k,32)=(*v)(9);
-//     dataPlot(k,33)=(*v)(10);
-//     dataPlot(k,34)=(*v)(14);
-//     dataPlot(k,35)=(*v)(15);
-//     dataPlot(k,36)=(*v)(19);
-//     dataPlot(k,37)=(*v)(20);
-//     dataPlot(k,38)=(*y2func)(0);
-//     dataPlot(k,39)=(*y2func1)(0);
-//     dataPlot(k,40)=(*y2func2)(0);
-//     dataPlot(k,41)=(*y2func3)(0);
-//     dataPlot(k,42)=(*y2func4)(0);
-//     dataPlot(k,43)=(*y2func5)(0);
+    dataPlot(k,25)=(*yfunc)(0);
+    dataPlot(k,26)=(*yfunc1)(0);
+    dataPlot(k,27)=(*yfunc2)(0);
+    dataPlot(k,28)=(*yfunc3)(0);
+    dataPlot(k,29)=(*yfunc4)(0);
+    dataPlot(k,30)=(*yfunc5)(0);
+    dataPlot(k,31)=(*lambda)(0);
+    dataPlot(k,32)=(*v)(9);
+    dataPlot(k,33)=(*v)(10);
+    dataPlot(k,34)=(*v)(14);
+    dataPlot(k,35)=(*v)(15);
+    dataPlot(k,36)=(*v)(19);
+    dataPlot(k,37)=(*v)(20);
+    dataPlot(k,38)=(*y2func)(0);
+    dataPlot(k,39)=(*y2func1)(0);
+    dataPlot(k,40)=(*y2func2)(0);
+    dataPlot(k,41)=(*y2func3)(0);
+    dataPlot(k,42)=(*y2func4)(0);
+    dataPlot(k,43)=(*y2func5)(0);
 
-//     //----------------------gnuplot data----------------************************
-//     for(unsigned int i=0;i<nDof; ++i)
-//       qq[i]=(*q)(i);
+    //----------------------gnuplot data----------------************************
+    for(unsigned int i=0;i<nDof; ++i)
+      qq[i]=(*q)(i);
 
-//     Tags(Test ,qq);
-//     testdatabase(k,0)= Test[4];
-//     testdatabase(k,1)= Test[27];
-//     testdatabase(k,2)= Test[50];  //FL
-//     testdatabase(k,3)= Test[5];
-//     testdatabase(k,4)= Test[28];
-//     testdatabase(k,5)= Test[51];  //FR
-//     testdatabase(k,6)= Test[9];
-//     testdatabase(k,7)= Test[32];
-//     testdatabase(k,8)= Test[55];  //ML
-//     testdatabase(k,9)= Test[10];
-//     testdatabase(k,10)= Test[33];
-//     testdatabase(k,11)= Test[56];  //BL
-//     testdatabase(k,12)= Test[14];
-//     testdatabase(k,13)= Test[37];
-//     testdatabase(k,14)= Test[60];  //BR
-//     testdatabase(k,15)= Test[15];
-//     testdatabase(k,16)= Test[38];
-//     testdatabase(k,17)= Test[61];
-// //--------------------------------------------------
+    Tags(Test ,qq);
+    testdatabase(k,0)= Test[4];
+    testdatabase(k,1)= Test[27];
+    testdatabase(k,2)= Test[50];  //FL
+    testdatabase(k,3)= Test[5];
+    testdatabase(k,4)= Test[28];
+    testdatabase(k,5)= Test[51];  //FR
+    testdatabase(k,6)= Test[9];
+    testdatabase(k,7)= Test[32];
+    testdatabase(k,8)= Test[55];  //ML
+    testdatabase(k,9)= Test[10];
+    testdatabase(k,10)= Test[33];
+    testdatabase(k,11)= Test[56];  //BL
+    testdatabase(k,12)= Test[14];
+    testdatabase(k,13)= Test[37];
+    testdatabase(k,14)= Test[60];  //BR
+    testdatabase(k,15)= Test[15];
+    testdatabase(k,16)= Test[38];
+    testdatabase(k,17)= Test[61];
+//--------------------------------------------------
 
 
 // //-------------------------------------------************************
@@ -579,50 +577,50 @@ int main(int argc, char* argv[])
       dataPlot(k,22)=(*v)(0);
       dataPlot(k,23)=(*v)(1);
       dataPlot(k,24)=(*v)(2);
-      // dataPlot(k,25)=(*yfunc)(0);
-      // dataPlot(k,26)=(*yfunc1)(0);
-      // dataPlot(k,27)=(*yfunc2)(0);
-      // dataPlot(k,28)=(*yfunc3)(0);
-      // dataPlot(k,29)=(*yfunc4)(0);
-      // dataPlot(k,30)=(*yfunc5)(0);
-      // dataPlot(k,31)=(*lambda)(0);
-      // dataPlot(k,32)=(*v)(9);
-      // dataPlot(k,33)=(*v)(10);
-      // dataPlot(k,34)=(*v)(14);
-      // dataPlot(k,35)=(*v)(15);
-      // dataPlot(k,36)=(*v)(19);
-      // dataPlot(k,37)=(*v)(20);
-      // dataPlot(k,38)=(*y2func)(0);
-      // dataPlot(k,39)=(*y2func1)(0);
-      // dataPlot(k,40)=(*y2func2)(0);
-      // dataPlot(k,41)=(*y2func3)(0);
-      // dataPlot(k,42)=(*y2func4)(0);
-      // dataPlot(k,43)=(*y2func5)(0);
-      // //-------------------gnuplot ------------------*********************
-      // for(unsigned int i=0;i<nDof;++i)
-      //   qq[i]=(*q)(i);
+      dataPlot(k,25)=(*yfunc)(0);
+      dataPlot(k,26)=(*yfunc1)(0);
+      dataPlot(k,27)=(*yfunc2)(0);
+      dataPlot(k,28)=(*yfunc3)(0);
+      dataPlot(k,29)=(*yfunc4)(0);
+      dataPlot(k,30)=(*yfunc5)(0);
+      dataPlot(k,31)=(*lambda)(0);
+      dataPlot(k,32)=(*v)(9);
+      dataPlot(k,33)=(*v)(10);
+      dataPlot(k,34)=(*v)(14);
+      dataPlot(k,35)=(*v)(15);
+      dataPlot(k,36)=(*v)(19);
+      dataPlot(k,37)=(*v)(20);
+      dataPlot(k,38)=(*y2func)(0);
+      dataPlot(k,39)=(*y2func1)(0);
+      dataPlot(k,40)=(*y2func2)(0);
+      dataPlot(k,41)=(*y2func3)(0);
+      dataPlot(k,42)=(*y2func4)(0);
+      dataPlot(k,43)=(*y2func5)(0);
+      //-------------------gnuplot ------------------*********************
+      for(unsigned int i=0;i<nDof;++i)
+        qq[i]=(*q)(i);
 
-      // Tags(Test,qq);
-      // testdatabase(k,0)= Test[4];
-      // testdatabase(k,1)= Test[27];
-      // testdatabase(k,2)= Test[50];  //FL
-      // testdatabase(k,3)= Test[5];
-      // testdatabase(k,4)= Test[28];
-      // testdatabase(k,5)= Test[51];  //FR
-      // testdatabase(k,6)= Test[9];
-      // testdatabase(k,7)= Test[32];
-      // testdatabase(k,8)= Test[55];  //ML
-      // testdatabase(k,9)= Test[10];
-      // testdatabase(k,10)= Test[33];
-      // testdatabase(k,11)= Test[56];  //BL
-      // testdatabase(k,12)= Test[14];
-      // testdatabase(k,13)= Test[37];
-      // testdatabase(k,14)= Test[60];  //BR
-      // testdatabase(k,15)= Test[15];
-      // testdatabase(k,16)= Test[38];
-      // testdatabase(k,17)= Test[61];
+      Tags(Test,qq);
+      testdatabase(k,0)= Test[4];
+      testdatabase(k,1)= Test[27];
+      testdatabase(k,2)= Test[50];  //FL
+      testdatabase(k,3)= Test[5];
+      testdatabase(k,4)= Test[28];
+      testdatabase(k,5)= Test[51];  //FR
+      testdatabase(k,6)= Test[9];
+      testdatabase(k,7)= Test[32];
+      testdatabase(k,8)= Test[55];  //ML
+      testdatabase(k,9)= Test[10];
+      testdatabase(k,10)= Test[33];
+      testdatabase(k,11)= Test[56];  //BL
+      testdatabase(k,12)= Test[14];
+      testdatabase(k,13)= Test[37];
+      testdatabase(k,14)= Test[60];  //BR
+      testdatabase(k,15)= Test[15];
+      testdatabase(k,16)= Test[38];
+      testdatabase(k,17)= Test[61];
 
-//--------------------------------------------------
+      //--------------------------------------------------
 
       //----------------------------------------------------**********************
 
@@ -632,12 +630,10 @@ int main(int argc, char* argv[])
     cout<<"End of computation - Number of iterations done: "<<k<<endl;
     cout << "Computation Time " << time.elapsed()  << endl;
 
-
-
-    //write_vrml(&dataPlot, (double**)Sphere, NumSphere, N, T, t0, nDof);
+    write_vrml(&dataPlot, NumSphere, Sphere, N, T, t0, nDof);
 
     // --- Output files ---
-    ioMatrix::write("Rover.dat", "ascii",
+    ioMatrix::write("Rover3D_Multi_Spheres.dat", "ascii",
                     dataPlot,"noDim");
     ioMatrix::write("TAGSDATA.dat", "ascii",
                     testdatabase,"noDim");

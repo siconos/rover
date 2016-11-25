@@ -42,6 +42,6 @@ def plot_rover(filename):
 
 
 # RoverPlane simu
-build_complete_vrml('data.wrl', 'run.wrl')
-plot_rover('RoverPlane.dat')
+# build_complete_vrml('data.wrl', 'run.wrl')
+# plot_rover('RoverPlane.dat')
 
