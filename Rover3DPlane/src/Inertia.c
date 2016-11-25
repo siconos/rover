@@ -5,12 +5,6 @@ void Inertia(M, q)
 double M[441];
 double q[21];
 {
-  double C0 = cos(q[0]);
-  double S0 = sin(q[0]);
-  double C1 = cos(q[1]);
-  double S1 = sin(q[1]);
-  double C2 = cos(q[2]);
-  double S2 = sin(q[2]);
   double C3 = cos(q[3]);
   double S3 = sin(q[3]);
   double C4 = cos(q[4]);

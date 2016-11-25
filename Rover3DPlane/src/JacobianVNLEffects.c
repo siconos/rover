@@ -1,4 +1,5 @@
 #include <math.h>
+#include "Robot.h"
 void JacobianVNLEffects(NVJ,q,qdot)
 double NVJ[441];
 double q[21];

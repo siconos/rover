@@ -16,10 +16,10 @@
  *
  * Contact: Vincent ACARY vincent.acary@inrialpes.fr 
 */
-#include "Robot.h"
+#include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
-
+#include "Robot.h"
 int NCONT = 6;
 double r = 20;
 double PI=3.1415927;
@@ -36,7 +36,7 @@ extern "C" void mass(unsigned int sizeOfq, const double *q, double *mass, unsign
   unsigned int n = sizeOfq;
   unsigned int n1 = n*n;
 
-  unsigned int i,j;
+  unsigned int i;
   
   
   // mass set to zero
@@ -49,30 +49,30 @@ extern "C" void mass(unsigned int sizeOfq, const double *q, double *mass, unsign
  
 }
 
-extern "C" void NNL(unsigned int sizeOfq, const double *q, const double *velocity, double *NNL, unsigned int sizeZ, double* z)
+extern "C" void FGyr(unsigned int sizeOfq, const double *q, const double *velocity, double *FGyr, unsigned int sizeZ, double* z)
 {
   unsigned int n = sizeOfq;
 
   unsigned int i;
   
  
-  // NNL set to zero
+  // FGyr set to zero
   for (i = 0; i < n; i++)
-    NNL[i] = 0.0;	
+    FGyr[i] = 0.0;	
   
 
   // compute mass matrix
-  NLEffects(NNL,(double*)q,(double*)velocity);
+  NLEffects(FGyr,(double*)q,(double*)velocity);
 
 
 }
 
-extern "C" void jacobianNNLq(unsigned int sizeOfq, const double *q, const double *velocity, double *jacob, unsigned int sizeZ, double* z)
+extern "C" void jacobianFGyrq(unsigned int sizeOfq, const double *q, const double *velocity, double *jacob, unsigned int sizeZ, double* z)
 {
   unsigned int n = sizeOfq;
   unsigned int n1 = n*n;
 
-  unsigned int i,j;
+  unsigned int i;
   
  
   // set to zero
@@ -86,12 +86,12 @@ extern "C" void jacobianNNLq(unsigned int sizeOfq, const double *q, const double
   
 }	
 
-extern "C" void jacobianVNNL(unsigned int sizeOfq, const double *q,const  double *velocity, double *jacob, unsigned int sizeZ, double* z)
+extern "C" void jacobianVFGyr(unsigned int sizeOfq, const double *q,const  double *velocity, double *jacob, unsigned int sizeZ, double* z)
 {
   unsigned int n = sizeOfq;
   unsigned int n1 = n*n;
 
-  unsigned int i,j;
+  unsigned int i;
   
 
   // set to zero
@@ -278,7 +278,7 @@ extern "C" void U(double time, unsigned int sizeOfq, const double *q,const  doub
 {  
    if (sFirst){
                 sQ0=(double *)malloc(sizeOfq * sizeof(double));
-                 for (int i=0;i<sizeOfq; i++)
+                 for (unsigned int i=0;i<sizeOfq; i++)
                  sQ0[i]=q[i];
 		sFirst=0;
 	       }

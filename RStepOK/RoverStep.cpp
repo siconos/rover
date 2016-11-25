@@ -53,10 +53,6 @@ int main(int argc, char* argv[])
     double mu = 0.7;
     //double mu = 0.5;
     double R = 30;                 //Wheel Radius
-    double l = 20;
-    double g = 9.8;
-    int Ns = 20;                      
-    double WheelT = 10;               //Wheel Thickness
     double RAngle[3] = {0.0,0.0,0.0};  //Format of RAngle: Euler angles (alpha,beta,gamma)
  
     // -------------------------
@@ -167,11 +163,11 @@ int main(int argc, char* argv[])
     // osnspb->numericsSolverOptions()->iparam[1]=100000;  // compute error
     //                                                  // iterations
 
-    osnspb->numericsSolverOptions()->iparam[4]=1;   // projection
-    // Solver/formulation  0: projection, 1: Newton/AlartCurnier, 2: Newton/Fischer-Burmeister
-    osnspb->numericsSolverOptions()->dparam[0]=1e-5;// Tolerance
-    osnspb->numericsSolverOptions()->dparam[2]=1e-5;// Local tolerance
-    osnspb->setNumericsVerboseMode(true);
+    // osnspb->numericsSolverOptions()->iparam[4]=1;   // projection
+    // // Solver/formulation  0: projection, 1: Newton/AlartCurnier, 2: Newton/Fischer-Burmeister
+    // osnspb->numericsSolverOptions()->dparam[0]=1e-5;// Tolerance
+    // osnspb->numericsSolverOptions()->dparam[2]=1e-5;// Local tolerance
+    // osnspb->setNumericsVerboseMode(true);
 
     SP::TimeStepping s(new TimeStepping(t, OSI, osnspb));
 
@@ -181,14 +177,13 @@ int main(int argc, char* argv[])
 
     // --- Simulation initAialization ---
     cout << "=== Simulation initialization ===" << endl;
-    Rover3D->initialize(s);
+    Rover3D->setSimulation(s);
+    Rover3D->initialize();
 
     cout <<"End of initialisation" << endl;
-    int i=0;
+    unsigned int i=0;
     int k=0;
-    int kk= 0;
     int N = (int)((T-t0)/h);
-    int NN=3*N+3;
     cout << "Number of time step   " << N << endl;
 
     // --- Get the values to be plotted ---
@@ -460,9 +455,6 @@ int main(int argc, char* argv[])
     cout << "Start computation ... " << endl;
 
     boost::progress_display show_progress(N);
-
-    double static_torque = 885;
-    double sliding_torque = 10000;
 
     while(s->hasNextEvent())
     {
@@ -815,8 +807,6 @@ int main(int argc, char* argv[])
     NamesDOF[16]=10;
 
   double RootRotationVector[4];
-  double PlaneRotationVector[4];
-
   
     FILE * pFile;
     pFile = fopen ("data.wrl","w");
@@ -916,18 +906,18 @@ int main(int argc, char* argv[])
 
     for (int CountN=2; CountN<=16; CountN++){
     
-    fprintf(pFile,Names[CountN]);
+      fprintf(pFile,"%s", Names[CountN]);
     fprintf(pFile,"    key [ 0 ");
     for (int cmp =1;cmp <= N;cmp++){
         fprintf(pFile,",%e",(dataPlot(cmp,0)-t0)/(T-t0));}
 	
     fprintf(pFile,"]\n"); 
     fprintf(pFile,"    keyValue [  ");
-    fprintf(pFile,NamesRotationVector[CountN]);
+    fprintf(pFile, "%s", NamesRotationVector[CountN]);
     fprintf(pFile," %e,\n",dataPlot(0,NamesDOF[CountN]));
 
     for (int cmp =1;cmp <= N;cmp++){
-    fprintf(pFile,NamesRotationVector[CountN]);
+      fprintf(pFile, "%s", NamesRotationVector[CountN]);
     fprintf(pFile," %e,\n",dataPlot(cmp,NamesDOF[CountN]));}
 
     fprintf(pFile,"  ]\n}\n");

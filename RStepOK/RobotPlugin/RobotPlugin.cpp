@@ -27,6 +27,9 @@ double PI=3.1415927;
 double angleA=0.0;
 double angleB=0.0;//atan(1/(106/132+1/tan(angleA)));
 double CapK=-15000;
+static int sFirst =1 ;
+static double *sQ0;
+
 
 extern "C" void mass(unsigned int sizeOfq, const double *q, double *mass, unsigned int sizeZ, double* z)
 {
@@ -90,6 +93,30 @@ extern "C" void jacobianVFGyr(unsigned int sizeOfq, const double *q,const  doubl
   JacobianVNLEffects(jacob,(double *)q,(double *)velocity);
   
   
+}
+
+
+//------------------PID Control-----------------------
+
+
+extern "C" void U(double time, unsigned int sizeOfq, const double *q,const  double *velocity, double *U, unsigned int sizeZ, double *z)
+{  
+   if (sFirst){
+                sQ0=(double *)malloc(sizeOfq * sizeof(double));
+                 for (unsigned int i=0;i<sizeOfq; i++)
+                 sQ0[i]=q[i];
+		sFirst=0;
+	       }
+	
+   
+   U[7] = -CapK*(q[7]-sQ0[7])-CapK*velocity[7];
+   U[8] = -CapK*(q[8]-sQ0[8])-CapK*velocity[8];
+
+   U[12] = -CapK*(q[12]-sQ0[12])-CapK*velocity[12];
+   U[13] = -CapK*(q[13]-sQ0[13])-CapK*velocity[13]; 
+
+   U[17] = -CapK*(q[17]-sQ0[17])-CapK*velocity[17];
+   U[18] = -CapK*(q[18]-sQ0[18])-CapK*velocity[18];
 }
 
 extern "C" void jacobFintQ(double time, unsigned int sizeOfq, const double *q,const  double *velocity, double *jacobFintQ, unsigned int sizeZ, double* z)
