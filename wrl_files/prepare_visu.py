@@ -44,4 +44,16 @@ def plot_rover(filename):
 # RoverPlane simu
 # build_complete_vrml('data.wrl', 'run.wrl')
 # plot_rover('RoverPlane.dat')
+def compare(f1, f2):
+
+    s = open(f1)
+    table = ft.read(s)
+    time = table[:, 0]
+    q = table[:, 1:22]
+    s2 = open(f2)
+    table2 = ft.read(s2)
+    time2 = table2[:, 0]
+    q2 = table2[:, 1:22]
+    return time, time2, q, q2
+
 

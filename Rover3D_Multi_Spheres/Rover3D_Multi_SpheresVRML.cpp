@@ -145,9 +145,8 @@ void write_vrml(SimpleMatrix * data, int nb_spheres, double Sphere[nb_spheres][4
 
     FILE * pFile;
     pFile = fopen("data.wrl","w");
-
     
-//---------------Sphere---------------------
+    //---------------Sphere---------------------
     for(int i=0; i<nb_spheres; i++)
     {
       fprintf(pFile,"DEF SPHERE Transform {\n");
@@ -165,7 +164,7 @@ void write_vrml(SimpleMatrix * data, int nb_spheres, double Sphere[nb_spheres][4
     fprintf(pFile,"DEF Animation Group {\n  children [\n");
     fprintf(pFile,"\n");
 
-    fprintf(pFile,"DEF Rover_rootPosInterp PositionInterpolator{\n");
+    fprintf(pFile,"DEF Rover_RootPosInterp PositionInterpolator{\n");
     fprintf(pFile,"    key [ 0 ");
     for(int cmp =1; cmp <= nb_time_steps; cmp++)
     {
@@ -184,7 +183,7 @@ void write_vrml(SimpleMatrix * data, int nb_spheres, double Sphere[nb_spheres][4
     fprintf(pFile,"  ]\n}\n");
 
 // ----------root oritation--------------
-    fprintf(pFile,"DEF Rover_rootRotInterp OrientationInterpolator{\n");
+    fprintf(pFile,"DEF Rover_RootRotInterp OrientationInterpolator{\n");
     fprintf(pFile,"    key [ 0 ");
     for(int cmp =1; cmp <= nb_time_steps; cmp++)
     {
@@ -254,7 +253,7 @@ void write_vrml(SimpleMatrix * data, int nb_spheres, double Sphere[nb_spheres][4
     }
     //fprintf(pFile,"  ]\n}\n");
     fclose(pFile);
-    system("cat RoverModel.wrl data.wrl RoverAnimation.wrl > run.wrl");
+    //    system("cat RoverModel.wrl data.wrl RoverAnimation.wrl > run.wrl");
   
 
 }
@@ -271,14 +270,14 @@ int main(int argc, char* argv[])
     // User-defined main parameters
     unsigned int nDof = 21;        // degrees of freedom for robot arm
     double t0 = 0;                 // initial computation time
-    double T = 4.;                 // final computation time
+    double T = 15.;                 // final computation time
     double h = 0.005;               // time step
     double eps_n=0.1;
     double eps_t=0.0;
     double mu=0.8;
     double R=30;                 //Wheel Radius
     // Number of spheres
-    int Ns = 20;
+    int Ns = 50;
     double WheelT = 10;         //Wheel Thickness
 
     //======input data for SphereGeneration===============
@@ -287,10 +286,7 @@ int main(int argc, char* argv[])
     const double AverageDistance = 60 ;
     double Sphere[NumSphere][4];
 
-
-
     // -----------------------SphereGeneration--------------------------
-
 
     //This part generate spheres automatically
     //If you prefer, you can input the sphere data manually
@@ -313,10 +309,6 @@ int main(int argc, char* argv[])
 
       }
     //---------------------------------------------------------------------
-
-
-
-
     // -> mind to set the initial conditions below.
 
     // -------------------------
@@ -330,48 +322,49 @@ int main(int argc, char* argv[])
     SP::SiconosVector v0(new SiconosVector(nDof));
     q0->zero();
     v0->zero();
-
-    (*q0)(0) = 102;
-    (*q0)(2) = 260;//150;
-    (*q0)(1) = 160.5;
-    (*q0)(7) = -0.00;
-    (*q0)(8) = -0.00;
+    (*q0)(0) = Ns * 0.5 * AverageR;
+    (*q0)(1) = 1.5 * AverageR;
+    (*q0)(2) = Ns * 0.25 * AverageR;
+    (*q0)(7) = -0.1;
+    (*q0)(8) = -0.1;
     //(*q0)(6) = 0.0;
 
-    SP::LagrangianDS arm(new LagrangianDS(q0, v0));
+    SP::LagrangianDS rover_ds(new LagrangianDS(q0, v0));
     // external plug-in
-    arm->setComputeMassFunction("RobotPlugin.so","mass");
+    rover_ds->setComputeMassFunction("RobotPlugin.so","mass");
 
     // -- Set external forces (traction) --
+    double driving_force = -4000; // -4000;
     SP::SiconosVector Force(new SiconosVector(nDof));
-    (*Force)(9) = -4000;       //FL traction
-    (*Force)(10) = -4000;      //FR  traction
-    (*Force)(14) = -4000;      //ML traction
-    (*Force)(15) = -4000;      //BL traction
-    (*Force)(19) = -4000;      //MR traction
-    (*Force)(20) = -4000;      //BR traction
+    (*Force)(9) = driving_force;       //FL traction
+    (*Force)(10) = driving_force;      //FR  traction
+    (*Force)(14) = driving_force;      //ML traction
+    (*Force)(15) = driving_force;      //BL traction
+    (*Force)(19) = driving_force;      //MR traction
+    (*Force)(20) = driving_force;      //BR traction
 
-    arm->setFExtPtr(Force);
+    rover_ds->setFExtPtr(Force);
 
-    arm->setComputeFGyrFunction("RobotPlugin.so","FGyr");
-    arm->setComputeJacobianFGyrqFunction("RobotPlugin.so","jacobianFGyrq");
-    arm->setComputeJacobianFGyrqDotFunction("RobotPlugin.so","jacobianVFGyr");
-    arm->setComputeFIntFunction("RobotPlugin.so","U");
-    arm->setComputeJacobianFIntqFunction("RobotPlugin.so","jacobFintQ");
-    arm->setComputeJacobianFIntqDotFunction("RobotPlugin.so","jacobFintV");
+    rover_ds->setComputeFGyrFunction("RobotPlugin.so","FGyr");
+    rover_ds->setComputeJacobianFGyrqFunction("RobotPlugin.so","jacobianFGyrq");
+    rover_ds->setComputeJacobianFGyrqDotFunction("RobotPlugin.so","jacobianVFGyr");
+    rover_ds->setComputeFIntFunction("RobotPlugin.so","U");
+    rover_ds->setComputeJacobianFIntqFunction("RobotPlugin.so","jacobFintQ");
+    rover_ds->setComputeJacobianFIntqDotFunction("RobotPlugin.so","jacobFintV");
 
     // ------------------------------
     // --- Interactions and Model ---
     // ------------------------------
+
+    // add the dynamical system into the model
+    SP::Model Rover3D(new Model(t0,T));
+    Rover3D->nonSmoothDynamicalSystem()->insertDynamicalSystem(rover_ds);
 
     vector<SP::Relation> relation(6*NumSphere);
     vector<SP::Interaction> inter(6*NumSphere);
 
     SP::NonSmoothLaw nslaw(new NewtonImpactFrictionNSL(eps_n, eps_t, mu,3));
     
-    SP::Model Rover3D(new Model(t0,T));
-    // add the dynamical system into the non smooth dynamical system
-    Rover3D->nonSmoothDynamicalSystem()->insertDynamicalSystem(arm);
     int interaction_number;
     for(int i=0; i<NumSphere; i++)
     {
@@ -381,7 +374,7 @@ int main(int argc, char* argv[])
         relation[interaction_number].reset(new Rover3DWheelFixedSphereR(j,Sphere[i][3],Sphere[i][0],Sphere[i][1],Sphere[i][2],R,WheelT));
         inter[interaction_number].reset(new Interaction(3, nslaw, relation[interaction_number], interaction_number));
 	// link the interactions and the dynamical systems
-	Rover3D->nonSmoothDynamicalSystem()->link(inter[interaction_number], arm);
+	Rover3D->nonSmoothDynamicalSystem()->link(inter[interaction_number], rover_ds);
       }
     }
 
@@ -412,6 +405,7 @@ int main(int argc, char* argv[])
     osnspb->numericsSolverOptions()->internalSolvers->dparam[SICONOS_DPARAM_TOL]=1e-5;
     SP::TimeStepping s(new TimeStepping(t, OSI, osnspb));
     //        s->setUseRelativeConvergenceCriteron(true);
+    Rover3D->setSimulation(s);
 
     //s->setCheckSolverFunction(localCheckSolverOuput);
     cout << "=== End of model loading === " << endl;
@@ -421,13 +415,12 @@ int main(int argc, char* argv[])
 
     // --- Simulation initialization ---
     cout << "=== Initialization ===" << endl;
-    Rover3D->setSimulation(s);
     Rover3D->initialize();
 
 
     cout <<"End of initialisation" << endl;
     int k=0;
-    int N = (int)((T-t0)/h)+1;
+    int N = (int)((T-t0)/h);//+1;
     cout << "Number of time step   " << N << endl;
     // --- Get the values to be plotted ---
     // -> saved in a matrix dataPlot
@@ -438,8 +431,8 @@ int main(int argc, char* argv[])
 
     SimpleMatrix testdatabase(N+1,18);
 
-    SP::SiconosVector q = arm->q();
-    SP::SiconosVector v = arm->velocity();
+    SP::SiconosVector q = rover_ds->q();
+    SP::SiconosVector v = rover_ds->velocity();
     SP::SiconosVector yfunc = inter[0]->y(0);
     SP::SiconosVector yfunc1 = inter[1]->y(0);
     SP::SiconosVector yfunc2 = inter[2]->y(0);

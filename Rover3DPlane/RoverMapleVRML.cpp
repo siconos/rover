@@ -37,7 +37,7 @@ int main(int argc, char* argv[])
     // User-defined main parameters 
     unsigned int nDof = 21;           // degrees of freedom for robot rover_ds 
     double t0 = 0;                    // initial computation time
-    double T = 5.;                    // final computation time 
+    double T = 0.01;                    // final computation time 
     double h = 0.005;                  // time step
     double eps_n=0.3;                 
     double eps_t=0.0;
@@ -67,13 +67,14 @@ int main(int argc, char* argv[])
     rover_ds->setComputeMassFunction("RobotPlugin.so","mass");
   
     // -- Set external forces (Driving force of Wheels) --
+    double driving_force = 2000;
     SP::SiconosVector force(new SiconosVector(nDof));
-    (*force)(9) = 2000;   //FL  Driving force
-    (*force)(10) = 2000;  //FR  Driving force
-    (*force)(14) = 2000;  //ML  Driving force
-    (*force)(15) = 2000;  //BL  Driving force
-    (*force)(19) = 2000;  //MR  Driving force
-    (*force)(20) = 2000;  //BR  Driving force   
+    (*force)(9) = driving_force;   //FL  Driving force
+    (*force)(10) = driving_force;  //FR  Driving force
+    (*force)(14) = driving_force;  //ML  Driving force
+    (*force)(15) = driving_force;  //BL  Driving force
+    (*force)(19) = driving_force;  //MR  Driving force
+    (*force)(20) = driving_force;  //BR  Driving force   
 
     rover_ds->setFExtPtr(force);
  

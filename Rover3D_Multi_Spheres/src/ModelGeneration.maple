@@ -292,10 +292,7 @@ local fd, FileName, CodeList, CodeLine, i, M;
 	fd := fopen(FileName, WRITE):
 	fprintf(fd, "#include <math.h>\n"):
 	fprintf(fd, "#include ""LagrangianModel.h""\n\n"):
-	fprintf(fd, "void Inertia(M, q)\n"):
-	fprintf(fd, "double M[%d];\n", NDDL^2):
-	fprintf(fd, "double q[%d];\n", NDDL):
-	fprintf(fd, "{\n"):
+	fprintf(fd, "void Inertia(double M[%d], double q[%d])\n{\n", NDDL^2, NDDL):
 	GenerateSC(fd):
 	PrintRegisteredList(fd):
 	for i from 1 to vectdim(CodeList) do
