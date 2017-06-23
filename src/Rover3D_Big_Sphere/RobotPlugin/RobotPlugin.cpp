@@ -19,7 +19,7 @@
 #include "Robot.h"
 #include <stdio.h>
 #include <math.h>
-
+#include <stdlib.h>
 int NCONT = 6;
 double r = 20;
 double VRMLR ;
@@ -37,7 +37,7 @@ extern "C" void mass(unsigned int sizeOfq, const double *q, double *mass, unsign
   unsigned int n = sizeOfq;
   unsigned int n1 = n*n;
 
-  unsigned int i,j;
+  unsigned int i;
   
   
   // mass set to zero
@@ -73,7 +73,7 @@ extern "C" void jacobianNNLq(unsigned int sizeOfq, const double *q, const double
   unsigned int n = sizeOfq;
   unsigned int n1 = n*n;
 
-  unsigned int i,j;
+  unsigned int i;
   
  
   // set to zero
@@ -92,7 +92,7 @@ extern "C" void jacobianVNNL(unsigned int sizeOfq, const double *q,const  double
   unsigned int n = sizeOfq;
   unsigned int n1 = n*n;
 
-  unsigned int i,j;
+  unsigned int i;
   
 
   // set to zero
@@ -291,7 +291,7 @@ extern "C" void U(double time, unsigned int sizeOfq, const double *q,const  doub
 {  
    if (sFirst){
                 sQ0=(double *)malloc(sizeOfq * sizeof(double));
-                 for (int i=0;i<sizeOfq; i++)
+                 for (unsigned int i=0;i<sizeOfq; i++)
                  sQ0[i]=q[i];
 		sFirst=0;
 	       }
