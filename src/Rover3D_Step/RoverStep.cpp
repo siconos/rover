@@ -59,7 +59,6 @@ int main(int argc, char* argv[])
     // --- Dynamical systems ---
     // -------------------------
  
-    DynamicalSystemsSet allDS;
 
     // --- DS: RoverDS ---
 
@@ -141,7 +140,7 @@ int main(int argc, char* argv[])
       relation[inum + 3].reset(new Rover3DWheelFixedTriangleR(1000, 10, 0, 1000, 10, 1000, 2000, 10, 500, j, R, (inum + 3)));
       for(int i =0; i<4;++i)
 	{
-	  inter[inum + i].reset(new Interaction(3, nslaw, relation[inum + i], inum + i));
+	  inter[inum + i].reset(new Interaction(nslaw, relation[inum + i]));
 	  // link the interactions and the dynamical systems
 	  Rover3D->nonSmoothDynamicalSystem()->link(inter[inum + i], arm);
 	}
