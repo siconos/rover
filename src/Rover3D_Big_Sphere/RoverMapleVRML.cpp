@@ -143,6 +143,7 @@ int main(int argc, char* argv[])
     Rover3D->nonSmoothDynamicalSystem()->link(inter2, rover_ds);
     Rover3D->nonSmoothDynamicalSystem()->link(inter3, rover_ds);
     Rover3D->nonSmoothDynamicalSystem()->link(inter4, rover_ds);
+    Rover3D->nonSmoothDynamicalSystem()->link(inter5, rover_ds);
 
     // ----------------
     // --- Simulation ---

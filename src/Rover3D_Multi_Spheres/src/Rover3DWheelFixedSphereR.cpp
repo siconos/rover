@@ -21,13 +21,11 @@
  * Team: Bipop
  */
 
-
-
-
 #include "Robot.h"
 #include <stdio.h>
 #include <math.h>
 #include <iostream>
+#include <SiconosKernel.hpp>
 #include "Rover3DWheelFixedSphereR.hpp"
 using namespace std;
 
