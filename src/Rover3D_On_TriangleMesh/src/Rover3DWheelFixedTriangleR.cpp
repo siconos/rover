@@ -467,10 +467,14 @@ void Rover3DWheelFixedTriangleR::calcDistance(double* dist, double* q)
   
 }
 
-void Rover3DWheelFixedTriangleR::computeh(const double time, Interaction& inter)
+void Rover3DWheelFixedTriangleR::computeh(SiconosVector& q, SiconosVector& z, SiconosVector& y)
 {
+
+
+  // V.A. Memory management seems hazardous
+  double * tmpQ = &(q(0));
+
   
-  double * tmpQ = &(*inter.data(q0))(0);  
   double yValue; 
 
   double tmp[6];
@@ -478,7 +482,7 @@ void Rover3DWheelFixedTriangleR::computeh(const double time, Interaction& inter)
   for(int i = 0; i < 21; i++)
   {
     
-    tmpQ[i] = (*inter.data(q0))(i);
+    tmpQ[i] = q(i);
   }
  
   yValue = 100000;
@@ -492,13 +496,11 @@ void Rover3DWheelFixedTriangleR::computeh(const double time, Interaction& inter)
   
   }
 
-  SP::SiconosVector y = inter.y(0);
-
-  y->setValue(0,yValue);
+  y.setValue(0,yValue);
   
 };
 
-void Rover3DWheelFixedTriangleR::computeJachq(const double time, Interaction& inter)
+void Rover3DWheelFixedTriangleR::computeJachq(SiconosVector& q, SiconosVector& z)
 {
 
   //Calculating the coordinate frame in the contact point - rotation matrix
@@ -507,7 +509,7 @@ void Rover3DWheelFixedTriangleR::computeJachq(const double time, Interaction& in
     
   double tmp[63];
   
-  double *tmpQ = &(*inter.data(q0))(0); 
+  double *tmpQ = &(q(0)); 
   
   SimpleMatrix *g = (SimpleMatrix *)_jachq.get();
     

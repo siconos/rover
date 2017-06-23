@@ -227,9 +227,9 @@ public:
   
   Rover3DWheelFixedTriangleR(double, double, double, double, double, double, double, double, double, int, double);
 
-  void computeh(const double, Interaction& inter);
+  void computeh(SiconosVector& q, SiconosVector& z, SiconosVector& y);
 
-  void computeJachq(const double, Interaction& inter);
+  void computeJachq(SiconosVector& q, SiconosVector& z);
 
 };
 

@@ -62,7 +62,6 @@ int main(int argc, char* argv[])
     // --- Dynamical systems ---
     // -------------------------
  
-    DynamicalSystemsSet allDS;
 
     // --- DS: RoverDS ---
 
@@ -81,11 +80,18 @@ int main(int argc, char* argv[])
     (*q0)(8) = 0.0;
     (*q0)(6) = 0.0;
 
-    SP::LagrangianDS arm(new LagrangianDS(q0, v0));
+    SP::LagrangianDS rover_ds(new LagrangianDS(q0, v0));
+    // -------------
+    // --- Model ---
+    // -------------
+
+    SP::Model Rover3D(new Model(t0,T));
+    Rover3D->nonSmoothDynamicalSystem()->insertDynamicalSystem(rover_ds);
    
+
     //external plug-in
 
-    arm->setComputeMassFunction("RobotPlugin.so","mass");
+    rover_ds->setComputeMassFunction("RobotPlugin.so","mass");
     
     // -- Set external forces (traction) --
 
@@ -97,21 +103,20 @@ int main(int argc, char* argv[])
     (*Force)(19) = 0;      //MR traction
     (*Force)(20) = 0;     //BR traction
 
-    arm->setFExtPtr(Force);
+    rover_ds->setFExtPtr(Force);
 
-    arm->setComputeNNLFunction("RobotPlugin.so","NNL");
-    arm->setComputeJacobianNNLqFunction("RobotPlugin.so","jacobianNNLq");
-    arm->setComputeJacobianNNLqDotFunction("RobotPlugin.so","jacobianVNNL");
-    arm->setComputeFIntFunction("RobotPlugin.so","U");
-    arm->setComputeJacobianFIntqFunction("RobotPlugin.so","jacobFintQ");
-    arm->setComputeJacobianFIntqDotFunction("RobotPlugin.so","jacobFintV");
-    allDS.insert(arm);
+    rover_ds->setComputeFGyrFunction("RobotPlugin.so","NNL");
+    rover_ds->setComputeJacobianFGyrqFunction("RobotPlugin.so","jacobianNNLq");
+    rover_ds->setComputeJacobianFGyrqDotFunction("RobotPlugin.so","jacobianVNNL");
+    rover_ds->setComputeFIntFunction("RobotPlugin.so","U");
+    rover_ds->setComputeJacobianFIntqFunction("RobotPlugin.so","jacobFintQ");
+    rover_ds->setComputeJacobianFIntqDotFunction("RobotPlugin.so","jacobFintV");
+
 
     // -------------------
     // --- Interactions---
     // -------------------
 
-    InteractionsSet allInteractions;
 
     SP::NonSmoothLaw nslaw(new NewtonImpactFrictionNSL(eps_n, eps_t, mu,3));
 
@@ -195,9 +200,9 @@ int main(int argc, char* argv[])
         relation[j*NumTr + p].reset(new Rover3DWheelFixedTriangleR((*outerIt).at(0), (*outerIt).at(1), (*outerIt).at(2), (*outerIt).at(3),
                                                                    (*outerIt).at(4), (*outerIt).at(5), (*outerIt).at(6), (*outerIt).at(7), (*outerIt).at(8), j, R));
 
-        inter[j*NumTr + p].reset(new Interaction(allDS, j*NumTr + p, 3, nslaw, relation[j*NumTr + p]));        
-
-        allInteractions.insert(inter[j*NumTr + p]);
+        inter[j*NumTr + p].reset(new Interaction( nslaw, relation[j*NumTr + p]));        
+        Rover3D->nonSmoothDynamicalSystem()->link(inter[j*NumTr + p], rover_ds);
+        
 
         cout << (*outerIt).at(0) << (*outerIt).at(1) << (*outerIt).at(2) << (*outerIt).at(3) << (*outerIt).at(4) << (*outerIt).at(5) << (*outerIt).at(6) << (*outerIt).at(7) << (*outerIt).at(8) << endl;
 
@@ -237,12 +242,7 @@ int main(int argc, char* argv[])
 
     outFile.close();
 
-    // -------------
-    // --- Model ---
-    // -------------
-
-    SP::Model Rover3D(new Model(t0,T,allDS, allInteractions));
-
+ 
     // ------------------
     // --- Simulation ---
     // ------------------
@@ -252,13 +252,13 @@ int main(int argc, char* argv[])
 
     SP::TimeStepping s(new TimeStepping(t));
     // s->setUseRelativeConvergenceCriteron(true);
-
+    Rover3D->setSimulation(s);
     // -- OneStepIntegrators --
 
     //double theta=0.500001;
     double theta=0.50000001;
 
-    SP::Moreau OSI(new Moreau(allDS,theta));
+    SP::MoreauJeanOSI OSI(new MoreauJeanOSI(theta));
     s->insertIntegrator(OSI);
 
     //*******************************************************
@@ -288,7 +288,7 @@ int main(int argc, char* argv[])
 
     // --- Simulation initAialization ---
     cout << "=== Simulation initialization ===" << endl;
-    Rover3D->initialize(s);
+    Rover3D->initialize();
 
     cout <<"End of initialisation" << endl;
     int i=0;
@@ -308,8 +308,8 @@ int main(int argc, char* argv[])
     SimpleMatrix velocity(N+1,10);
     SimpleMatrix trunk(N+1,7);
 
-    SP::SiconosVector q = arm->q();
-    SP::SiconosVector v = arm->velocity();
+    SP::SiconosVector q = rover_ds->q();
+    SP::SiconosVector v = rover_ds->velocity();
     SP::SiconosVector yfunc = inter[0]->y(0);
     SP::SiconosVector yfunc1 = inter[1]->y(0);
     SP::SiconosVector yfunc2 = inter[2]->y(0);
@@ -781,18 +781,18 @@ int main(int argc, char* argv[])
 
     for (int CountN=2; CountN<=16; CountN++){
     
-    fprintf(pFile,Names[CountN]);
+      fprintf(pFile, "%s", Names[CountN]);
     fprintf(pFile,"    key [ 0 ");
     for (int cmp =1;cmp <= N;cmp++){
         fprintf(pFile,",%e",(dataPlot(cmp,0)-t0)/(T-t0));}
 	
     fprintf(pFile,"]\n"); 
     fprintf(pFile,"    keyValue [  ");
-    fprintf(pFile,NamesRotationVector[CountN]);
+    fprintf(pFile, "%s",NamesRotationVector[CountN]);
     fprintf(pFile," %e,\n",dataPlot(0,NamesDOF[CountN]));
 
     for (int cmp =1;cmp <= N;cmp++){
-    fprintf(pFile,NamesRotationVector[CountN]);
+    fprintf(pFile, "%s",NamesRotationVector[CountN]);
     fprintf(pFile," %e,\n",dataPlot(cmp,NamesDOF[CountN]));}
 
     fprintf(pFile,"  ]\n}\n");
